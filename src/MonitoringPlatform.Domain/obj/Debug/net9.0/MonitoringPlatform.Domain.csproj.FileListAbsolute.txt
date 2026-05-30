@@ -1,0 +1,11 @@
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Domain\bin\Debug\net9.0\MonitoringPlatform.Domain.deps.json
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Domain\bin\Debug\net9.0\MonitoringPlatform.Domain.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Domain\bin\Debug\net9.0\MonitoringPlatform.Domain.pdb
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Domain\obj\Debug\net9.0\MonitoringPlatform.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Domain\obj\Debug\net9.0\MonitoringPlatform.Domain.AssemblyInfoInputs.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Domain\obj\Debug\net9.0\MonitoringPlatform.Domain.AssemblyInfo.cs
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Domain\obj\Debug\net9.0\MonitoringPlatform.Domain.csproj.CoreCompileInputs.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Domain\obj\Debug\net9.0\MonitoringPlatform.Domain.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Domain\obj\Debug\net9.0\refint\MonitoringPlatform.Domain.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Domain\obj\Debug\net9.0\MonitoringPlatform.Domain.pdb
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Domain\obj\Debug\net9.0\ref\MonitoringPlatform.Domain.dll

@@ -1,0 +1,6 @@
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\CoverletSourceRootsMapping_MonitoringPlatform.UnitTests
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.csproj.AssemblyReference.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.GeneratedMSBuildEditorConfig.editorconfig
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.AssemblyInfoInputs.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.AssemblyInfo.cs
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.csproj.CoreCompileInputs.cache

@@ -1,0 +1,15 @@
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\bin\Debug\net9.0\MonitoringPlatform.Application.deps.json
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\bin\Debug\net9.0\MonitoringPlatform.Application.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\bin\Debug\net9.0\MonitoringPlatform.Application.pdb
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\bin\Debug\net9.0\MonitoringPlatform.Domain.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\bin\Debug\net9.0\MonitoringPlatform.Domain.pdb
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\obj\Debug\net9.0\MonitoringPlatform.Application.csproj.AssemblyReference.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\obj\Debug\net9.0\MonitoringPlatform.Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\obj\Debug\net9.0\MonitoringPlatform.Application.AssemblyInfoInputs.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\obj\Debug\net9.0\MonitoringPlatform.Application.AssemblyInfo.cs
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\obj\Debug\net9.0\MonitoringPlatform.Application.csproj.CoreCompileInputs.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\obj\Debug\net9.0\Monitori.65FC2495.Up2Date
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\obj\Debug\net9.0\MonitoringPlatform.Application.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\obj\Debug\net9.0\refint\MonitoringPlatform.Application.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\obj\Debug\net9.0\MonitoringPlatform.Application.pdb
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Application\obj\Debug\net9.0\ref\MonitoringPlatform.Application.dll
