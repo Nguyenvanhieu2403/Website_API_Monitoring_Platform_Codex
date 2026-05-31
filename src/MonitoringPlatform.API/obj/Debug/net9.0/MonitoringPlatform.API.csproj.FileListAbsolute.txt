@@ -153,4 +153,6 @@ E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\MonitoringPlatform.API.MvcApplicationPartsAssemblyInfo.cs
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\MonitoringPlatform.API.sourcelink.json
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\bin\Debug\net9.0\AutoMapper.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

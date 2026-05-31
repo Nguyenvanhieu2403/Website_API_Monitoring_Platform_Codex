@@ -22,6 +22,21 @@ namespace MonitoringPlatform.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("AlertRuleNotificationChannel", b =>
+                {
+                    b.Property<Guid>("ChannelId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("RuleId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("ChannelId", "RuleId");
+
+                    b.HasIndex("RuleId");
+
+                    b.ToTable("AlertRuleNotificationChannel");
+                });
+
             modelBuilder.Entity("MonitorCategoryMonitor", b =>
                 {
                     b.Property<Guid>("CategoryId")
@@ -85,6 +100,126 @@ namespace MonitoringPlatform.Infrastructure.Migrations
                     b.HasIndex("MonitorId");
 
                     b.ToTable("Alerts");
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.AlertEvent", b =>
+                {
+                    b.Property<Guid>("EventId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AlertRuleId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("AttemptCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0);
+
+                    b.Property<string>("ConditionType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<bool>("IsNotificationSent")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsResolved")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("LastAttemptedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<Guid>("MonitorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("OrganizationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("ResolvedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Severity")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime>("TriggeredAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("EventId");
+
+                    b.HasIndex("AlertRuleId");
+
+                    b.HasIndex("IsNotificationSent");
+
+                    b.HasIndex("MonitorId");
+
+                    b.HasIndex("OrganizationId", "MonitorId", "TriggeredAt");
+
+                    b.ToTable("AlertEvents");
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.AlertRule", b =>
+                {
+                    b.Property<Guid>("RuleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("ConditionType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int>("CooldownMinutes")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(5);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("MonitorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<Guid>("OrganizationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Severity")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("ThresholdValue")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("RuleId");
+
+                    b.HasIndex("OrganizationId");
+
+                    b.HasIndex("MonitorId", "ConditionType")
+                        .IsUnique();
+
+                    b.ToTable("AlertRules");
                 });
 
             modelBuilder.Entity("MonitoringPlatform.Domain.Entities.Monitor", b =>
@@ -292,6 +427,46 @@ namespace MonitoringPlatform.Infrastructure.Migrations
                     b.ToTable("MonitorTags");
                 });
 
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.NotificationChannel", b =>
+                {
+                    b.Property<Guid>("ChannelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Configuration")
+                        .IsRequired()
+                        .HasColumnType("jsonb");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<Guid>("OrganizationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("ChannelId");
+
+                    b.HasIndex("OrganizationId", "Name")
+                        .IsUnique();
+
+                    b.ToTable("NotificationChannels");
+                });
+
             modelBuilder.Entity("MonitoringPlatform.Domain.Entities.Organization", b =>
                 {
                     b.Property<Guid>("OrganizationId")
@@ -436,6 +611,21 @@ namespace MonitoringPlatform.Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("AlertRuleNotificationChannel", b =>
+                {
+                    b.HasOne("MonitoringPlatform.Domain.Entities.NotificationChannel", null)
+                        .WithMany()
+                        .HasForeignKey("ChannelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MonitoringPlatform.Domain.Entities.AlertRule", null)
+                        .WithMany()
+                        .HasForeignKey("RuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MonitorCategoryMonitor", b =>
                 {
                     b.HasOne("MonitoringPlatform.Domain.Entities.MonitorCategory", null)
@@ -477,6 +667,52 @@ namespace MonitoringPlatform.Infrastructure.Migrations
                     b.Navigation("Monitor");
                 });
 
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.AlertEvent", b =>
+                {
+                    b.HasOne("MonitoringPlatform.Domain.Entities.AlertRule", "AlertRule")
+                        .WithMany()
+                        .HasForeignKey("AlertRuleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("MonitoringPlatform.Domain.Entities.Monitor", "Monitor")
+                        .WithMany()
+                        .HasForeignKey("MonitorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("MonitoringPlatform.Domain.Entities.Organization", "Organization")
+                        .WithMany()
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AlertRule");
+
+                    b.Navigation("Monitor");
+
+                    b.Navigation("Organization");
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.AlertRule", b =>
+                {
+                    b.HasOne("MonitoringPlatform.Domain.Entities.Monitor", "Monitor")
+                        .WithMany()
+                        .HasForeignKey("MonitorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MonitoringPlatform.Domain.Entities.Organization", "Organization")
+                        .WithMany()
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Monitor");
+
+                    b.Navigation("Organization");
+                });
+
             modelBuilder.Entity("MonitoringPlatform.Domain.Entities.Monitor", b =>
                 {
                     b.HasOne("MonitoringPlatform.Domain.Entities.Organization", "Organization")
@@ -516,6 +752,17 @@ namespace MonitoringPlatform.Infrastructure.Migrations
                         .WithMany("MonitorTags")
                         .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Organization");
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.NotificationChannel", b =>
+                {
+                    b.HasOne("MonitoringPlatform.Domain.Entities.Organization", "Organization")
+                        .WithMany()
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Organization");

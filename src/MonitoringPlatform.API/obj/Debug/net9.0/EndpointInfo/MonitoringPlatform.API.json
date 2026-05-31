@@ -6,6 +6,400 @@
     "version": "v1"
   },
   "paths": {
+    "/api/organizations/{organizationId}/monitors/{monitorId}/alert-rules": {
+      "get": {
+        "tags": [
+          "AlertRules"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "monitorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "AlertRules"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "monitorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Commands.CreateAlertRuleCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Commands.CreateAlertRuleCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Commands.CreateAlertRuleCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/organizations/{organizationId}/monitors/{monitorId}/alert-rules/{ruleId}": {
+      "get": {
+        "tags": [
+          "AlertRules"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "ruleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "monitorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AlertRules"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "monitorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "ruleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Commands.UpdateAlertRuleCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Commands.UpdateAlertRuleCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Commands.UpdateAlertRuleCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AlertRules"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "ruleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "monitorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/auth/register": {
       "post": {
         "tags": [
@@ -16,17 +410,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterCommand"
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Authentication.Commands.RegisterCommand"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterCommand"
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Authentication.Commands.RegisterCommand"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterCommand"
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Authentication.Commands.RegisterCommand"
               }
             }
           }
@@ -37,7 +431,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegisterResponse"
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Authentication.Commands.RegisterResponse"
                 }
               }
             }
@@ -61,17 +455,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginCommand"
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Authentication.Commands.LoginCommand"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginCommand"
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Authentication.Commands.LoginCommand"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginCommand"
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Authentication.Commands.LoginCommand"
               }
             }
           }
@@ -82,7 +476,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResponse"
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Authentication.Commands.LoginResponse"
                 }
               }
             }
@@ -103,17 +497,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenRequest"
+                "$ref": "#/components/schemas/MonitoringPlatform.API.Controllers.RefreshTokenRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenRequest"
+                "$ref": "#/components/schemas/MonitoringPlatform.API.Controllers.RefreshTokenRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenRequest"
+                "$ref": "#/components/schemas/MonitoringPlatform.API.Controllers.RefreshTokenRequest"
               }
             }
           }
@@ -124,7 +518,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthTokens"
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Interfaces.AuthTokens"
                 }
               }
             }
@@ -171,17 +565,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateMonitorRequest"
+                "$ref": "#/components/schemas/MonitoringPlatform.API.Controllers.CreateMonitorRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateMonitorRequest"
+                "$ref": "#/components/schemas/MonitoringPlatform.API.Controllers.CreateMonitorRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateMonitorRequest"
+                "$ref": "#/components/schemas/MonitoringPlatform.API.Controllers.CreateMonitorRequest"
               }
             }
           }
@@ -192,7 +586,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MonitorDto"
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto"
                 }
               }
             }
@@ -222,14 +616,14 @@
             "name": "Type",
             "in": "query",
             "schema": {
-              "$ref": "#/components/schemas/MonitorType"
+              "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.MonitorType"
             }
           },
           {
             "name": "Status",
             "in": "query",
             "schema": {
-              "$ref": "#/components/schemas/MonitorStatus"
+              "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.MonitorStatus"
             }
           },
           {
@@ -292,7 +686,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MonitorDtoPagedResponse"
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Monitors.Models.PagedResponse`1[[MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
                 }
               }
             }
@@ -324,17 +718,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateMonitorRequest"
+                "$ref": "#/components/schemas/MonitoringPlatform.API.Controllers.UpdateMonitorRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateMonitorRequest"
+                "$ref": "#/components/schemas/MonitoringPlatform.API.Controllers.UpdateMonitorRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateMonitorRequest"
+                "$ref": "#/components/schemas/MonitoringPlatform.API.Controllers.UpdateMonitorRequest"
               }
             }
           }
@@ -345,7 +739,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MonitorDto"
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto"
                 }
               }
             }
@@ -411,7 +805,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MonitorDto"
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto"
                 }
               }
             }
@@ -424,33 +818,389 @@
           }
         }
       }
+    },
+    "/api/organizations/{organizationId}/notification-channels": {
+      "get": {
+        "tags": [
+          "NotificationChannels"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "NotificationChannels"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Commands.CreateNotificationChannelCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Commands.CreateNotificationChannelCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Commands.CreateNotificationChannelCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/organizations/{organizationId}/notification-channels/{channelId}": {
+      "get": {
+        "tags": [
+          "NotificationChannels"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "channelId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "NotificationChannels"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "channelId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Commands.UpdateNotificationChannelCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Commands.UpdateNotificationChannelCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Commands.UpdateNotificationChannelCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "NotificationChannels"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "channelId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "AuthTokens": {
+      "Microsoft.AspNetCore.Mvc.ProblemDetails": {
         "type": "object",
         "properties": {
-          "accessToken": {
+          "type": {
             "type": "string",
             "nullable": true
           },
-          "refreshToken": {
+          "title": {
             "type": "string",
             "nullable": true
           },
-          "accessTokenExpiresAt": {
-            "type": "string",
-            "format": "date-time"
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           },
-          "refreshTokenExpiresAt": {
+          "detail": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": { }
       },
-      "CreateMonitorRequest": {
+      "MonitoringPlatform.API.Controllers.CreateMonitorRequest": {
         "type": "object",
         "properties": {
           "name": {
@@ -462,7 +1212,7 @@
             "nullable": true
           },
           "type": {
-            "$ref": "#/components/schemas/MonitorType"
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.MonitorType"
           },
           "target": {
             "type": "string",
@@ -520,7 +1270,256 @@
         },
         "additionalProperties": false
       },
-      "LoginCommand": {
+      "MonitoringPlatform.API.Controllers.RefreshTokenRequest": {
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlatform.API.Controllers.UpdateMonitorRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.MonitorType"
+          },
+          "target": {
+            "type": "string",
+            "nullable": true
+          },
+          "port": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "intervalSeconds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "timeoutSeconds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "retries": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "followRedirects": {
+            "type": "boolean"
+          },
+          "expectedStatusCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "expectedKeyword": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "tagIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlatform.Application.Features.AlertRules.Commands.CreateAlertRuleCommand": {
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "monitorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "conditionType": {
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.AlertConditionType"
+          },
+          "thresholdValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "severity": {
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.AlertSeverity"
+          },
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "cooldownMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "channelIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlatform.Application.Features.AlertRules.Commands.UpdateAlertRuleCommand": {
+        "type": "object",
+        "properties": {
+          "ruleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "monitorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "conditionType": {
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.AlertConditionType"
+          },
+          "thresholdValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "severity": {
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.AlertSeverity"
+          },
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "cooldownMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "channelIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto": {
+        "type": "object",
+        "properties": {
+          "ruleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "monitorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "conditionType": {
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.AlertConditionType"
+          },
+          "thresholdValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "severity": {
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.AlertSeverity"
+          },
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "cooldownMinutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "notificationChannels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.AlertRules.Models.NotificationChannelDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlatform.Application.Features.AlertRules.Models.NotificationChannelDto": {
+        "type": "object",
+        "properties": {
+          "channelId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.NotificationChannelType"
+          },
+          "configuration": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEnabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlatform.Application.Features.Authentication.Commands.LoginCommand": {
         "type": "object",
         "properties": {
           "email": {
@@ -542,7 +1541,7 @@
         },
         "additionalProperties": false
       },
-      "LoginResponse": {
+      "MonitoringPlatform.Application.Features.Authentication.Commands.LoginResponse": {
         "type": "object",
         "properties": {
           "userId": {
@@ -570,15 +1569,85 @@
             "nullable": true
           },
           "role": {
-            "$ref": "#/components/schemas/UserRole"
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.UserRole"
           },
           "tokens": {
-            "$ref": "#/components/schemas/AuthTokens"
+            "$ref": "#/components/schemas/MonitoringPlatform.Application.Interfaces.AuthTokens"
           }
         },
         "additionalProperties": false
       },
-      "MonitorCategoryDto": {
+      "MonitoringPlatform.Application.Features.Authentication.Commands.RegisterCommand": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "remoteIp": {
+            "type": "string",
+            "nullable": true
+          },
+          "userAgent": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlatform.Application.Features.Authentication.Commands.RegisterResponse": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "organizationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.UserRole"
+          },
+          "tokens": {
+            "$ref": "#/components/schemas/MonitoringPlatform.Application.Interfaces.AuthTokens"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlatform.Application.Features.Monitors.Models.MonitorCategoryDto": {
         "type": "object",
         "properties": {
           "categoryId": {
@@ -596,7 +1665,7 @@
         },
         "additionalProperties": false
       },
-      "MonitorDto": {
+      "MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto": {
         "type": "object",
         "properties": {
           "monitorId": {
@@ -616,7 +1685,7 @@
             "nullable": true
           },
           "type": {
-            "$ref": "#/components/schemas/MonitorType"
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.MonitorType"
           },
           "target": {
             "type": "string",
@@ -656,7 +1725,7 @@
             "nullable": true
           },
           "status": {
-            "$ref": "#/components/schemas/MonitorStatus"
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.MonitorStatus"
           },
           "lastCheckedAt": {
             "type": "string",
@@ -696,27 +1765,45 @@
           "categories": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MonitorCategoryDto"
+              "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Monitors.Models.MonitorCategoryDto"
             },
             "nullable": true
           },
           "tags": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MonitorTagDto"
+              "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Monitors.Models.MonitorTagDto"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "MonitorDtoPagedResponse": {
+      "MonitoringPlatform.Application.Features.Monitors.Models.MonitorTagDto": {
+        "type": "object",
+        "properties": {
+          "tagId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlatform.Application.Features.Monitors.Models.PagedResponse`1[[MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]": {
         "type": "object",
         "properties": {
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MonitorDto"
+              "$ref": "#/components/schemas/MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto"
             },
             "nullable": true
           },
@@ -748,7 +1835,118 @@
         },
         "additionalProperties": false
       },
-      "MonitorStatus": {
+      "MonitoringPlatform.Application.Features.NotificationChannels.Commands.CreateNotificationChannelCommand": {
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.NotificationChannelType"
+          },
+          "configuration": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEnabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlatform.Application.Features.NotificationChannels.Commands.UpdateNotificationChannelCommand": {
+        "type": "object",
+        "properties": {
+          "channelId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.NotificationChannelType"
+          },
+          "configuration": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEnabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto": {
+        "type": "object",
+        "properties": {
+          "channelId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/MonitoringPlatform.Domain.Enums.NotificationChannelType"
+          },
+          "configuration": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlatform.Application.Interfaces.AuthTokens": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "accessTokenExpiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "refreshTokenExpiresAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MonitoringPlatform.Domain.Enums.AlertConditionType": {
         "enum": [
           1,
           2,
@@ -758,25 +1956,26 @@
         "type": "integer",
         "format": "int32"
       },
-      "MonitorTagDto": {
-        "type": "object",
-        "properties": {
-          "tagId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "color": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
+      "MonitoringPlatform.Domain.Enums.AlertSeverity": {
+        "enum": [
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
       },
-      "MonitorType": {
+      "MonitoringPlatform.Domain.Enums.MonitorStatus": {
+        "enum": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "MonitoringPlatform.Domain.Enums.MonitorType": {
         "enum": [
           1,
           2,
@@ -787,157 +1986,15 @@
         "type": "integer",
         "format": "int32"
       },
-      "RefreshTokenRequest": {
-        "type": "object",
-        "properties": {
-          "refreshToken": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
+      "MonitoringPlatform.Domain.Enums.NotificationChannelType": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
       },
-      "RegisterCommand": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "password": {
-            "type": "string",
-            "nullable": true
-          },
-          "firstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "organizationName": {
-            "type": "string",
-            "nullable": true
-          },
-          "remoteIp": {
-            "type": "string",
-            "nullable": true
-          },
-          "userAgent": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RegisterResponse": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "firstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "organizationId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "organizationName": {
-            "type": "string",
-            "nullable": true
-          },
-          "role": {
-            "$ref": "#/components/schemas/UserRole"
-          },
-          "tokens": {
-            "$ref": "#/components/schemas/AuthTokens"
-          }
-        },
-        "additionalProperties": false
-      },
-      "UpdateMonitorRequest": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "type": {
-            "$ref": "#/components/schemas/MonitorType"
-          },
-          "target": {
-            "type": "string",
-            "nullable": true
-          },
-          "port": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "intervalSeconds": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "timeoutSeconds": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "retries": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "followRedirects": {
-            "type": "boolean"
-          },
-          "expectedStatusCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "expectedKeyword": {
-            "type": "string",
-            "nullable": true
-          },
-          "httpMethod": {
-            "type": "string",
-            "nullable": true
-          },
-          "categoryIds": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "nullable": true
-          },
-          "tagIds": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UserRole": {
+      "MonitoringPlatform.Domain.Enums.UserRole": {
         "enum": [
           1,
           2,
