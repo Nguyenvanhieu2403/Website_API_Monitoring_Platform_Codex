@@ -2,6 +2,7 @@ using FluentAssertions;
 using Moq;
 using MonitoringPlatform.Application.Features.Monitors.Commands;
 using MonitoringPlatform.Application.Features.Monitors.Models;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Entities;
 using MonitoringPlatform.Domain.Enums;
 using MonitoringPlatform.Domain.Interfaces;
@@ -45,11 +46,13 @@ public class CreateMonitorCommandHandlerTests
 
         // Assert
         result.Should().NotBeNull();
-        result.Name.Should().Be(command.Name);
-        result.Target.Should().Be(command.Target);
-        result.Type.Should().Be(command.Type);
-        result.IntervalSeconds.Should().Be(command.IntervalSeconds);
-        result.TimeoutSeconds.Should().Be(command.TimeoutSeconds);
+        result.IsSuccess.Should().BeTrue();
+        result.Value.Should().NotBeNull();
+        result.Value!.Name.Should().Be(command.Name);
+        result.Value.Target.Should().Be(command.Target);
+        result.Value.Type.Should().Be(command.Type);
+        result.Value.IntervalSeconds.Should().Be(command.IntervalSeconds);
+        result.Value.TimeoutSeconds.Should().Be(command.TimeoutSeconds);
 
         _monitorRepositoryMock.Verify(x => x.CreateAsync(It.IsAny<Domain.Entities.Monitor>()), Times.Once);
     }

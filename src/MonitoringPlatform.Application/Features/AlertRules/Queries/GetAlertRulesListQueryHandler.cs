@@ -1,10 +1,11 @@
 using MediatR;
 using MonitoringPlatform.Application.Features.AlertRules.Models;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.AlertRules.Queries;
 
-public class GetAlertRulesListQueryHandler : IRequestHandler<GetAlertRulesListQuery, IEnumerable<AlertRuleDto>>
+public class GetAlertRulesListQueryHandler : IRequestHandler<GetAlertRulesListQuery, Result<IEnumerable<AlertRuleDto>>>
 {
     private readonly IAlertRuleRepository _alertRuleRepository;
 
@@ -13,11 +14,11 @@ public class GetAlertRulesListQueryHandler : IRequestHandler<GetAlertRulesListQu
         _alertRuleRepository = alertRuleRepository;
     }
 
-    public async Task<IEnumerable<AlertRuleDto>> Handle(GetAlertRulesListQuery request, CancellationToken cancellationToken)
+    public async Task<Result<IEnumerable<AlertRuleDto>>> Handle(GetAlertRulesListQuery request, CancellationToken cancellationToken)
     {
         var rules = await _alertRuleRepository.GetByMonitorIdAsync(request.MonitorId, request.OrganizationId);
 
-        return rules.Select(rule => new AlertRuleDto
+        return Result<IEnumerable<AlertRuleDto>>.Success(rules.Select(rule => new AlertRuleDto
         {
             RuleId = rule.RuleId,
             OrganizationId = rule.OrganizationId,
@@ -38,6 +39,6 @@ public class GetAlertRulesListQueryHandler : IRequestHandler<GetAlertRulesListQu
                 Configuration = nc.Configuration,
                 IsEnabled = nc.IsEnabled
             }).ToList()
-        }).ToList();
+        }).ToList());
     }
 }

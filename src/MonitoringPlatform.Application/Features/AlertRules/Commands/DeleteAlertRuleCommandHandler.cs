@@ -1,9 +1,10 @@
 using MediatR;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.AlertRules.Commands;
 
-public class DeleteAlertRuleCommandHandler : IRequestHandler<DeleteAlertRuleCommand, Unit>
+public class DeleteAlertRuleCommandHandler : IRequestHandler<DeleteAlertRuleCommand, Result>
 {
     private readonly IAlertRuleRepository _alertRuleRepository;
 
@@ -12,9 +13,15 @@ public class DeleteAlertRuleCommandHandler : IRequestHandler<DeleteAlertRuleComm
         _alertRuleRepository = alertRuleRepository;
     }
 
-    public async Task<Unit> Handle(DeleteAlertRuleCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(DeleteAlertRuleCommand request, CancellationToken cancellationToken)
     {
+        var rule = await _alertRuleRepository.GetByIdAsync(request.RuleId, request.OrganizationId);
+        if (rule == null)
+        {
+            return Result.Failure("Không tìm thấy quy tắc cảnh báo.");
+        }
+
         await _alertRuleRepository.DeleteAsync(request.RuleId, request.OrganizationId);
-        return Unit.Value;
+        return Result.Success();
     }
 }

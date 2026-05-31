@@ -35,9 +35,9 @@ public class DashboardController : ControllerBase
     /// </summary>
     [HttpGet("summary")]
     [SwaggerOperation(Summary = "Get aggregated analytics for the dashboard")]
-    [SwaggerResponse(200, "Analytics retrieved successfully", typeof(AggregatedAnalyticsDto))]
-    [SwaggerResponse(401, "Unauthorized")]
-    public async Task<ActionResult<AggregatedAnalyticsDto>> GetSummary([FromQuery] string timeRange = "24h")
+    [SwaggerResponse(200, "Analytics retrieved successfully", typeof(ApiResponse<AggregatedAnalyticsDto>))]
+    [SwaggerResponse(401, "Unauthorized", typeof(ApiResponse<object>))]
+    public async Task<ActionResult<ApiResponse<AggregatedAnalyticsDto>>> GetSummary([FromQuery] string timeRange = "24h")
     {
         var organizationId = GetOrganizationId();
         var query = new GetAggregatedAnalyticsQuery
@@ -50,9 +50,20 @@ public class DashboardController : ControllerBase
 
         if (!result.IsSuccess)
         {
-            return BadRequest(result.Error);
+            return BadRequest(new ApiResponse<AggregatedAnalyticsDto>
+            {
+                Success = false,
+                StatusCode = 400,
+                Message = result.Error
+            });
         }
 
-        return Ok(result.Value);
+        return Ok(new ApiResponse<AggregatedAnalyticsDto>
+        {
+            Success = true,
+            StatusCode = 200,
+            Message = "Lấy dữ liệu thành công.",
+            Data = result.Value
+        });
     }
 }

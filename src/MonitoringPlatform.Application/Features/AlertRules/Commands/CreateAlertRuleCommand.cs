@@ -1,10 +1,11 @@
 using MediatR;
 using MonitoringPlatform.Application.Features.AlertRules.Models;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Enums;
 
 namespace MonitoringPlatform.Application.Features.AlertRules.Commands;
 
-public record CreateAlertRuleCommand : IRequest<AlertRuleDto>
+public record CreateAlertRuleCommand : IRequest<Result<AlertRuleDto>>
 {
     public Guid OrganizationId { get; init; }
     public Guid MonitorId { get; init; }

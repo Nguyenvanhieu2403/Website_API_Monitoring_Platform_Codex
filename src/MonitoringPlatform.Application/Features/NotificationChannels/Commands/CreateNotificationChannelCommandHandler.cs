@@ -1,11 +1,12 @@
 using MediatR;
 using MonitoringPlatform.Application.Features.NotificationChannels.Models;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Entities;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.NotificationChannels.Commands;
 
-public class CreateNotificationChannelCommandHandler : IRequestHandler<CreateNotificationChannelCommand, NotificationChannelDto>
+public class CreateNotificationChannelCommandHandler : IRequestHandler<CreateNotificationChannelCommand, Result<NotificationChannelDto>>
 {
     private readonly INotificationChannelRepository _channelRepository;
 
@@ -14,7 +15,7 @@ public class CreateNotificationChannelCommandHandler : IRequestHandler<CreateNot
         _channelRepository = channelRepository;
     }
 
-    public async Task<NotificationChannelDto> Handle(CreateNotificationChannelCommand request, CancellationToken cancellationToken)
+    public async Task<Result<NotificationChannelDto>> Handle(CreateNotificationChannelCommand request, CancellationToken cancellationToken)
     {
         var channel = new NotificationChannel
         {
@@ -29,7 +30,7 @@ public class CreateNotificationChannelCommandHandler : IRequestHandler<CreateNot
 
         var createdChannel = await _channelRepository.CreateAsync(channel);
 
-        return MapToDto(createdChannel);
+        return Result<NotificationChannelDto>.Success(MapToDto(createdChannel));
     }
 
     private static NotificationChannelDto MapToDto(NotificationChannel channel)

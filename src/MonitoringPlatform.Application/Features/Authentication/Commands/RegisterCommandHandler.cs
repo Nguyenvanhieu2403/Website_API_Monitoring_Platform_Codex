@@ -1,13 +1,14 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MonitoringPlatform.Application.Interfaces;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Entities;
 using MonitoringPlatform.Domain.Enums;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.Authentication.Commands;
 
-public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterResponse>
+public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Result<RegisterResponse>>
 {
     private readonly IUserRepository _userRepository;
     private readonly IOrganizationRepository _organizationRepository;
@@ -29,13 +30,13 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterR
         _logger = logger;
     }
 
-    public async Task<RegisterResponse> Handle(RegisterCommand request, CancellationToken cancellationToken)
+    public async Task<Result<RegisterResponse>> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
         // Check if email already exists
         var existingUser = await _userRepository.GetByEmailAsync(request.Email);
         if (existingUser != null)
         {
-            throw new DuplicateException($"User with email {request.Email} already exists");
+            return Result<RegisterResponse>.Failure("Người dùng đã tồn tại.");
         }
 
         // Create or get organization
@@ -73,7 +74,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterR
 
         _logger.LogInformation("User {UserId} registered successfully", user.UserId);
 
-        return new RegisterResponse
+        return Result<RegisterResponse>.Success(new RegisterResponse
         {
             UserId = user.UserId,
             Email = user.Email,
@@ -83,7 +84,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterR
             OrganizationName = organization.Name,
             Role = user.Role,
             Tokens = tokens
-        };
+        });
     }
 
     private async Task<Organization> GetOrCreateOrganizationAsync(RegisterCommand request)
@@ -114,9 +115,4 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterR
         slug = slug.Substring(0, Math.Min(slug.Length, 50));
         return $"{slug}-{Guid.NewGuid():N}".Substring(0, Math.Min(slug.Length + 8, 100));
     }
-}
-
-public class DuplicateException : Exception
-{
-    public DuplicateException(string message) : base(message) { }
 }

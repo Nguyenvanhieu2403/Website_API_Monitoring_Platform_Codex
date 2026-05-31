@@ -1,11 +1,12 @@
 using MediatR;
 using MonitoringPlatform.Application.Features.AlertRules.Models;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Entities;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.AlertRules.Commands;
 
-public class CreateAlertRuleCommandHandler : IRequestHandler<CreateAlertRuleCommand, AlertRuleDto>
+public class CreateAlertRuleCommandHandler : IRequestHandler<CreateAlertRuleCommand, Result<AlertRuleDto>>
 {
     private readonly IAlertRuleRepository _alertRuleRepository;
     private readonly INotificationChannelRepository _notificationChannelRepository;
@@ -16,8 +17,11 @@ public class CreateAlertRuleCommandHandler : IRequestHandler<CreateAlertRuleComm
         _notificationChannelRepository = notificationChannelRepository;
     }
 
-    public async Task<AlertRuleDto> Handle(CreateAlertRuleCommand request, CancellationToken cancellationToken)
+    public async Task<Result<AlertRuleDto>> Handle(CreateAlertRuleCommand request, CancellationToken cancellationToken)
     {
+        // Validate monitor existence (though it should be validated by previous steps or FluentValidation)
+        // For now, let's assume monitor exists as per Clean Architecture principles where application layer handles business rules.
+
         var channels = new List<NotificationChannel>();
         foreach (var id in request.ChannelIds)
         {
@@ -25,6 +29,10 @@ public class CreateAlertRuleCommandHandler : IRequestHandler<CreateAlertRuleComm
             if (channel != null)
             {
                 channels.Add(channel);
+            }
+            else
+            {
+                return Result<AlertRuleDto>.Failure($"Kênh thông báo với ID {id} không tìm thấy.");
             }
         }
 
@@ -45,7 +53,7 @@ public class CreateAlertRuleCommandHandler : IRequestHandler<CreateAlertRuleComm
 
         var createdRule = await _alertRuleRepository.CreateAsync(rule);
 
-        return MapToDto(createdRule);
+        return Result<AlertRuleDto>.Success(MapToDto(createdRule));
     }
 
     private static AlertRuleDto MapToDto(AlertRule rule)

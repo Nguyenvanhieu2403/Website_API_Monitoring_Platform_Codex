@@ -4,6 +4,7 @@ using MonitoringPlatform.Application;
 using MonitoringPlatform.Infrastructure;
 using MonitoringPlatform.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -87,7 +88,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // Custom exception handling middleware
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseGlobalExceptionMiddleware();
 
 app.MapControllers();
 

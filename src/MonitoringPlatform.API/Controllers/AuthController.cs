@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MonitoringPlatform.Application.Features.Authentication.Commands;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Application.Interfaces;
 using MonitoringPlatform.Infrastructure.Security;
 using Swashbuckle.AspNetCore.Annotations;
@@ -29,16 +30,33 @@ public class AuthController : ControllerBase
     /// <returns>User registration response with tokens</returns>
     [HttpPost("register")]
     [SwaggerOperation(Summary = "Register a new user")]
-    [SwaggerResponse(201, "User registered successfully", typeof(RegisterResponse))]
-    [SwaggerResponse(400, "Invalid request")]
-    [SwaggerResponse(409, "Email already exists")]
-    public async Task<ActionResult<RegisterResponse>> Register([FromBody] RegisterCommand command)
+    [SwaggerResponse(201, "User registered successfully", typeof(ApiResponse<RegisterResponse>))]
+    [SwaggerResponse(400, "Invalid request", typeof(ApiResponse<object>))]
+    public async Task<ActionResult<ApiResponse<RegisterResponse>>> Register([FromBody] RegisterCommand command)
     {
         command.RemoteIp = GetClientIp();
         command.UserAgent = GetUserAgent();
 
         var result = await _mediator.Send(command);
-        return CreatedAtAction(nameof(Register), result);
+
+        if (!result.IsSuccess)
+        {
+            return BadRequest(new ApiResponse<RegisterResponse>
+            {
+                Success = false,
+                StatusCode = 400,
+                Message = result.Error,
+                Errors = result.Errors
+            });
+        }
+
+        return CreatedAtAction(nameof(Register), new ApiResponse<RegisterResponse>
+        {
+            Success = true,
+            StatusCode = 201,
+            Message = "Người dùng đã được đăng ký thành công.",
+            Data = result.Value
+        });
     }
 
     /// <summary>
@@ -48,15 +66,32 @@ public class AuthController : ControllerBase
     /// <returns>Login response with tokens</returns>
     [HttpPost("login")]
     [SwaggerOperation(Summary = "Login user")]
-    [SwaggerResponse(200, "Login successful", typeof(LoginResponse))]
-    [SwaggerResponse(401, "Invalid credentials")]
-    public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginCommand command)
+    [SwaggerResponse(200, "Login successful", typeof(ApiResponse<LoginResponse>))]
+    [SwaggerResponse(401, "Invalid credentials", typeof(ApiResponse<object>))]
+    public async Task<ActionResult<ApiResponse<LoginResponse>>> Login([FromBody] LoginCommand command)
     {
         command.RemoteIp = GetClientIp();
         command.UserAgent = GetUserAgent();
 
         var result = await _mediator.Send(command);
-        return Ok(result);
+
+        if (!result.IsSuccess)
+        {
+            return Unauthorized(new ApiResponse<LoginResponse>
+            {
+                Success = false,
+                StatusCode = 401,
+                Message = result.Error
+            });
+        }
+
+        return Ok(new ApiResponse<LoginResponse>
+        {
+            Success = true,
+            StatusCode = 200,
+            Message = "Đăng nhập thành công.",
+            Data = result.Value
+        });
     }
 
     /// <summary>
@@ -94,12 +129,17 @@ public class AuthController : ControllerBase
     [Authorize]
     [HttpPost("logout")]
     [SwaggerOperation(Summary = "Logout user")]
-    [SwaggerResponse(200, "Logout successful")]
+    [SwaggerResponse(200, "Logout successful", typeof(ApiResponse<object>))]
     public async Task<IActionResult> Logout()
     {
         var userId = GetCurrentUserId();
         await _jwtService.RevokeAllTokensAsync(userId);
-        return Ok(new { message = "Logout successful" });
+        return Ok(new ApiResponse<object>
+        {
+            Success = true,
+            StatusCode = 200,
+            Message = "Đăng xuất thành công."
+        });
     }
 
     /// <summary>

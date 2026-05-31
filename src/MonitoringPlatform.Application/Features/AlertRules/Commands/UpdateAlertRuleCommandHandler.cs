@@ -1,11 +1,12 @@
 using MediatR;
 using MonitoringPlatform.Application.Features.AlertRules.Models;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Entities;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.AlertRules.Commands;
 
-public class UpdateAlertRuleCommandHandler : IRequestHandler<UpdateAlertRuleCommand, AlertRuleDto>
+public class UpdateAlertRuleCommandHandler : IRequestHandler<UpdateAlertRuleCommand, Result<AlertRuleDto>>
 {
     private readonly IAlertRuleRepository _alertRuleRepository;
     private readonly INotificationChannelRepository _notificationChannelRepository;
@@ -16,12 +17,12 @@ public class UpdateAlertRuleCommandHandler : IRequestHandler<UpdateAlertRuleComm
         _notificationChannelRepository = notificationChannelRepository;
     }
 
-    public async Task<AlertRuleDto> Handle(UpdateAlertRuleCommand request, CancellationToken cancellationToken)
+    public async Task<Result<AlertRuleDto>> Handle(UpdateAlertRuleCommand request, CancellationToken cancellationToken)
     {
         var rule = await _alertRuleRepository.GetByIdAsync(request.RuleId, request.OrganizationId);
         if (rule == null)
         {
-            throw new KeyNotFoundException($"Alert Rule with ID {request.RuleId} not found.");
+            return Result<AlertRuleDto>.Failure("Không tìm thấy quy tắc cảnh báo.");
         }
 
         var channels = new List<NotificationChannel>();
@@ -31,6 +32,10 @@ public class UpdateAlertRuleCommandHandler : IRequestHandler<UpdateAlertRuleComm
             if (channel != null)
             {
                 channels.Add(channel);
+            }
+            else
+            {
+                return Result<AlertRuleDto>.Failure($"Kênh thông báo với ID {id} không tìm thấy.");
             }
         }
 
@@ -45,7 +50,7 @@ public class UpdateAlertRuleCommandHandler : IRequestHandler<UpdateAlertRuleComm
 
         await _alertRuleRepository.UpdateAsync(rule);
 
-        return MapToDto(rule);
+        return Result<AlertRuleDto>.Success(MapToDto(rule));
     }
 
     private static AlertRuleDto MapToDto(AlertRule rule)

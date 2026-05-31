@@ -155,4 +155,3 @@ E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\MonitoringPlatform.API.pdb
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\MonitoringPlatform.API.genruntimeconfig.cache
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\ref\MonitoringPlatform.API.dll
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
