@@ -21,6 +21,7 @@ public interface IMonitorRepository
     Task<IEnumerable<MonitorTag>> GetTagsAsync(Guid organizationId);
     Task<MonitorTag> CreateTagAsync(MonitorTag tag);
     Task DeleteTagAsync(Guid tagId, Guid organizationId);
+    Task<List<Entities.Monitor>> GetMonitorsByOrganizationIdAsync(Guid organizationId);
 }
 
 public class MonitorFilter

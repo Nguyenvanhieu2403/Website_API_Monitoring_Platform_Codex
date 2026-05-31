@@ -1,9 +1,9 @@
+using MonitoringPlatform.API.Data;
 using MonitoringPlatform.API.Middleware;
 using MonitoringPlatform.Application;
 using MonitoringPlatform.Infrastructure;
 using MonitoringPlatform.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using MonitoringPlatform.API.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +12,7 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -19,7 +20,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "Monitoring Platform API",
         Version = "v1",
-        Description = "API for SaaS Monitoring Platform - Sprint 1: Authentication & Foundation"
+        Description = "API for SaaS Monitoring Platform"
     });
 
     c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
@@ -72,6 +73,11 @@ if (app.Environment.IsDevelopment())
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Monitoring Platform API v1");
     });
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
@@ -92,13 +98,17 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
+        // Ensure the database is created and migrations are applied
         await context.Database.MigrateAsync();
+        // Seed initial data
         await DbSeed.SeedAsync(context);
     }
     catch (Exception ex)
     {
         var logger = services.GetRequiredService<ILogger<Program>>();
         logger.LogError(ex, "An error occurred while migrating or seeding the database.");
+        // Depending on your application's error handling, you might not want to re-throw here
+        // For now, re-throwing to ensure the application doesn't start with a broken DB
         throw;
     }
 }

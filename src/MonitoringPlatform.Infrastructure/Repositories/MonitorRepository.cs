@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using MonitoringPlatform.Domain.Entities;
-using MonitoringPlatform.Domain.Interfaces;
 using MonitoringPlatform.Infrastructure.Data;
 
 namespace MonitoringPlatform.Infrastructure.Repositories;
 
-public class MonitorRepository : IMonitorRepository
+public class MonitorRepository :
+    MonitoringPlatform.Domain.Interfaces.IMonitorRepository,
+    MonitoringPlatform.Application.Interfaces.IMonitorRepository
 {
     private readonly ApplicationDbContext _context;
 
@@ -31,7 +32,8 @@ public class MonitorRepository : IMonitorRepository
             .ToListAsync();
     }
 
-    public async Task<PagedResult<Domain.Entities.Monitor>> GetPagedAsync(Guid organizationId, MonitorFilter filter)
+    // Explicit implementation for Domain interface
+    async Task<MonitoringPlatform.Domain.Interfaces.PagedResult<Domain.Entities.Monitor>> MonitoringPlatform.Domain.Interfaces.IMonitorRepository.GetPagedAsync(Guid organizationId, MonitoringPlatform.Domain.Interfaces.MonitorFilter filter)
     {
         var query = _context.Monitors
             .Include(m => m.MonitorCategories)
@@ -39,7 +41,6 @@ public class MonitorRepository : IMonitorRepository
             .Where(m => m.OrganizationId == organizationId)
             .AsQueryable();
 
-        // Search support (Name, Target, Description)
         if (!string.IsNullOrWhiteSpace(filter.Search))
         {
             var searchTerm = $"%{filter.Search.ToLower()}%";
@@ -48,33 +49,12 @@ public class MonitorRepository : IMonitorRepository
                                      EF.Functions.Like(m.Description.ToLower(), searchTerm));
         }
 
-        // Filtering support
-        if (filter.Type.HasValue)
-        {
-            query = query.Where(m => m.Type == filter.Type.Value);
-        }
+        if (filter.Type.HasValue) query = query.Where(m => m.Type == filter.Type.Value);
+        if (filter.Status.HasValue) query = query.Where(m => m.Status == filter.Status.Value);
+        if (filter.CategoryId.HasValue) query = query.Where(m => m.MonitorCategories.Any(c => c.CategoryId == filter.CategoryId.Value));
+        if (filter.TagId.HasValue) query = query.Where(m => m.MonitorTags.Any(t => t.TagId == filter.TagId.Value));
+        if (filter.IsUp.HasValue) query = query.Where(m => m.IsUp == filter.IsUp.Value);
 
-        if (filter.Status.HasValue)
-        {
-            query = query.Where(m => m.Status == filter.Status.Value);
-        }
-
-        if (filter.CategoryId.HasValue)
-        {
-            query = query.Where(m => m.MonitorCategories.Any(c => c.CategoryId == filter.CategoryId.Value));
-        }
-
-        if (filter.TagId.HasValue)
-        {
-            query = query.Where(m => m.MonitorTags.Any(t => t.TagId == filter.TagId.Value));
-        }
-
-        if (filter.IsUp.HasValue)
-        {
-            query = query.Where(m => m.IsUp == filter.IsUp.Value);
-        }
-
-        // Sorting support
         query = filter.SortBy?.ToLower() switch
         {
             "name" => filter.SortDescending ? query.OrderByDescending(m => m.Name) : query.OrderBy(m => m.Name),
@@ -84,13 +64,52 @@ public class MonitorRepository : IMonitorRepository
         };
 
         var totalCount = await query.CountAsync();
+        var items = await query.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize).ToListAsync();
 
-        var items = await query
-            .Skip((filter.PageNumber - 1) * filter.PageSize)
-            .Take(filter.PageSize)
-            .ToListAsync();
+        return new MonitoringPlatform.Domain.Interfaces.PagedResult<Domain.Entities.Monitor>
+        {
+            Items = items,
+            TotalCount = totalCount,
+            PageNumber = filter.PageNumber,
+            PageSize = filter.PageSize
+        };
+    }
 
-        return new PagedResult<Domain.Entities.Monitor>
+    // Implementation for Application interface
+    public async Task<MonitoringPlatform.Application.Models.PagedResult<Domain.Entities.Monitor>> GetPagedAsync(Guid organizationId, MonitoringPlatform.Application.Features.Monitor.Queries.GetPagedMonitors.MonitorFilter filter)
+    {
+        var query = _context.Monitors
+            .Include(m => m.MonitorCategories)
+            .Include(m => m.MonitorTags)
+            .Where(m => m.OrganizationId == organizationId)
+            .AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(filter.Search))
+        {
+            var searchTerm = $"%{filter.Search.ToLower()}%";
+            query = query.Where(m => EF.Functions.Like(m.Name.ToLower(), searchTerm) ||
+                                     EF.Functions.Like(m.Target.ToLower(), searchTerm) ||
+                                     EF.Functions.Like(m.Description.ToLower(), searchTerm));
+        }
+
+        if (filter.Type.HasValue) query = query.Where(m => m.Type == filter.Type.Value);
+        if (filter.Status.HasValue) query = query.Where(m => m.Status == filter.Status.Value);
+        if (filter.CategoryId.HasValue) query = query.Where(m => m.MonitorCategories.Any(c => c.CategoryId == filter.CategoryId.Value));
+        if (filter.TagId.HasValue) query = query.Where(m => m.MonitorTags.Any(t => t.TagId == filter.TagId.Value));
+        if (filter.IsUp.HasValue) query = query.Where(m => m.IsUp == filter.IsUp.Value);
+
+        query = filter.SortBy?.ToLower() switch
+        {
+            "name" => filter.SortDescending ? query.OrderByDescending(m => m.Name) : query.OrderBy(m => m.Name),
+            "target" => filter.SortDescending ? query.OrderByDescending(m => m.Target) : query.OrderBy(m => m.Target),
+            "status" => filter.SortDescending ? query.OrderByDescending(m => m.Status) : query.OrderBy(m => m.Status),
+            _ => filter.SortDescending ? query.OrderByDescending(m => m.CreatedAt) : query.OrderBy(m => m.CreatedAt)
+        };
+
+        var totalCount = await query.CountAsync();
+        var items = await query.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize).ToListAsync();
+
+        return new MonitoringPlatform.Application.Models.PagedResult<Domain.Entities.Monitor>
         {
             Items = items,
             TotalCount = totalCount,
@@ -117,7 +136,6 @@ public class MonitorRepository : IMonitorRepository
         var monitor = await GetByIdAsync(monitorId, organizationId);
         if (monitor != null)
         {
-            // Soft delete
             monitor.IsDeleted = true;
             monitor.DeletedAt = DateTime.UtcNow;
             _context.Monitors.Update(monitor);
@@ -199,5 +217,12 @@ public class MonitorRepository : IMonitorRepository
             _context.MonitorTags.Remove(tag);
             await _context.SaveChangesAsync();
         }
+    }
+
+    public async Task<List<Domain.Entities.Monitor>> GetMonitorsByOrganizationIdAsync(Guid organizationId)
+    {
+        return await _context.Monitors
+            .Where(m => m.OrganizationId == organizationId)
+            .ToListAsync();
     }
 }

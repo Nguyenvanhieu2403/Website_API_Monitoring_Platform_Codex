@@ -541,6 +541,35 @@
     ]
   },
   {
+    "ContainingType": "MonitoringPlatform.API.Controllers.DashboardController",
+    "Method": "GetSummary",
+    "RelativePath": "api/v1/dashboard/summary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "timeRange",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MonitoringPlatform.Application.Models.AggregatedAnalyticsDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 401
+      }
+    ]
+  },
+  {
     "ContainingType": "MonitoringPlatform.API.Controllers.MonitorsController",
     "Method": "Create",
     "RelativePath": "api/v1/monitors",

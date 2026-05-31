@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using MonitoringPlatform.Application.Features.Authentication.Commands;
 using MonitoringPlatform.Application.Interfaces;
 using MonitoringPlatform.Domain.Interfaces;
 using MonitoringPlatform.Infrastructure.Data;
@@ -29,10 +28,18 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IOrganizationRepository, OrganizationRepository>();
         services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
-        services.AddScoped<IMonitorRepository, MonitorRepository>();
         services.AddScoped<IAlertRuleRepository, AlertRuleRepository>();
         services.AddScoped<IAlertEventRepository, AlertEventRepository>();
         services.AddScoped<INotificationChannelRepository, NotificationChannelRepository>();
+
+        // Registering repositories that exist in both Domain and Application interfaces
+        // Domain interfaces
+        services.AddScoped<MonitoringPlatform.Domain.Interfaces.IMonitorRepository, MonitoringPlatform.Infrastructure.Repositories.MonitorRepository>();
+        services.AddScoped<MonitoringPlatform.Domain.Interfaces.IMetricRepository, MonitoringPlatform.Infrastructure.Repositories.MetricRepository>();
+
+        // Application interfaces (pointing to same implementation)
+        services.AddScoped<MonitoringPlatform.Application.Interfaces.IMonitorRepository, MonitoringPlatform.Infrastructure.Repositories.MonitorRepository>();
+        services.AddScoped<MonitoringPlatform.Application.Interfaces.IMetricRepository, MonitoringPlatform.Infrastructure.Repositories.MetricRepository>();
 
         // JWT Settings
         var jwtSettings = configuration.GetSection("JwtSettings");
@@ -68,10 +75,7 @@ public static class DependencyInjection
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IWebhookService, WebhookService>();
         services.AddScoped<INotificationDispatcherService, NotificationDispatcherService>();
-        services.AddHttpClient<IWebhookService, WebhookService>(); // Register HttpClient for WebhookService
-
-        // MediatR
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(RegisterCommandHandler).Assembly));
+        services.AddHttpClient<IWebhookService, WebhookService>();
 
         // Background Services
         services.AddHostedService<NotificationWorker>();

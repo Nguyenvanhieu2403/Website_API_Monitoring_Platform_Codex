@@ -1,10 +1,4 @@
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\CoverletSourceRootsMapping_MonitoringPlatform.UnitTests
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.csproj.AssemblyReference.cache
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.GeneratedMSBuildEditorConfig.editorconfig
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.AssemblyInfoInputs.cache
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.AssemblyInfo.cs
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.csproj.CoreCompileInputs.cache
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.sourcelink.json
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\testhost.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\testhost.exe
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
@@ -14,6 +8,7 @@ E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatfo
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\MonitoringPlatform.UnitTests.runtimeconfig.json
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\MonitoringPlatform.UnitTests.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\MonitoringPlatform.UnitTests.pdb
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\AutoMapper.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\Castle.Core.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\FluentAssertions.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\FluentValidation.dll
@@ -27,6 +22,10 @@ E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatfo
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\Microsoft.TestPlatform.CoreUtilities.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
@@ -117,6 +116,12 @@ E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatfo
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\MonitoringPlatform.Domain.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\MonitoringPlatform.Application.pdb
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\bin\Debug\net9.0\MonitoringPlatform.Domain.pdb
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.csproj.AssemblyReference.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.GeneratedMSBuildEditorConfig.editorconfig
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.AssemblyInfoInputs.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.AssemblyInfo.cs
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.csproj.CoreCompileInputs.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.sourcelink.json
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\Monitori.E81013B6.Up2Date
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\MonitoringPlatform.UnitTests.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.UnitTests\obj\Debug\net9.0\refint\MonitoringPlatform.UnitTests.dll
