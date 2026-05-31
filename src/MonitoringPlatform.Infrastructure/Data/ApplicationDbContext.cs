@@ -19,6 +19,9 @@ public class ApplicationDbContext : DbContext
     public DbSet<MonitorTag> MonitorTags => Set<MonitorTag>();
     public DbSet<Alert> Alerts => Set<Alert>();
     public DbSet<MonitorLog> MonitorLogs => Set<MonitorLog>();
+    public DbSet<AlertRule> AlertRules => Set<AlertRule>();
+    public DbSet<NotificationChannel> NotificationChannels => Set<NotificationChannel>();
+    public DbSet<AlertEvent> AlertEvents => Set<AlertEvent>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -97,6 +100,38 @@ public class ApplicationDbContext : DbContext
             if (entry.State == EntityState.Added)
             {
                 entry.Entity.CheckedAt = DateTime.UtcNow;
+            }
+        }
+
+        foreach (var entry in ChangeTracker.Entries<AlertRule>())
+        {
+            if (entry.State == EntityState.Added)
+            {
+                entry.Entity.CreatedAt = DateTime.UtcNow;
+            }
+            else if (entry.State == EntityState.Modified)
+            {
+                entry.Entity.UpdatedAt = DateTime.UtcNow;
+            }
+        }
+
+        foreach (var entry in ChangeTracker.Entries<NotificationChannel>())
+        {
+            if (entry.State == EntityState.Added)
+            {
+                entry.Entity.CreatedAt = DateTime.UtcNow;
+            }
+            else if (entry.State == EntityState.Modified)
+            {
+                entry.Entity.UpdatedAt = DateTime.UtcNow;
+            }
+        }
+
+        foreach (var entry in ChangeTracker.Entries<AlertEvent>())
+        {
+            if (entry.State == EntityState.Added)
+            {
+                entry.Entity.TriggeredAt = DateTime.UtcNow;
             }
         }
 

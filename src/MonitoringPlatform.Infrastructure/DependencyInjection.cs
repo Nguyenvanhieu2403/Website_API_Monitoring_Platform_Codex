@@ -10,6 +10,8 @@ using MonitoringPlatform.Domain.Interfaces;
 using MonitoringPlatform.Infrastructure.Data;
 using MonitoringPlatform.Infrastructure.Repositories;
 using MonitoringPlatform.Infrastructure.Security;
+using MonitoringPlatform.Infrastructure.Services;
+using MonitoringPlatform.Infrastructure.BackgroundServices;
 
 namespace MonitoringPlatform.Infrastructure;
 
@@ -28,6 +30,9 @@ public static class DependencyInjection
         services.AddScoped<IOrganizationRepository, OrganizationRepository>();
         services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
         services.AddScoped<IMonitorRepository, MonitorRepository>();
+        services.AddScoped<IAlertRuleRepository, AlertRuleRepository>();
+        services.AddScoped<IAlertEventRepository, AlertEventRepository>();
+        services.AddScoped<INotificationChannelRepository, NotificationChannelRepository>();
 
         // JWT Settings
         var jwtSettings = configuration.GetSection("JwtSettings");
@@ -60,9 +65,16 @@ public static class DependencyInjection
         // Services
         services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IPasswordHashingService, PasswordHashingService>();
+        services.AddScoped<IEmailService, EmailService>();
+        services.AddScoped<IWebhookService, WebhookService>();
+        services.AddScoped<INotificationDispatcherService, NotificationDispatcherService>();
+        services.AddHttpClient<IWebhookService, WebhookService>(); // Register HttpClient for WebhookService
 
         // MediatR
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(RegisterCommandHandler).Assembly));
+
+        // Background Services
+        services.AddHostedService<NotificationWorker>();
 
         return services;
     }
