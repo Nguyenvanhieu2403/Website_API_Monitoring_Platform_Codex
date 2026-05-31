@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Monitoring Platform API",
-    "description": "API for SaaS Monitoring Platform - Sprint 1: Authentication & Foundation",
+    "description": "API for SaaS Monitoring Platform",
     "version": "v1"
   },
   "paths": {

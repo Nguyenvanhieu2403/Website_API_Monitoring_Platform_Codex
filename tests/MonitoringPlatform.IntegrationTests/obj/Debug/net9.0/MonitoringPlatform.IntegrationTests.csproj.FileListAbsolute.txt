@@ -1,10 +1,4 @@
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\CoverletSourceRootsMapping_MonitoringPlatform.IntegrationTests
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MonitoringPlatform.IntegrationTests.csproj.AssemblyReference.cache
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MvcTestingAppManifest.json
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MonitoringPlatform.IntegrationTests.GeneratedMSBuildEditorConfig.editorconfig
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MonitoringPlatform.IntegrationTests.AssemblyInfoInputs.cache
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MonitoringPlatform.IntegrationTests.AssemblyInfo.cs
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MonitoringPlatform.IntegrationTests.csproj.CoreCompileInputs.cache
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\testhost.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\MonitoringPlatform.API.deps.json
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\MonitoringPlatform.API.runtimeconfig.json
@@ -312,6 +306,8 @@ E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatfo
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\refs\System.Xml.XPath.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\refs\System.Xml.XPath.XDocument.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\refs\WindowsBase.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\AutoMapper.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\BCrypt.Net-Next.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\Castle.Core.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\FluentAssertions.dll
@@ -443,6 +439,12 @@ E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatfo
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\MonitoringPlatform.Infrastructure.pdb
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\MonitoringPlatform.Application.pdb
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\bin\Debug\net9.0\MonitoringPlatform.Domain.pdb
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MonitoringPlatform.IntegrationTests.csproj.AssemblyReference.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MvcTestingAppManifest.json
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MonitoringPlatform.IntegrationTests.GeneratedMSBuildEditorConfig.editorconfig
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MonitoringPlatform.IntegrationTests.AssemblyInfoInputs.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MonitoringPlatform.IntegrationTests.AssemblyInfo.cs
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MonitoringPlatform.IntegrationTests.csproj.CoreCompileInputs.cache
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MonitoringPlatform.IntegrationTests.sourcelink.json
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\Monitori.C79E8286.Up2Date
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\tests\MonitoringPlatform.IntegrationTests\obj\Debug\net9.0\MonitoringPlatform.IntegrationTests.dll

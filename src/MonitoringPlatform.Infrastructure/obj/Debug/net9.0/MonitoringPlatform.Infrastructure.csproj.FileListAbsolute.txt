@@ -1,8 +1,3 @@
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.csproj.AssemblyReference.cache
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.AssemblyInfoInputs.cache
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.AssemblyInfo.cs
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.csproj.CoreCompileInputs.cache
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\bin\Debug\net9.0\MonitoringPlatform.Infrastructure.deps.json
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\bin\Debug\net9.0\MonitoringPlatform.Infrastructure.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\bin\Debug\net9.0\MonitoringPlatform.Infrastructure.pdb
@@ -10,9 +5,14 @@ E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\bin\Debug\net9.0\MonitoringPlatform.Domain.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\bin\Debug\net9.0\MonitoringPlatform.Application.pdb
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\bin\Debug\net9.0\MonitoringPlatform.Domain.pdb
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.csproj.AssemblyReference.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.AssemblyInfoInputs.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.AssemblyInfo.cs
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.csproj.CoreCompileInputs.cache
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.sourcelink.json
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\Monitori.DBF0F838.Up2Date
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\refint\MonitoringPlatform.Infrastructure.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.pdb
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\ref\MonitoringPlatform.Infrastructure.dll
-E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.sourcelink.json
