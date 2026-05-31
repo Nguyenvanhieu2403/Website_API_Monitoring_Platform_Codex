@@ -22,6 +22,276 @@ namespace MonitoringPlatform.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("MonitorCategoryMonitor", b =>
+                {
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("MonitorId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("CategoryId", "MonitorId");
+
+                    b.HasIndex("MonitorId");
+
+                    b.ToTable("MonitorCategoryMonitor");
+                });
+
+            modelBuilder.Entity("MonitorTagMonitor", b =>
+                {
+                    b.Property<Guid>("MonitorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("TagId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("MonitorId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("MonitorTagMonitor");
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.Alert", b =>
+                {
+                    b.Property<Guid>("AlertId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsResolved")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<Guid>("MonitorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("ResolvedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("TriggeredAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("AlertId");
+
+                    b.HasIndex("MonitorId");
+
+                    b.ToTable("Alerts");
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.Monitor", b =>
+                {
+                    b.Property<Guid>("MonitorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("ConsecutiveFailures")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("ExpectedKeyword")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("ExpectedStatusCode")
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
+
+                    b.Property<bool>("FollowRedirects")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("HttpMethod")
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
+
+                    b.Property<int>("IntervalSeconds")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsUp")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("LastCheckedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("LastDownAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<Guid>("OrganizationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int?>("Port")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("RequestBody")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RequestHeaders")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ResponseTimeMs")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Retries")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Target")
+                        .IsRequired()
+                        .HasMaxLength(2048)
+                        .HasColumnType("character varying(2048)");
+
+                    b.Property<int>("TimeoutSeconds")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("UptimePercentage")
+                        .HasColumnType("integer");
+
+                    b.HasKey("MonitorId");
+
+                    b.HasIndex("OrganizationId", "IsDeleted");
+
+                    b.ToTable("Monitors");
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.MonitorCategory", b =>
+                {
+                    b.Property<Guid>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(7)
+                        .HasColumnType("character varying(7)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<Guid>("OrganizationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("CategoryId");
+
+                    b.HasIndex("OrganizationId", "Name")
+                        .IsUnique();
+
+                    b.ToTable("MonitorCategories");
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.MonitorLog", b =>
+                {
+                    b.Property<Guid>("LogId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CheckedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ErrorMessage")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<bool>("IsUp")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("MonitorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("ResponseBody")
+                        .HasMaxLength(5000)
+                        .HasColumnType("character varying(5000)");
+
+                    b.Property<int>("ResponseTimeMs")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("StatusCode")
+                        .HasColumnType("integer");
+
+                    b.HasKey("LogId");
+
+                    b.HasIndex("CheckedAt");
+
+                    b.HasIndex("MonitorId");
+
+                    b.ToTable("MonitorLogs");
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.MonitorTag", b =>
+                {
+                    b.Property<Guid>("TagId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(7)
+                        .HasColumnType("character varying(7)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<Guid>("OrganizationId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("TagId");
+
+                    b.HasIndex("OrganizationId", "Name")
+                        .IsUnique();
+
+                    b.ToTable("MonitorTags");
+                });
+
             modelBuilder.Entity("MonitoringPlatform.Domain.Entities.Organization", b =>
                 {
                     b.Property<Guid>("OrganizationId")
@@ -166,6 +436,91 @@ namespace MonitoringPlatform.Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("MonitorCategoryMonitor", b =>
+                {
+                    b.HasOne("MonitoringPlatform.Domain.Entities.MonitorCategory", null)
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MonitoringPlatform.Domain.Entities.Monitor", null)
+                        .WithMany()
+                        .HasForeignKey("MonitorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MonitorTagMonitor", b =>
+                {
+                    b.HasOne("MonitoringPlatform.Domain.Entities.Monitor", null)
+                        .WithMany()
+                        .HasForeignKey("MonitorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MonitoringPlatform.Domain.Entities.MonitorTag", null)
+                        .WithMany()
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.Alert", b =>
+                {
+                    b.HasOne("MonitoringPlatform.Domain.Entities.Monitor", "Monitor")
+                        .WithMany("Alerts")
+                        .HasForeignKey("MonitorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Monitor");
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.Monitor", b =>
+                {
+                    b.HasOne("MonitoringPlatform.Domain.Entities.Organization", "Organization")
+                        .WithMany("Monitors")
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Organization");
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.MonitorCategory", b =>
+                {
+                    b.HasOne("MonitoringPlatform.Domain.Entities.Organization", "Organization")
+                        .WithMany("MonitorCategories")
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Organization");
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.MonitorLog", b =>
+                {
+                    b.HasOne("MonitoringPlatform.Domain.Entities.Monitor", "Monitor")
+                        .WithMany("MonitorLogs")
+                        .HasForeignKey("MonitorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Monitor");
+                });
+
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.MonitorTag", b =>
+                {
+                    b.HasOne("MonitoringPlatform.Domain.Entities.Organization", "Organization")
+                        .WithMany("MonitorTags")
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Organization");
+                });
+
             modelBuilder.Entity("MonitoringPlatform.Domain.Entities.RefreshToken", b =>
                 {
                     b.HasOne("MonitoringPlatform.Domain.Entities.User", "User")
@@ -188,8 +543,21 @@ namespace MonitoringPlatform.Infrastructure.Migrations
                     b.Navigation("Organization");
                 });
 
+            modelBuilder.Entity("MonitoringPlatform.Domain.Entities.Monitor", b =>
+                {
+                    b.Navigation("Alerts");
+
+                    b.Navigation("MonitorLogs");
+                });
+
             modelBuilder.Entity("MonitoringPlatform.Domain.Entities.Organization", b =>
                 {
+                    b.Navigation("MonitorCategories");
+
+                    b.Navigation("MonitorTags");
+
+                    b.Navigation("Monitors");
+
                     b.Navigation("Users");
                 });
 

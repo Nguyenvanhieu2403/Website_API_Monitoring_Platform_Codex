@@ -16,4 +16,7 @@ public class Organization
 
     // Navigation properties
     public virtual ICollection<User> Users { get; set; } = new List<User>();
+    public virtual ICollection<Monitor> Monitors { get; set; } = new List<Monitor>();
+    public virtual ICollection<MonitorCategory> MonitorCategories { get; set; } = new List<MonitorCategory>();
+    public virtual ICollection<MonitorTag> MonitorTags { get; set; } = new List<MonitorTag>();
 }

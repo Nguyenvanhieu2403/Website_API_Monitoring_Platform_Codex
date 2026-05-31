@@ -14,6 +14,11 @@ public class ApplicationDbContext : DbContext
     public DbSet<User> Users => Set<User>();
     public DbSet<Organization> Organizations => Set<Organization>();
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+    public DbSet<Domain.Entities.Monitor> Monitors => Set<Domain.Entities.Monitor>();
+    public DbSet<MonitorCategory> MonitorCategories => Set<MonitorCategory>();
+    public DbSet<MonitorTag> MonitorTags => Set<MonitorTag>();
+    public DbSet<Alert> Alerts => Set<Alert>();
+    public DbSet<MonitorLog> MonitorLogs => Set<MonitorLog>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -44,6 +49,54 @@ public class ApplicationDbContext : DbContext
             else if (entry.State == EntityState.Modified)
             {
                 entry.Entity.UpdatedAt = DateTime.UtcNow;
+            }
+        }
+
+        foreach (var entry in ChangeTracker.Entries<Domain.Entities.Monitor>())
+        {
+            if (entry.State == EntityState.Added)
+            {
+                entry.Entity.CreatedAt = DateTime.UtcNow;
+            }
+            else if (entry.State == EntityState.Modified)
+            {
+                entry.Entity.UpdatedAt = DateTime.UtcNow;
+            }
+        }
+
+        foreach (var entry in ChangeTracker.Entries<MonitorCategory>())
+        {
+            if (entry.State == EntityState.Added)
+            {
+                entry.Entity.CreatedAt = DateTime.UtcNow;
+            }
+            else if (entry.State == EntityState.Modified)
+            {
+                entry.Entity.UpdatedAt = DateTime.UtcNow;
+            }
+        }
+
+        foreach (var entry in ChangeTracker.Entries<MonitorTag>())
+        {
+            if (entry.State == EntityState.Added)
+            {
+                entry.Entity.CreatedAt = DateTime.UtcNow;
+            }
+        }
+
+        foreach (var entry in ChangeTracker.Entries<Alert>())
+        {
+            if (entry.State == EntityState.Added)
+            {
+                entry.Entity.TriggeredAt = DateTime.UtcNow;
+            }
+        }
+
+        foreach (var entry in ChangeTracker.Entries<MonitorLog>())
+        {
+            if (entry.State == EntityState.Added)
+            {
+                entry.Entity.CheckedAt = DateTime.UtcNow;
             }
         }
 

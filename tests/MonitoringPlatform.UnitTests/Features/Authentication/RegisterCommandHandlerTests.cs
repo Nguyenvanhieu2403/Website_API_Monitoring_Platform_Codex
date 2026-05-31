@@ -45,7 +45,7 @@ public class RegisterCommandHandlerTests
             LastName = "Doe"
         };
 
-        _userRepositoryMock.Setup(x => x.GetByEmailAsync(command.Email))
+        _userRepositoryMock.Setup(x => x.GetByEmailAsync(command.Email, It.IsAny<Guid?>()))
             .ReturnsAsync(new User { UserId = Guid.NewGuid(), Email = command.Email });
 
         // Act & Assert
@@ -66,7 +66,7 @@ public class RegisterCommandHandlerTests
             LastName = "Doe"
         };
 
-        _userRepositoryMock.Setup(x => x.GetByEmailAsync(command.Email))
+        _userRepositoryMock.Setup(x => x.GetByEmailAsync(command.Email, It.IsAny<Guid?>()))
             .ReturnsAsync((User?)null);
 
         _organizationRepositoryMock.Setup(x => x.CreateAsync(It.IsAny<Organization>()))

@@ -51,6 +51,90 @@ public static class DbSeed
         {
             context.Users.Add(adminUser);
             await context.SaveChangesAsync();
+
+            // Seed Categories
+            var prodCategory = new MonitorCategory
+            {
+                CategoryId = Guid.NewGuid(),
+                OrganizationId = defaultOrg.OrganizationId,
+                Name = "Production",
+                Description = "Production environment monitors",
+                Color = "#EF4444",
+                CreatedAt = DateTime.UtcNow
+            };
+
+            var devCategory = new MonitorCategory
+            {
+                CategoryId = Guid.NewGuid(),
+                OrganizationId = defaultOrg.OrganizationId,
+                Name = "Development",
+                Description = "Development environment monitors",
+                Color = "#3B82F6",
+                CreatedAt = DateTime.UtcNow
+            };
+
+            context.MonitorCategories.AddRange(prodCategory, devCategory);
+            await context.SaveChangesAsync();
+
+            // Seed Tags
+            var criticalTag = new MonitorTag
+            {
+                TagId = Guid.NewGuid(),
+                OrganizationId = defaultOrg.OrganizationId,
+                Name = "Critical",
+                Color = "#DC2626",
+                CreatedAt = DateTime.UtcNow
+            };
+
+            var apiTag = new MonitorTag
+            {
+                TagId = Guid.NewGuid(),
+                OrganizationId = defaultOrg.OrganizationId,
+                Name = "API",
+                Color = "#10B981",
+                CreatedAt = DateTime.UtcNow
+            };
+
+            context.MonitorTags.AddRange(criticalTag, apiTag);
+            await context.SaveChangesAsync();
+
+            // Seed Monitors
+            var monitor1 = new Domain.Entities.Monitor
+            {
+                MonitorId = Guid.NewGuid(),
+                OrganizationId = defaultOrg.OrganizationId,
+                Name = "Google Ping",
+                Description = "Pinging Google DNS",
+                Type = MonitorType.Ping,
+                Target = "8.8.8.8",
+                IntervalSeconds = 60,
+                TimeoutSeconds = 10,
+                Status = MonitorStatus.Active,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            var monitor2 = new Domain.Entities.Monitor
+            {
+                MonitorId = Guid.NewGuid(),
+                OrganizationId = defaultOrg.OrganizationId,
+                Name = "Example Website",
+                Description = "Checking Example.com availability",
+                Type = MonitorType.Https,
+                Target = "https://example.com",
+                IntervalSeconds = 120,
+                TimeoutSeconds = 30,
+                Status = MonitorStatus.Active,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            monitor1.MonitorCategories.Add(prodCategory);
+            monitor1.MonitorTags.Add(criticalTag);
+
+            monitor2.MonitorCategories.Add(devCategory);
+            monitor2.MonitorTags.Add(apiTag);
+
+            context.Monitors.AddRange(monitor1, monitor2);
+            await context.SaveChangesAsync();
         }
         catch (Exception ex)
         {

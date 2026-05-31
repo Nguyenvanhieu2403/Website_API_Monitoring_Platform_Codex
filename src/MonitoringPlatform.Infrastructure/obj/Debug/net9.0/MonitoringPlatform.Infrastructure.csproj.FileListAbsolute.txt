@@ -15,3 +15,4 @@ E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\refint\MonitoringPlatform.Infrastructure.dll
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.pdb
 E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\ref\MonitoringPlatform.Infrastructure.dll
+E:\Personal_Project\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.Infrastructure\obj\Debug\net9.0\MonitoringPlatform.Infrastructure.sourcelink.json
