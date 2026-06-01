@@ -1,0 +1,233 @@
+<div class="monitor-form">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="monitor-form__loading">
+    <div class="spinner"></div>
+    <p>Loading monitor...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage && !isLoading && !isSaving" class="monitor-form__error">
+    <i class="fas fa-exclamation-circle"></i>
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- Form -->
+  <div *ngIf="!isLoading" class="monitor-form__content">
+    <div class="monitor-form__header">
+      <h1 class="monitor-form__title">
+        {{ isEditMode ? 'Edit Monitor' : 'Create Monitor' }}
+      </h1>
+    </div>
+
+    <form [formGroup]="monitorForm" (ngSubmit)="onSubmit()" class="form">
+      <!-- Basic Information -->
+      <div class="form-section">
+        <h2 class="form-section__title">Basic Information</h2>
+
+        <div class="form-group">
+          <label class="form-label" for="name">
+            Name <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="name"
+            class="form-input"
+            formControlName="name"
+            placeholder="e.g., Production API"
+            [class.form-input--error]="isFieldInvalid('name')"
+          />
+          <span *ngIf="isFieldInvalid('name')" class="form-error">
+            {{ getFieldError('name') }}
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="description">Description</label>
+          <textarea
+            id="description"
+            class="form-textarea"
+            formControlName="description"
+            placeholder="Optional description of what this monitor checks"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="type">
+              Monitor Type <span class="required">*</span>
+            </label>
+            <select
+              id="type"
+              class="form-select"
+              formControlName="type"
+              [class.form-select--error]="isFieldInvalid('type')"
+            >
+              <option *ngFor="let type of monitorTypes" [value]="type.value">
+                {{ type.label }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group" *ngIf="isTcpPort">
+            <label class="form-label" for="port">
+              Port <span class="required">*</span>
+            </label>
+            <input
+              type="number"
+              id="port"
+              class="form-input"
+              formControlName="port"
+              placeholder="e.g., 8080"
+              [class.form-input--error]="isFieldInvalid('port')"
+            />
+            <span *ngIf="isFieldInvalid('port')" class="form-error">
+              {{ getFieldError('port') }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="target">
+            Target <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="target"
+            class="form-input"
+            formControlName="target"
+            [placeholder]="isHttpBased ? 'e.g., https://api.example.com' : 'e.g., example.com'"
+            [class.form-input--error]="isFieldInvalid('target')"
+          />
+          <span *ngIf="isFieldInvalid('target')" class="form-error">
+            {{ getFieldError('target') }}
+          </span>
+          <span class="form-hint">
+            {{ isHttpBased ? 'Full URL including protocol' : 'Domain or IP address' }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Check Configuration -->
+      <div class="form-section">
+        <h2 class="form-section__title">Check Configuration</h2>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="intervalSeconds">
+              Check Interval (seconds) <span class="required">*</span>
+            </label>
+            <input
+              type="number"
+              id="intervalSeconds"
+              class="form-input"
+              formControlName="intervalSeconds"
+              placeholder="60"
+              [class.form-input--error]="isFieldInvalid('intervalSeconds')"
+            />
+            <span *ngIf="isFieldInvalid('intervalSeconds')" class="form-error">
+              {{ getFieldError('intervalSeconds') }}
+            </span>
+            <span class="form-hint">How often to check (10-86400 seconds)</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="timeoutSeconds">
+              Timeout (seconds) <span class="required">*</span>
+            </label>
+            <input
+              type="number"
+              id="timeoutSeconds"
+              class="form-input"
+              formControlName="timeoutSeconds"
+              placeholder="30"
+              [class.form-input--error]="isFieldInvalid('timeoutSeconds')"
+            />
+            <span *ngIf="isFieldInvalid('timeoutSeconds')" class="form-error">
+              {{ getFieldError('timeoutSeconds') }}
+            </span>
+            <span class="form-hint">Request timeout (1-300 seconds)</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="retries">Retries</label>
+            <input
+              type="number"
+              id="retries"
+              class="form-input"
+              formControlName="retries"
+              placeholder="3"
+            />
+            <span class="form-hint">Number of retry attempts (0-10)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HTTP-Specific Configuration -->
+      <div class="form-section" *ngIf="isHttpBased">
+        <h2 class="form-section__title">HTTP Configuration</h2>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="httpMethod">HTTP Method</label>
+            <select id="httpMethod" class="form-select" formControlName="httpMethod">
+              <option *ngFor="let method of httpMethods" [value]="method">
+                {{ method }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-checkbox">
+              <input type="checkbox" formControlName="followRedirects" />
+              <span>Follow Redirects</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="expectedStatusCode">Expected Status Code</label>
+            <input
+              type="text"
+              id="expectedStatusCode"
+              class="form-input"
+              formControlName="expectedStatusCode"
+              placeholder="e.g., 200"
+            />
+            <span class="form-hint">Leave empty to accept any 2xx status</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="expectedKeyword">Expected Keyword</label>
+            <input
+              type="text"
+              id="expectedKeyword"
+              class="form-input"
+              formControlName="expectedKeyword"
+              placeholder="e.g., success"
+            />
+            <span class="form-hint">Check if response contains this text</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button type="button" class="btn btn--secondary" (click)="cancel()" [disabled]="isSaving">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn--primary" [disabled]="isSaving">
+          <span *ngIf="!isSaving">
+            <i class="fas" [class.fa-save]="isEditMode" [class.fa-plus]="!isEditMode"></i>
+            {{ isEditMode ? 'Update Monitor' : 'Create Monitor' }}
+          </span>
+          <span *ngIf="isSaving">
+            <i class="fas fa-spinner fa-spin"></i>
+            {{ isEditMode ? 'Updating...' : 'Creating...' }}
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

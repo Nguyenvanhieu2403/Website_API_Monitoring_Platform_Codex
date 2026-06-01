@@ -3,8 +3,48 @@
   "WorkspaceRootPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.api\\controllers\\baseapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj|solutionrelative:src\\monitoringplatform.api\\controllers\\baseapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-234567890123}|src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.infrastructure\\security\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-234567890123}|src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj|solutionrelative:src\\monitoringplatform.infrastructure\\security\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.application\\features\\authentication\\commands\\logincommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj|solutionrelative:src\\monitoringplatform.application\\features\\authentication\\commands\\logincommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.application\\features\\authentication\\commands\\logincommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj|solutionrelative:src\\monitoringplatform.application\\features\\authentication\\commands\\logincommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj|solutionrelative:src\\monitoringplatform.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-234567890123}|src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-234567890123}|src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj|solutionrelative:src\\monitoringplatform.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-234567890123}|src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.infrastructure\\data\\configurations\\monitorlogconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-234567890123}|src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj|solutionrelative:src\\monitoringplatform.infrastructure\\data\\configurations\\monitorlogconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3D4E5F6-A7B8-9012-CDEF-123456789012}|src\\MonitoringPlatform.Domain\\MonitoringPlatform.Domain.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.domain\\entities\\monitor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3D4E5F6-A7B8-9012-CDEF-123456789012}|src\\MonitoringPlatform.Domain\\MonitoringPlatform.Domain.csproj|solutionrelative:src\\monitoringplatform.domain\\entities\\monitor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-234567890123}|src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.infrastructure\\repositories\\metricrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-234567890123}|src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj|solutionrelative:src\\monitoringplatform.infrastructure\\repositories\\metricrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-234567890123}|src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.infrastructure\\backgroundservices\\notificationworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D4E5F6A7-B8C9-0123-DEF0-234567890123}|src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj|solutionrelative:src\\monitoringplatform.infrastructure\\backgroundservices\\notificationworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.api\\controllers\\monitorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj|solutionrelative:src\\monitoringplatform.api\\controllers\\monitorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -67,10 +107,6 @@
       "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj|solutionrelative:src\\monitoringplatform.api\\controllers\\notificationchannelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.api\\controllers\\monitorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj|solutionrelative:src\\monitoringplatform.api\\controllers\\monitorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj|d:\\personalproject\\website_api_monitoring_platform_codex\\src\\monitoringplatform.api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj|solutionrelative:src\\monitoringplatform.api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -94,7 +130,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
@@ -138,20 +174,124 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "JwtService.cs",
+              "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\Security\\JwtService.cs",
+              "RelativeDocumentMoniker": "src\\MonitoringPlatform.Infrastructure\\Security\\JwtService.cs",
+              "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\Security\\JwtService.cs",
+              "RelativeToolTip": "src\\MonitoringPlatform.Infrastructure\\Security\\JwtService.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAqwDwAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T09:45:58.623Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "src\\MonitoringPlatform.API\\Properties\\launchSettings.json",
-              "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Properties\\launchSettings.json",
-              "RelativeToolTip": "src\\MonitoringPlatform.API\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-06-01T02:43:55.269Z",
+              "Title": "LoginCommandHandler.cs",
+              "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\Features\\Authentication\\Commands\\LoginCommandHandler.cs",
+              "RelativeDocumentMoniker": "src\\MonitoringPlatform.Application\\Features\\Authentication\\Commands\\LoginCommandHandler.cs",
+              "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\Features\\Authentication\\Commands\\LoginCommandHandler.cs",
+              "RelativeToolTip": "src\\MonitoringPlatform.Application\\Features\\Authentication\\Commands\\LoginCommandHandler.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwDcAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T09:45:48.773Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginCommand.cs",
+              "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\Features\\Authentication\\Commands\\LoginCommand.cs",
+              "RelativeDocumentMoniker": "src\\MonitoringPlatform.Application\\Features\\Authentication\\Commands\\LoginCommand.cs",
+              "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\Features\\Authentication\\Commands\\LoginCommand.cs",
+              "RelativeToolTip": "src\\MonitoringPlatform.Application\\Features\\Authentication\\Commands\\LoginCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T09:45:46.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "src\\MonitoringPlatform.API\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "src\\MonitoringPlatform.API\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAgwDkAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T09:45:31.992Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BaseApiController.cs",
+              "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Controllers\\BaseApiController.cs",
+              "RelativeDocumentMoniker": "src\\MonitoringPlatform.API\\Controllers\\BaseApiController.cs",
+              "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Controllers\\BaseApiController.cs",
+              "RelativeToolTip": "src\\MonitoringPlatform.API\\Controllers\\BaseApiController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T09:43:52.6Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "src\\MonitoringPlatform.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "src\\MonitoringPlatform.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAqwCYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T08:33:13.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MonitorLogConfiguration.cs",
+              "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\Data\\Configurations\\MonitorLogConfiguration.cs",
+              "RelativeDocumentMoniker": "src\\MonitoringPlatform.Infrastructure\\Data\\Configurations\\MonitorLogConfiguration.cs",
+              "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\Data\\Configurations\\MonitorLogConfiguration.cs",
+              "RelativeToolTip": "src\\MonitoringPlatform.Infrastructure\\Data\\Configurations\\MonitorLogConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAgAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T08:31:57.239Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Monitor.cs",
+              "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\Entities\\Monitor.cs",
+              "RelativeDocumentMoniker": "src\\MonitoringPlatform.Domain\\Entities\\Monitor.cs",
+              "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\Entities\\Monitor.cs",
+              "RelativeToolTip": "src\\MonitoringPlatform.Domain\\Entities\\Monitor.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAIAywCcAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T08:31:32.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MetricRepository.cs",
+              "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\Repositories\\MetricRepository.cs",
+              "RelativeDocumentMoniker": "src\\MonitoringPlatform.Infrastructure\\Repositories\\MetricRepository.cs",
+              "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\Repositories\\MetricRepository.cs",
+              "RelativeToolTip": "src\\MonitoringPlatform.Infrastructure\\Repositories\\MetricRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB0AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T08:31:04.503Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "DbSeed.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Data\\DbSeed.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.API\\Data\\DbSeed.cs",
@@ -159,25 +299,24 @@
               "RelativeToolTip": "src\\MonitoringPlatform.API\\Data\\DbSeed.cs",
               "ViewState": "AgIAAFIAAAAAAAAAAAD4v2EAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-01T02:04:10.54Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-01T02:04:10.54Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
               "Title": "NotificationWorker.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\BackgroundServices\\NotificationWorker.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.Infrastructure\\BackgroundServices\\NotificationWorker.cs",
               "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\BackgroundServices\\NotificationWorker.cs",
               "RelativeToolTip": "src\\MonitoringPlatform.Infrastructure\\BackgroundServices\\NotificationWorker.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAD4v0cAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAtwE8AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-01T02:28:59.309Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 23,
               "Title": "DependencyInjection.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\DependencyInjection.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.Application\\DependencyInjection.cs",
@@ -189,7 +328,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 24,
               "Title": "MonitorCheckedEvent.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\Common\\Events\\MonitorCheckedEvent.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.Application\\Common\\Events\\MonitorCheckedEvent.cs",
@@ -201,7 +340,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 14,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Program.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.API\\Program.cs",
@@ -209,12 +348,11 @@
               "RelativeToolTip": "src\\MonitoringPlatform.API\\Program.cs",
               "ViewState": "AgIAAG8AAAAAAAAAAAAcwKgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T11:15:44.409Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T11:15:44.409Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 13,
               "Title": "DependencyInjection.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\DependencyInjection.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.Infrastructure\\DependencyInjection.cs",
@@ -222,12 +360,11 @@
               "RelativeToolTip": "src\\MonitoringPlatform.Infrastructure\\DependencyInjection.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAtwGYAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T08:57:08.877Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T08:57:08.877Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\appsettings.json",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.API\\appsettings.json",
@@ -235,12 +372,36 @@
               "RelativeToolTip": "src\\MonitoringPlatform.API\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-06-01T03:23:40.605Z",
+              "WhenOpened": "2026-06-01T03:23:40.605Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MonitorsController.cs",
+              "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Controllers\\MonitorsController.cs",
+              "RelativeDocumentMoniker": "src\\MonitoringPlatform.API\\Controllers\\MonitorsController.cs",
+              "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Controllers\\MonitorsController.cs",
+              "RelativeToolTip": "src\\MonitoringPlatform.API\\Controllers\\MonitorsController.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAAEgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T10:45:34.844Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "src\\MonitoringPlatform.API\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "src\\MonitoringPlatform.API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-06-01T02:43:55.269Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "DashboardController.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Controllers\\DashboardController.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.API\\Controllers\\DashboardController.cs",
@@ -252,7 +413,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 26,
               "Title": "ExceptionHandlingMiddleware.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Middleware\\ExceptionHandlingMiddleware.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.API\\Middleware\\ExceptionHandlingMiddleware.cs",
@@ -265,7 +426,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 19,
               "Title": "EmailService.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\Services\\EmailService.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.Infrastructure\\Services\\EmailService.cs",
@@ -277,7 +438,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 18,
               "Title": "NotificationDispatcherService.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\Services\\NotificationDispatcherService.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.Infrastructure\\Services\\NotificationDispatcherService.cs",
@@ -289,7 +450,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 17,
               "Title": "WebhookService.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\Services\\WebhookService.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.Infrastructure\\Services\\WebhookService.cs",
@@ -301,7 +462,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 21,
               "Title": "GetAggregatedAnalyticsQuery.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\Features\\Dashboard\\Queries\\GetAggregatedAnalyticsQuery.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.Application\\Features\\Dashboard\\Queries\\GetAggregatedAnalyticsQuery.cs",
@@ -313,7 +474,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 20,
               "Title": "MonitoringPlatform.API.csproj",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj",
@@ -325,7 +486,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 27,
               "Title": "MonitorMetricDto.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\Models\\MonitorMetricDto.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.Application\\Models\\MonitorMetricDto.cs",
@@ -337,7 +498,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 22,
               "Title": "GetDashboardQueryHandler.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\Features\\Dashboard\\Queries\\GetDashboardQueryHandler.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.Application\\Features\\Dashboard\\Queries\\GetDashboardQueryHandler.cs",
@@ -349,19 +510,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "MonitorsController.cs",
-              "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Controllers\\MonitorsController.cs",
-              "RelativeDocumentMoniker": "src\\MonitoringPlatform.API\\Controllers\\MonitorsController.cs",
-              "ToolTip": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Controllers\\MonitorsController.cs",
-              "RelativeToolTip": "src\\MonitoringPlatform.API\\Controllers\\MonitorsController.cs",
-              "ViewState": "AgIAAJoAAAAAAAAAAAAwwEgAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T10:45:34.844Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 25,
               "Title": "NotificationChannelsController.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\Controllers\\NotificationChannelsController.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.API\\Controllers\\NotificationChannelsController.cs",
@@ -373,7 +522,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 29,
               "Title": "DashboardDto.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\Features\\Dashboard\\Models\\DashboardDto.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.Application\\Features\\Dashboard\\Models\\DashboardDto.cs",
@@ -385,7 +534,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 28,
               "Title": "GetDashboardQuery.cs",
               "DocumentMoniker": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\Features\\Dashboard\\Queries\\GetDashboardQuery.cs",
               "RelativeDocumentMoniker": "src\\MonitoringPlatform.Application\\Features\\Dashboard\\Queries\\GetDashboardQuery.cs",

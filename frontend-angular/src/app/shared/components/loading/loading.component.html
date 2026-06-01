@@ -1,0 +1,39 @@
+<div [ngClass]="{'loading-container': type === 'spinner', 'full-page': fullPage}">
+  <!-- Spinner Loading -->
+  <div *ngIf="type === 'spinner'" class="spinner-wrapper">
+    <div class="spinner"></div>
+  </div>
+  <p *ngIf="type === 'spinner' && message" class="loading-text">{{ message }}</p>
+
+  <!-- Skeleton Card Loading -->
+  <div *ngIf="type === 'skeleton-card'" class="skeleton-container">
+    <div *ngFor="let item of skeletonArray" class="skeleton-card">
+      <div class="skeleton-header">
+        <div class="skeleton-avatar"></div>
+        <div class="skeleton-title">
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text"></div>
+        </div>
+      </div>
+      <div class="skeleton-content">
+        <div class="skeleton-line"></div>
+        <div class="skeleton-line"></div>
+        <div class="skeleton-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skeleton Table Loading -->
+  <div *ngIf="type === 'skeleton-table'" class="skeleton-container">
+    <div class="skeleton-table">
+      <div *ngFor="let item of skeletonArray" class="skeleton-row"></div>
+    </div>
+  </div>
+
+  <!-- Skeleton Stats Loading -->
+  <div *ngIf="type === 'skeleton-stats'" class="skeleton-container">
+    <div class="skeleton-stats">
+      <div *ngFor="let item of skeletonArray" class="skeleton-stat-card"></div>
+    </div>
+  </div>
+</div>

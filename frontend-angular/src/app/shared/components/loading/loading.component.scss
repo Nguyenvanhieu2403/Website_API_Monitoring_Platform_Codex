@@ -1,0 +1,120 @@
+// ============================================
+// Shared Loading Component
+// ============================================
+
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.loading-container {
+  @include flex-center;
+  @include flex-column;
+  gap: $spacing-4;
+  padding: $spacing-16 $spacing-8;
+  min-height: 300px;
+
+  &.full-page {
+    min-height: 100vh;
+  }
+}
+
+.spinner-wrapper {
+  @include flex-center;
+}
+
+.spinner {
+  @include spinner(40px, 3px, $color-primary);
+}
+
+.loading-text {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  text-align: center;
+}
+
+// ============================================
+// Skeleton Loaders
+// ============================================
+
+.skeleton-container {
+  padding: $spacing-6;
+}
+
+.skeleton-card {
+  @include card;
+  padding: $spacing-6;
+  margin-bottom: $spacing-4;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.skeleton-header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-4;
+  margin-bottom: $spacing-6;
+}
+
+.skeleton-avatar {
+  @include skeleton;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.skeleton-title {
+  flex: 1;
+
+  .skeleton-text {
+    @include skeleton;
+    height: 20px;
+    border-radius: $radius-base;
+    margin-bottom: $spacing-2;
+
+    &:last-child {
+      width: 60%;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.skeleton-content {
+  .skeleton-line {
+    @include skeleton;
+    height: 14px;
+    border-radius: $radius-base;
+    margin-bottom: $spacing-3;
+
+    &:nth-child(1) { width: 100%; }
+    &:nth-child(2) { width: 95%; }
+    &:nth-child(3) { width: 85%; }
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+.skeleton-table {
+  .skeleton-row {
+    @include skeleton;
+    height: 56px;
+    border-radius: $radius-base;
+    margin-bottom: $spacing-2;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.skeleton-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-4;
+
+  .skeleton-stat-card {
+    @include skeleton;
+    height: 120px;
+    border-radius: $radius-lg;
+  }
+}

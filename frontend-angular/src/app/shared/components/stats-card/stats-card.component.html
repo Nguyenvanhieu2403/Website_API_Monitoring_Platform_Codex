@@ -1,0 +1,19 @@
+<div class="stats-card" [ngClass]="'stats-card--' + color">
+  <div class="stats-card__header">
+    <div class="stats-card__icon">
+      <i [class]="icon"></i>
+    </div>
+    <h3 class="stats-card__title">{{ title }}</h3>
+  </div>
+  <div class="stats-card__body">
+    <div class="stats-card__value">{{ value }}</div>
+    <div class="stats-card__trend" *ngIf="trendValue" [ngClass]="'stats-card__trend--' + trend">
+      <span class="stats-card__trend-icon">
+        <i *ngIf="trend === 'up'" class="fas fa-arrow-up"></i>
+        <i *ngIf="trend === 'down'" class="fas fa-arrow-down"></i>
+        <i *ngIf="trend === 'neutral'" class="fas fa-minus"></i>
+      </span>
+      <span class="stats-card__trend-value">{{ trendValue }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,200 @@
+<div class="monitors-list">
+  <!-- Header -->
+  <div class="monitors-list__header">
+    <h1 class="monitors-list__title">Monitors</h1>
+    <button class="btn btn--primary" (click)="createMonitor()">
+      <i class="fas fa-plus"></i>
+      Create Monitor
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div class="monitors-list__filters">
+    <div class="filters__search">
+      <input
+        type="text"
+        class="input"
+        placeholder="Search monitors..."
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="onSearch()"
+      />
+      <button class="btn btn--secondary" (click)="onSearch()">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+
+    <div class="filters__group">
+      <select class="select" [(ngModel)]="selectedType" (change)="onFilterChange()">
+        <option [ngValue]="undefined">All Types</option>
+        <option [ngValue]="MonitorType.Http">HTTP</option>
+        <option [ngValue]="MonitorType.Https">HTTPS</option>
+        <option [ngValue]="MonitorType.ApiEndpoint">API Endpoint</option>
+        <option [ngValue]="MonitorType.TcpPort">TCP Port</option>
+        <option [ngValue]="MonitorType.Ping">Ping</option>
+      </select>
+
+      <select class="select" [(ngModel)]="selectedStatus" (change)="onFilterChange()">
+        <option [ngValue]="undefined">All Status</option>
+        <option [ngValue]="MonitorStatus.Active">Active</option>
+        <option [ngValue]="MonitorStatus.Paused">Paused</option>
+        <option [ngValue]="MonitorStatus.Down">Down</option>
+        <option [ngValue]="MonitorStatus.Maintenance">Maintenance</option>
+      </select>
+
+      <select class="select" [(ngModel)]="selectedIsUp" (change)="onFilterChange()">
+        <option [ngValue]="undefined">All Health</option>
+        <option [ngValue]="true">Up</option>
+        <option [ngValue]="false">Down</option>
+      </select>
+
+      <button class="btn btn--text" (click)="clearFilters()">
+        Clear Filters
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="monitors-list__loading">
+    <div class="spinner"></div>
+    <p>Loading monitors...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage && !isLoading" class="monitors-list__error">
+    <i class="fas fa-exclamation-circle"></i>
+    <p>{{ errorMessage }}</p>
+    <button class="btn btn--secondary" (click)="loadMonitors()">Retry</button>
+  </div>
+
+  <!-- Table -->
+  <div *ngIf="!isLoading && !errorMessage" class="monitors-list__table-container">
+    <table class="table" *ngIf="monitors.length > 0">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Target</th>
+          <th>Uptime</th>
+          <th>Response Time</th>
+          <th>Last Checked</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let monitor of monitors">
+          <td>
+            <span class="status-badge" [class]="'status-badge--' + getStatusColor(monitor)">
+              <span class="status-badge__dot"></span>
+              {{ getStatusText(monitor) }}
+            </span>
+          </td>
+          <td>
+            <div class="monitor-name">
+              <strong>{{ monitor.name }}</strong>
+              <span class="monitor-name__description" *ngIf="monitor.description">
+                {{ monitor.description }}
+              </span>
+            </div>
+          </td>
+          <td>
+            <span class="type-badge">{{ getMonitorTypeLabel(monitor.type) }}</span>
+          </td>
+          <td>
+            <span class="target">{{ monitor.target }}</span>
+          </td>
+          <td>
+            <span class="uptime" [class.uptime--good]="monitor.uptimePercentage >= 99">
+              {{ monitor.uptimePercentage }}%
+            </span>
+          </td>
+          <td>
+            <span *ngIf="monitor.responseTimeMs !== null">
+              {{ monitor.responseTimeMs }}ms
+            </span>
+            <span *ngIf="monitor.responseTimeMs === null" class="text-muted">-</span>
+          </td>
+          <td>
+            <span *ngIf="monitor.lastCheckedAt">
+              {{ monitor.lastCheckedAt | date: 'short' }}
+            </span>
+            <span *ngIf="!monitor.lastCheckedAt" class="text-muted">Never</span>
+          </td>
+          <td>
+            <div class="actions">
+              <button
+                class="btn-icon"
+                title="View Details"
+                (click)="viewDetails(monitor.monitorId)"
+              >
+                <i class="fas fa-eye"></i>
+              </button>
+              <button
+                class="btn-icon"
+                title="Edit"
+                (click)="editMonitor(monitor.monitorId)"
+              >
+                <i class="fas fa-edit"></i>
+              </button>
+              <button
+                class="btn-icon btn-icon--danger"
+                title="Delete"
+                (click)="deleteMonitor(monitor)"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Empty State -->
+    <div *ngIf="monitors.length === 0" class="monitors-list__empty">
+      <i class="fas fa-server"></i>
+      <h3>No monitors found</h3>
+      <p>Create your first monitor to start tracking uptime and performance.</p>
+      <button class="btn btn--primary" (click)="createMonitor()">
+        <i class="fas fa-plus"></i>
+        Create Monitor
+      </button>
+    </div>
+
+    <!-- Pagination -->
+    <div *ngIf="monitors.length > 0 && totalPages > 1" class="pagination">
+      <button
+        class="pagination__btn"
+        [disabled]="currentPage === 1"
+        (click)="onPageChange(currentPage - 1)"
+      >
+        <i class="fas fa-chevron-left"></i>
+        Previous
+      </button>
+
+      <div class="pagination__pages">
+        <button
+          *ngFor="let page of pages"
+          class="pagination__page"
+          [class.pagination__page--active]="page === currentPage"
+          (click)="onPageChange(page)"
+        >
+          {{ page }}
+        </button>
+      </div>
+
+      <button
+        class="pagination__btn"
+        [disabled]="currentPage === totalPages"
+        (click)="onPageChange(currentPage + 1)"
+      >
+        Next
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Results Info -->
+    <div *ngIf="monitors.length > 0" class="monitors-list__info">
+      Showing {{ (currentPage - 1) * pageSize + 1 }} to {{ getEndRecord() }} of {{ totalCount }} monitors
+    </div>
+  </div>
+</div>

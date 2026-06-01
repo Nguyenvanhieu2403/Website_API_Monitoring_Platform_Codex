@@ -18,7 +18,7 @@ public abstract class BaseApiController : ControllerBase
 
     protected Guid GetCurrentUserId()
     {
-        var userIdClaim = User.FindFirst("sub")?.Value;
+        var userIdClaim = User.FindFirst("user_id")?.Value;
         if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
         {
             throw new UnauthorizedAccessException("Không tìm thấy ID người dùng hoặc ID không hợp lệ.");
