@@ -12,7 +12,7 @@ public class CorsSettings
 
     public List<string> AllowedMethods { get; set; } = new() { "GET", "POST", "PUT", "DELETE", "OPTIONS" };
 
-    public List<string> AllowedHeaders { get; set; } = new() { "*" };
+    public List<string> AllowedHeaders { get; set; } = ["*"];
 
     public bool AllowCredentials { get; set; } = true;
 
