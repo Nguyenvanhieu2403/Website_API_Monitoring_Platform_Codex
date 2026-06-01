@@ -306,7 +306,6 @@ D:\PersonalProject\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.
 D:\PersonalProject\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\staticwebassets.development.json
 D:\PersonalProject\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\staticwebassets.build.endpoints.json
 D:\PersonalProject\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\swae.build.ex.cache
-D:\PersonalProject\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\PersonalProject\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\Monitori.46F2B93C.Up2Date
 D:\PersonalProject\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\MonitoringPlatform.API.dll
 D:\PersonalProject\Website_API_Monitoring_Platform_Codex\src\MonitoringPlatform.API\obj\Debug\net9.0\refint\MonitoringPlatform.API.dll

@@ -1,5 +1,6 @@
 using MonitoringPlatform.API.Data;
 using MonitoringPlatform.API.Middleware;
+using MonitoringPlatform.API.Settings;
 using MonitoringPlatform.Application;
 using MonitoringPlatform.Infrastructure;
 using MonitoringPlatform.Infrastructure.Data;
@@ -11,6 +12,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+
+// Configure Settings with Validation
+builder.Services.AddOptions<CorsSettings>()
+    .Bind(builder.Configuration.GetSection(CorsSettings.SectionName))
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+
+builder.Services.AddOptions<SeedDataSettings>()
+    .Bind(builder.Configuration.GetSection(SeedDataSettings.SectionName))
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -53,14 +65,48 @@ builder.Services.AddSwaggerGen(c =>
     c.EnableAnnotations();
 });
 
-// CORS Policy
+// CORS Policy - Using Configuration
+var corsSettings = builder.Configuration.GetSection(CorsSettings.SectionName).Get<CorsSettings>() ?? new CorsSettings();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("ConfiguredCorsPolicy", policy =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+        if (corsSettings.AllowedOrigins.Any())
+        {
+            policy.WithOrigins(corsSettings.AllowedOrigins.ToArray());
+        }
+        else
+        {
+            policy.AllowAnyOrigin();
+        }
+
+        if (corsSettings.AllowedMethods.Any())
+        {
+            policy.WithMethods(corsSettings.AllowedMethods.ToArray());
+        }
+        else
+        {
+            policy.AllowAnyMethod();
+        }
+
+        if (corsSettings.AllowedHeaders.Any() && corsSettings.AllowedHeaders.Contains("*"))
+        {
+            policy.AllowAnyHeader();
+        }
+        else if (corsSettings.AllowedHeaders.Any())
+        {
+            policy.WithHeaders(corsSettings.AllowedHeaders.ToArray());
+        }
+
+        if (corsSettings.AllowCredentials)
+        {
+            policy.AllowCredentials();
+        }
+
+        if (corsSettings.MaxAgeSeconds.HasValue)
+        {
+            policy.SetPreflightMaxAge(TimeSpan.FromSeconds(corsSettings.MaxAgeSeconds.Value));
+        }
     });
 });
 
@@ -82,7 +128,7 @@ else
 }
 
 app.UseHttpsRedirection();
-app.UseCors("AllowAll");
+app.UseCors("ConfiguredCorsPolicy");
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -99,10 +145,16 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
+        var seedDataSettings = services.GetRequiredService<Microsoft.Extensions.Options.IOptions<SeedDataSettings>>().Value;
+
         // Ensure the database is created and migrations are applied
         await context.Database.MigrateAsync();
-        // Seed initial data
-        await DbSeed.SeedAsync(context);
+
+        // Seed initial data only if enabled
+        if (seedDataSettings.EnableSeeding)
+        {
+            await DbSeed.SeedAsync(context, seedDataSettings);
+        }
     }
     catch (Exception ex)
     {
