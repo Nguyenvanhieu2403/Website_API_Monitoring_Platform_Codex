@@ -42,11 +42,33 @@ public class GlobalExceptionMiddleware
         var message = "Đã xảy ra lỗi trong hệ thống.";
         var errors = new List<ApiError>();
 
-        // Log the exception
-        _logger.LogError(exception, "An unhandled exception occurred: {Message}", exception.Message);
+        // Handle specific exception types
+        switch (exception)
+        {
+            case UnauthorizedAccessException:
+                statusCode = (int)HttpStatusCode.Unauthorized;
+                message = "Không có quyền truy cập.";
+                _logger.LogWarning(exception, "Unauthorized access attempt: {Message}", exception.Message);
+                break;
 
-        // Hide stack trace in production for security
-        var stackTrace = _env.IsDevelopment() ? exception.StackTrace : null;
+            case KeyNotFoundException:
+                statusCode = (int)HttpStatusCode.NotFound;
+                message = "Không tìm thấy dữ liệu.";
+                _logger.LogWarning(exception, "Resource not found: {Message}", exception.Message);
+                break;
+
+            case ArgumentException:
+            case InvalidOperationException:
+                statusCode = (int)HttpStatusCode.BadRequest;
+                message = "Yêu cầu không hợp lệ.";
+                _logger.LogWarning(exception, "Bad request: {Message}", exception.Message);
+                break;
+
+            default:
+                // Log the exception for internal server errors
+                _logger.LogError(exception, "An unhandled exception occurred: {Message}", exception.Message);
+                break;
+        }
 
         var apiResponse = new ApiResponse<object>
         {

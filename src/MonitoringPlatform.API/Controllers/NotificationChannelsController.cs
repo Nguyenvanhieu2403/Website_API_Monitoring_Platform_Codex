@@ -13,84 +13,13 @@ namespace MonitoringPlatform.API.Controllers;
 [Authorize]
 [Route("api/organizations/{organizationId}/notification-channels")]
 [ApiController]
-public class NotificationChannelsController : ControllerBase
+public class NotificationChannelsController : BaseApiController
 {
     private readonly IMediator _mediator;
 
     public NotificationChannelsController(IMediator mediator)
     {
         _mediator = mediator;
-    }
-
-    private Guid GetCurrentOrganizationId()
-    {
-        var organizationIdClaim = User.FindFirst("organization_id")?.Value;
-        if (Guid.TryParse(organizationIdClaim, out var organizationId))
-        {
-            return organizationId;
-        }
-        throw new UnauthorizedAccessException("Organization ID not found or invalid.");
-    }
-
-    private void ValidateOrganizationId(Guid organizationId)
-    {
-        if (GetCurrentOrganizationId() != organizationId)
-        {
-            throw new UnauthorizedAccessException("Access denied for this organization.");
-        }
-    }
-
-    private ActionResult<ApiResponse<T>> HandleResult<T>(Result<T> result, int successStatusCode, string successMessage)
-    {
-        if (!result.IsSuccess)
-        {
-            var statusCode = 400;
-            if (result.Error.Contains("không tìm thấy", StringComparison.OrdinalIgnoreCase))
-            {
-                statusCode = 404;
-            }
-            return StatusCode(statusCode, new ApiResponse<T>
-            {
-                Success = false,
-                StatusCode = statusCode,
-                Message = result.Error,
-                Errors = result.Errors
-            });
-        }
-
-        return StatusCode(successStatusCode, new ApiResponse<T>
-        {
-            Success = true,
-            StatusCode = successStatusCode,
-            Message = successMessage,
-            Data = result.Value
-        });
-    }
-
-    private IActionResult HandleResult(Result result, int successStatusCode, string successMessage)
-    {
-        if (!result.IsSuccess)
-        {
-            var statusCode = 400;
-            if (result.Error.Contains("không tìm thấy", StringComparison.OrdinalIgnoreCase))
-            {
-                statusCode = 404;
-            }
-            return StatusCode(statusCode, new ApiResponse<object>
-            {
-                Success = false,
-                StatusCode = statusCode,
-                Message = result.Error,
-                Errors = result.Errors
-            });
-        }
-
-        return StatusCode(successStatusCode, new ApiResponse<object>
-        {
-            Success = true,
-            StatusCode = successStatusCode,
-            Message = successMessage
-        });
     }
 
     [HttpGet]
@@ -123,7 +52,17 @@ public class NotificationChannelsController : ControllerBase
     public async Task<ActionResult<ApiResponse<NotificationChannelDto>>> CreateNotificationChannel([FromRoute] Guid organizationId, [FromBody] CreateNotificationChannelCommand command)
     {
         ValidateOrganizationId(organizationId);
-        if (organizationId != command.OrganizationId) return BadRequest(new ApiResponse<object> { Success = false, StatusCode = 400, Message = "ID Tổ chức trong route và body phải khớp." });
+        if (organizationId != command.OrganizationId)
+        {
+            return BadRequest(new ApiResponse<object>
+            {
+                Success = false,
+                StatusCode = 400,
+                Message = "ID Tổ chức trong route và body phải khớp.",
+                TraceId = HttpContext.TraceIdentifier,
+                Timestamp = DateTime.UtcNow
+            });
+        }
 
         var result = await _mediator.Send(command);
         return HandleResult(result, StatusCodes.Status201Created, "Tạo kênh thông báo thành công.");
@@ -137,8 +76,28 @@ public class NotificationChannelsController : ControllerBase
     public async Task<ActionResult<ApiResponse<NotificationChannelDto>>> UpdateNotificationChannel([FromRoute] Guid organizationId, [FromRoute] Guid channelId, [FromBody] UpdateNotificationChannelCommand command)
     {
         ValidateOrganizationId(organizationId);
-        if (channelId != command.ChannelId) return BadRequest(new ApiResponse<object> { Success = false, StatusCode = 400, Message = "ID Kênh trong route và body phải khớp." });
-        if (organizationId != command.OrganizationId) return BadRequest(new ApiResponse<object> { Success = false, StatusCode = 400, Message = "ID Tổ chức trong route và body phải khớp." });
+        if (channelId != command.ChannelId)
+        {
+            return BadRequest(new ApiResponse<object>
+            {
+                Success = false,
+                StatusCode = 400,
+                Message = "ID Kênh trong route và body phải khớp.",
+                TraceId = HttpContext.TraceIdentifier,
+                Timestamp = DateTime.UtcNow
+            });
+        }
+        if (organizationId != command.OrganizationId)
+        {
+            return BadRequest(new ApiResponse<object>
+            {
+                Success = false,
+                StatusCode = 400,
+                Message = "ID Tổ chức trong route và body phải khớp.",
+                TraceId = HttpContext.TraceIdentifier,
+                Timestamp = DateTime.UtcNow
+            });
+        }
 
         var result = await _mediator.Send(command);
         return HandleResult(result, StatusCodes.Status200OK, "Cập nhật kênh thông báo thành công.");

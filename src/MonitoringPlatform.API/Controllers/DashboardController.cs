@@ -11,23 +11,13 @@ namespace MonitoringPlatform.API.Controllers;
 [ApiController]
 [Route("api/v1/dashboard")]
 [Produces("application/json")]
-public class DashboardController : ControllerBase
+public class DashboardController : BaseApiController
 {
     private readonly IMediator _mediator;
 
     public DashboardController(IMediator mediator)
     {
         _mediator = mediator;
-    }
-
-    private Guid GetOrganizationId()
-    {
-        var orgIdClaim = User.FindFirst("organization_id")?.Value;
-        if (string.IsNullOrEmpty(orgIdClaim) || !Guid.TryParse(orgIdClaim, out var organizationId))
-        {
-            throw new UnauthorizedAccessException("Organization ID claim is missing or invalid.");
-        }
-        return organizationId;
     }
 
     /// <summary>
@@ -47,23 +37,6 @@ public class DashboardController : ControllerBase
         };
 
         var result = await _mediator.Send(query);
-
-        if (!result.IsSuccess)
-        {
-            return BadRequest(new ApiResponse<AggregatedAnalyticsDto>
-            {
-                Success = false,
-                StatusCode = 400,
-                Message = result.Error
-            });
-        }
-
-        return Ok(new ApiResponse<AggregatedAnalyticsDto>
-        {
-            Success = true,
-            StatusCode = 200,
-            Message = "Lấy dữ liệu thành công.",
-            Data = result.Value
-        });
+        return HandleResult(result, StatusCodes.Status200OK, "Lấy dữ liệu thành công.");
     }
 }

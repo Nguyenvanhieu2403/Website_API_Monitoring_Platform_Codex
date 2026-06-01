@@ -14,23 +14,13 @@ namespace MonitoringPlatform.API.Controllers;
 [ApiController]
 [Route("api/v1/monitors")]
 [Produces("application/json")]
-public class MonitorsController : ControllerBase
+public class MonitorsController : BaseApiController
 {
     private readonly IMediator _mediator;
 
     public MonitorsController(IMediator mediator)
     {
         _mediator = mediator;
-    }
-
-    private Guid GetOrganizationId()
-    {
-        var orgIdClaim = User.FindFirst("organization_id")?.Value;
-        if (string.IsNullOrEmpty(orgIdClaim) || !Guid.TryParse(orgIdClaim, out var organizationId))
-        {
-            throw new UnauthorizedAccessException("Organization ID claim is missing or invalid.");
-        }
-        return organizationId;
     }
 
     /// <summary>
@@ -64,25 +54,7 @@ public class MonitorsController : ControllerBase
         };
 
         var result = await _mediator.Send(command);
-
-        if (!result.IsSuccess)
-        {
-            return BadRequest(new ApiResponse<MonitorDto>
-            {
-                Success = false,
-                StatusCode = 400,
-                Message = result.Error,
-                Errors = result.Errors
-            });
-        }
-
-        return CreatedAtAction(nameof(GetById), new { id = result.Value!.MonitorId }, new ApiResponse<MonitorDto>
-        {
-            Success = true,
-            StatusCode = 201,
-            Message = "Tạo monitor thành công.",
-            Data = result.Value
-        });
+        return HandleResult(result, StatusCodes.Status201Created, "Tạo monitor thành công.");
     }
 
     /// <summary>
@@ -118,26 +90,7 @@ public class MonitorsController : ControllerBase
         };
 
         var result = await _mediator.Send(command);
-
-        if (!result.IsSuccess)
-        {
-            var statusCode = result.Error.Contains("không tìm thấy", StringComparison.OrdinalIgnoreCase) ? 404 : 400;
-            return StatusCode(statusCode, new ApiResponse<MonitorDto>
-            {
-                Success = false,
-                StatusCode = statusCode,
-                Message = result.Error,
-                Errors = result.Errors
-            });
-        }
-
-        return Ok(new ApiResponse<MonitorDto>
-        {
-            Success = true,
-            StatusCode = 200,
-            Message = "Cập nhật monitor thành công.",
-            Data = result.Value
-        });
+        return HandleResult(result, StatusCodes.Status200OK, "Cập nhật monitor thành công.");
     }
 
     /// <summary>
@@ -158,24 +111,7 @@ public class MonitorsController : ControllerBase
         };
 
         var result = await _mediator.Send(command);
-
-        if (!result.IsSuccess)
-        {
-            var statusCode = result.Error.Contains("không tìm thấy", StringComparison.OrdinalIgnoreCase) ? 404 : 400;
-            return StatusCode(statusCode, new ApiResponse<object>
-            {
-                Success = false,
-                StatusCode = statusCode,
-                Message = result.Error
-            });
-        }
-
-        return Ok(new ApiResponse<object>
-        {
-            Success = true,
-            StatusCode = 200,
-            Message = "Xóa monitor thành công."
-        });
+        return HandleResult(result, StatusCodes.Status200OK, "Xóa monitor thành công.");
     }
 
     /// <summary>
@@ -196,24 +132,7 @@ public class MonitorsController : ControllerBase
         };
 
         var result = await _mediator.Send(query);
-
-        if (!result.IsSuccess)
-        {
-            return NotFound(new ApiResponse<MonitorDto>
-            {
-                Success = false,
-                StatusCode = 404,
-                Message = result.Error
-            });
-        }
-
-        return Ok(new ApiResponse<MonitorDto>
-        {
-            Success = true,
-            StatusCode = 200,
-            Message = "Lấy dữ liệu thành công.",
-            Data = result.Value
-        });
+        return HandleResult(result, StatusCodes.Status200OK, "Lấy dữ liệu thành công.");
     }
 
     /// <summary>
@@ -242,24 +161,7 @@ public class MonitorsController : ControllerBase
         };
 
         var result = await _mediator.Send(query);
-
-        if (!result.IsSuccess)
-        {
-            return BadRequest(new ApiResponse<PagedResponse<MonitorDto>>
-            {
-                Success = false,
-                StatusCode = 400,
-                Message = result.Error
-            });
-        }
-
-        return Ok(new ApiResponse<PagedResponse<MonitorDto>>
-        {
-            Success = true,
-            StatusCode = 200,
-            Message = "Lấy dữ liệu thành công.",
-            Data = result.Value
-        });
+        return HandleResult(result, StatusCodes.Status200OK, "Lấy dữ liệu thành công.");
     }
 }
 

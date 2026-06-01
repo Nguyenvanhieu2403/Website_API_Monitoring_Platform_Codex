@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net9.0": {
       "AutoMapper/16.1.1": {
@@ -8851,23 +8851,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nguye\\.nuget\\packages\\": {},
+    "C:\\Users\\Admin\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\MonitoringPlatform.IntegrationTests.csproj",
+      "projectUniqueName": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\MonitoringPlatform.IntegrationTests.csproj",
       "projectName": "MonitoringPlatform.IntegrationTests",
-      "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\MonitoringPlatform.IntegrationTests.csproj",
-      "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
-      "outputPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\obj\\",
+      "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\MonitoringPlatform.IntegrationTests.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -8876,17 +8876,19 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "projectReferences": {
-            "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj": {
-              "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj"
+            "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj": {
+              "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj"
             },
-            "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj": {
-              "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj"
+            "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj": {
+              "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj"
             }
           }
         }
@@ -8901,10 +8903,11 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net9.0": {
+        "framework": "net9.0",
         "targetAlias": "net9.0",
         "dependencies": {
           "FluentAssertions": {
@@ -8964,7 +8967,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

@@ -20,13 +20,22 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
           "text/json"
         ],
         "StatusCode": 200
+      },
+      {
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
       }
     ]
   },
@@ -56,7 +65,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -65,13 +74,22 @@
         "StatusCode": 201
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
           "text/json"
         ],
         "StatusCode": 400
+      },
+      {
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
       }
     ]
   },
@@ -101,7 +119,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -110,13 +128,22 @@
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
           "text/json"
         ],
         "StatusCode": 404
+      },
+      {
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
       }
     ]
   },
@@ -151,7 +178,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Features.AlertRules.Models.AlertRuleDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -160,7 +187,7 @@
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -169,13 +196,22 @@
         "StatusCode": 400
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
           "text/json"
         ],
         "StatusCode": 404
+      },
+      {
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
       }
     ]
   },
@@ -205,18 +241,31 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 204
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
           "text/json"
         ],
         "StatusCode": 404
+      },
+      {
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
       }
     ]
   },
@@ -236,7 +285,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -267,7 +316,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -276,7 +325,7 @@
         "StatusCode": 201
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -307,7 +356,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -316,7 +365,7 @@
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -352,7 +401,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Features.NotificationChannels.Models.NotificationChannelDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -361,7 +410,7 @@
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -370,7 +419,7 @@
         "StatusCode": 400
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -401,12 +450,16 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 204
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -432,15 +485,17 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Features.Authentication.Commands.LoginResponse",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Features.Authentication.Commands.LoginResponse, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 401
       }
     ]
@@ -455,8 +510,10 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       }
     ]
@@ -471,8 +528,10 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       }
     ]
@@ -493,15 +552,17 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Interfaces.AuthTokens",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Interfaces.AuthTokens, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 401
       }
     ]
@@ -522,21 +583,18 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Features.Authentication.Commands.RegisterResponse",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Features.Authentication.Commands.RegisterResponse, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 201
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 400
-      },
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 409
       }
     ]
   },
@@ -556,15 +614,17 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Models.AggregatedAnalyticsDto",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Models.AggregatedAnalyticsDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 401
       }
     ]
@@ -585,20 +645,24 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 201
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 400
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 401
       }
     ]
@@ -664,15 +728,17 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Features.Monitors.Models.PagedResponse\u00601[[MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Features.Monitors.Models.PagedResponse\u00601[[MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 401
       }
     ]
@@ -698,26 +764,32 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 400
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 401
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 440
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 404
       }
     ]
   },
@@ -737,18 +809,24 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 204
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 401
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 404
       }
     ]
@@ -769,20 +847,24 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto",
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[MonitoringPlatform.Application.Features.Monitors.Models.MonitorDto, MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 401
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "MonitoringPlatform.Application.Models.ApiResponse\u00601[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 404
       }
     ]
