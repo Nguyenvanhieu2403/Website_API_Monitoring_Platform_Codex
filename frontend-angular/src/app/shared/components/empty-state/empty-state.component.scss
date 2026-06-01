@@ -1,0 +1,60 @@
+// ============================================
+// Shared Empty State Component
+// ============================================
+
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.empty-state {
+  @include flex-center;
+  @include flex-column;
+  gap: $spacing-4;
+  padding: $spacing-16 $spacing-8;
+  text-align: center;
+  min-height: 300px;
+
+  &.compact {
+    padding: $spacing-12 $spacing-6;
+    min-height: 200px;
+  }
+}
+
+.empty-state-icon {
+  font-size: 4rem;
+  line-height: 1;
+  color: $color-gray-300;
+  user-select: none;
+
+  &.compact {
+    font-size: 3rem;
+  }
+}
+
+.empty-state-content {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+  max-width: 400px;
+}
+
+.empty-state-title {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin: 0;
+
+  &.compact {
+    font-size: $font-size-lg;
+  }
+}
+
+.empty-state-description {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  line-height: $line-height-relaxed;
+  margin: 0;
+}
+
+.empty-state-action {
+  margin-top: $spacing-4;
+}

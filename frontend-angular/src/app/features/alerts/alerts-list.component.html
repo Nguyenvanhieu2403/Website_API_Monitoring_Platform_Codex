@@ -1,0 +1,106 @@
+<div class="alerts-list">
+  <!-- Header -->
+  <div class="alerts-list__header">
+    <h1 class="alerts-list__title">Alert Rules</h1>
+    <button class="btn btn--primary" (click)="createAlertRule()" [disabled]="!organizationId || !monitorId">
+      <i class="fas fa-plus"></i>
+      Create Alert Rule
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="alerts-list__loading">
+    <div class="spinner"></div>
+    <p>Loading alert rules...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage && !isLoading" class="alerts-list__error">
+    <i class="fas fa-exclamation-circle"></i>
+    <p>{{ errorMessage }}</p>
+    <button class="btn btn--secondary" (click)="loadAlertRules()" *ngIf="organizationId && monitorId">Retry</button>
+  </div>
+
+  <!-- Table -->
+  <div *ngIf="!isLoading && !errorMessage" class="alerts-list__table-container">
+    <table class="table" *ngIf="alertRules.length > 0">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Name</th>
+          <th>Condition</th>
+          <th>Severity</th>
+          <th>Threshold</th>
+          <th>Cooldown</th>
+          <th>Channels</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rule of alertRules">
+          <td>
+            <span class="status-badge" [class]="'status-badge--' + getStatusColor(rule.isEnabled)">
+              <span class="status-badge__dot"></span>
+              {{ getStatusText(rule.isEnabled) }}
+            </span>
+          </td>
+          <td>
+            <strong>{{ rule.name }}</strong>
+          </td>
+          <td>
+            <span class="condition-badge">{{ getConditionTypeLabel(rule.conditionType) }}</span>
+          </td>
+          <td>
+            <span class="severity-badge" [class]="'severity-badge--' + getSeverityColor(rule.severity)">
+              {{ getSeverityLabel(rule.severity) }}
+            </span>
+          </td>
+          <td>
+            <span *ngIf="rule.thresholdValue">{{ rule.thresholdValue }}</span>
+            <span *ngIf="!rule.thresholdValue" class="text-muted">-</span>
+          </td>
+          <td>{{ rule.cooldownMinutes }} min</td>
+          <td>
+            <span class="channel-count">{{ rule.notificationChannels.length }} channel(s)</span>
+          </td>
+          <td>
+            <div class="actions">
+              <button
+                class="btn-icon"
+                title="View Details"
+                (click)="viewDetails(rule.ruleId)"
+              >
+                <i class="fas fa-eye"></i>
+              </button>
+              <button
+                class="btn-icon"
+                title="Edit"
+                (click)="editAlertRule(rule.ruleId)"
+              >
+                <i class="fas fa-edit"></i>
+              </button>
+              <button
+                class="btn-icon btn-icon--danger"
+                title="Delete"
+                (click)="deleteAlertRule(rule)"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Empty State -->
+    <div *ngIf="alertRules.length === 0" class="alerts-list__empty">
+      <i class="fas fa-bell"></i>
+      <h3>No alert rules found</h3>
+      <p>Create your first alert rule to get notified when issues occur.</p>
+      <button class="btn btn--primary" (click)="createAlertRule()" [disabled]="!organizationId || !monitorId">
+        <i class="fas fa-plus"></i>
+        Create Alert Rule
+      </button>
+    </div>
+  </div>
+</div>

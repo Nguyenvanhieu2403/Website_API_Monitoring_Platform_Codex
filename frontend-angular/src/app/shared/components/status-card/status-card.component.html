@@ -1,0 +1,29 @@
+<div class="status-card">
+  <div class="status-card__header">
+    <div class="status-card__title-row">
+      <h3 class="status-card__name">{{ monitorName }}</h3>
+      <span class="status-badge" [ngClass]="'status-badge--' + statusColor">
+        <span class="status-badge__dot"></span>
+        {{ statusText }}
+      </span>
+    </div>
+    <p class="status-card__target">{{ target }}</p>
+  </div>
+
+  <div class="status-card__metrics">
+    <div class="metric">
+      <span class="metric__label">Response Time</span>
+      <span class="metric__value">
+        {{ responseTime !== null ? responseTime + 'ms' : 'N/A' }}
+      </span>
+    </div>
+    <div class="metric">
+      <span class="metric__label">Uptime</span>
+      <span class="metric__value">{{ uptimePercentage }}%</span>
+    </div>
+    <div class="metric" *ngIf="lastChecked">
+      <span class="metric__label">Last Checked</span>
+      <span class="metric__value">{{ lastChecked | date: 'short' }}</span>
+    </div>
+  </div>
+</div>

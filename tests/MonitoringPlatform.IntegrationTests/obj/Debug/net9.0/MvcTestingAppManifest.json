@@ -1,6 +1,6 @@
 {
-  "MonitoringPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API",
-  "MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application",
-  "MonitoringPlatform.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain",
-  "MonitoringPlatform.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure"
+  "MonitoringPlatform.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API",
+  "MonitoringPlatform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application",
+  "MonitoringPlatform.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain",
+  "MonitoringPlatform.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure"
 }

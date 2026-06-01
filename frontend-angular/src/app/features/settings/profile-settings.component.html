@@ -1,0 +1,192 @@
+<div class="settings-container">
+  <div class="settings-header">
+    <h1>Profile Settings</h1>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading profile...</p>
+  </div>
+
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="success-banner">
+    <span class="success-icon">✓</span>
+    <span>{{ successMessage }}</span>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-banner">
+    <span class="error-icon">⚠️</span>
+    <span>{{ errorMessage }}</span>
+  </div>
+
+  <!-- Profile Information -->
+  <div *ngIf="!isLoading && currentUser" class="settings-content">
+    <!-- Account Overview -->
+    <div class="settings-card">
+      <div class="card-header">
+        <h2>Account Overview</h2>
+      </div>
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">User ID</span>
+            <span class="info-value monospace">{{ currentUser.userId }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Organization ID</span>
+            <span class="info-value monospace">{{ currentUser.organizationId }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Role</span>
+            <span class="badge badge-role">{{ getRoleLabel(currentUser.role) }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Status</span>
+            <span class="badge badge-status">{{ getStatusLabel(currentUser.status) }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Email Verified</span>
+            <span class="badge" [class.badge-success]="currentUser.emailVerified" [class.badge-warning]="!currentUser.emailVerified">
+              {{ currentUser.emailVerified ? 'Verified' : 'Not Verified' }}
+            </span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Last Login</span>
+            <span class="info-value">{{ currentUser.lastLoginAt ? (currentUser.lastLoginAt | date:'medium') : 'Never' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Account Created</span>
+            <span class="info-value">{{ currentUser.createdAt | date:'medium' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Profile -->
+    <div class="settings-card">
+      <div class="card-header">
+        <h2>Update Profile</h2>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="updateProfile()">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                [(ngModel)]="firstName"
+                name="firstName"
+                placeholder="Enter first name"
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                [(ngModel)]="lastName"
+                name="lastName"
+                placeholder="Enter last name"
+                class="form-input"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              [(ngModel)]="email"
+              name="email"
+              placeholder="user@example.com"
+              class="form-input"
+              [class.error]="emailError"
+              (blur)="validateEmail()"
+            />
+            <span *ngIf="emailError" class="field-error">{{ emailError }}</span>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary" [disabled]="isSavingProfile">
+              <span *ngIf="!isSavingProfile">Update Profile</span>
+              <span *ngIf="isSavingProfile" class="saving-text">
+                <span class="spinner-small"></span>
+                Saving...
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Change Password -->
+    <div class="settings-card">
+      <div class="card-header">
+        <h2>Change Password</h2>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="changePassword()">
+          <div class="form-group">
+            <label for="currentPassword">Current Password</label>
+            <input
+              type="password"
+              id="currentPassword"
+              [(ngModel)]="currentPassword"
+              name="currentPassword"
+              placeholder="Enter current password"
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="newPassword">New Password</label>
+              <input
+                type="password"
+                id="newPassword"
+                [(ngModel)]="newPassword"
+                name="newPassword"
+                placeholder="Enter new password (min 8 characters)"
+                class="form-input"
+                [class.error]="passwordError"
+                (blur)="validatePassword()"
+              />
+              <span *ngIf="passwordError" class="field-error">{{ passwordError }}</span>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmNewPassword">Confirm New Password</label>
+              <input
+                type="password"
+                id="confirmNewPassword"
+                [(ngModel)]="confirmNewPassword"
+                name="confirmNewPassword"
+                placeholder="Re-enter new password"
+                class="form-input"
+                [class.error]="confirmPasswordError"
+                (blur)="validatePassword()"
+              />
+              <span *ngIf="confirmPasswordError" class="field-error">{{ confirmPasswordError }}</span>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary" [disabled]="isSavingPassword">
+              <span *ngIf="!isSavingPassword">Change Password</span>
+              <span *ngIf="isSavingPassword" class="saving-text">
+                <span class="spinner-small"></span>
+                Changing...
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

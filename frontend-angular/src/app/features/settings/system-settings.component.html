@@ -1,0 +1,228 @@
+<div class="settings-container">
+  <div class="settings-header">
+    <h1>System Settings</h1>
+    <button class="btn-secondary" (click)="resetToDefaults()">
+      Reset to Defaults
+    </button>
+  </div>
+
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="success-banner">
+    <span class="success-icon">✓</span>
+    <span>{{ successMessage }}</span>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-banner">
+    <span class="error-icon">⚠️</span>
+    <span>{{ errorMessage }}</span>
+  </div>
+
+  <!-- System Configuration -->
+  <div class="settings-content">
+    <!-- General Settings -->
+    <div class="settings-card">
+      <div class="card-header">
+        <h2>General Settings</h2>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="siteName">Site Name</label>
+          <input
+            type="text"
+            id="siteName"
+            [(ngModel)]="config.siteName"
+            placeholder="Enter site name"
+            class="form-input"
+          />
+          <span class="field-hint">The name displayed in the application header</span>
+        </div>
+
+        <div class="form-group">
+          <label for="siteUrl">Site URL</label>
+          <input
+            type="url"
+            id="siteUrl"
+            [(ngModel)]="config.siteUrl"
+            placeholder="https://example.com"
+            class="form-input"
+          />
+          <span class="field-hint">The base URL for your monitoring platform</span>
+        </div>
+
+        <div class="form-group">
+          <label for="supportEmail">Support Email</label>
+          <input
+            type="email"
+            id="supportEmail"
+            [(ngModel)]="config.supportEmail"
+            placeholder="support@example.com"
+            class="form-input"
+          />
+          <span class="field-hint">Email address for support inquiries</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature Toggles -->
+    <div class="settings-card">
+      <div class="card-header">
+        <h2>Feature Toggles</h2>
+      </div>
+      <div class="card-body">
+        <div class="toggle-group">
+          <div class="toggle-item">
+            <div class="toggle-info">
+              <label class="toggle-label">Maintenance Mode</label>
+              <span class="toggle-description">Temporarily disable access to the platform</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="config.maintenanceMode" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-item">
+            <div class="toggle-info">
+              <label class="toggle-label">Allow Registration</label>
+              <span class="toggle-description">Enable new users to register accounts</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="config.allowRegistration" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-item">
+            <div class="toggle-info">
+              <label class="toggle-label">Email Notifications</label>
+              <span class="toggle-description">Send alert notifications via email</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="config.emailNotifications" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-item">
+            <div class="toggle-info">
+              <label class="toggle-label">Slack Notifications</label>
+              <span class="toggle-description">Send alert notifications to Slack</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="config.slackNotifications" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-item">
+            <div class="toggle-info">
+              <label class="toggle-label">Webhook Notifications</label>
+              <span class="toggle-description">Send alert notifications to custom webhooks</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="config.webhookNotifications" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Monitoring Limits -->
+    <div class="settings-card">
+      <div class="card-header">
+        <h2>Monitoring Limits</h2>
+      </div>
+      <div class="card-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="maxMonitorsPerOrg">Max Monitors per Organization</label>
+            <input
+              type="number"
+              id="maxMonitorsPerOrg"
+              [(ngModel)]="config.maxMonitorsPerOrg"
+              min="1"
+              max="1000"
+              class="form-input"
+            />
+            <span class="field-hint">Maximum number of monitors allowed per organization</span>
+          </div>
+
+          <div class="form-group">
+            <label for="defaultCheckInterval">Default Check Interval (seconds)</label>
+            <input
+              type="number"
+              id="defaultCheckInterval"
+              [(ngModel)]="config.defaultCheckInterval"
+              min="30"
+              max="3600"
+              step="30"
+              class="form-input"
+            />
+            <span class="field-hint">Default interval for monitor checks</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="retentionDays">Data Retention (days)</label>
+          <input
+            type="number"
+            id="retentionDays"
+            [(ngModel)]="config.retentionDays"
+            min="7"
+            max="365"
+            class="form-input"
+          />
+          <span class="field-hint">Number of days to retain monitoring logs and events</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Information -->
+    <div class="settings-card">
+      <div class="card-header">
+        <h2>System Information</h2>
+      </div>
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Platform Version</span>
+            <span class="info-value">v1.0.0</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">API Version</span>
+            <span class="info-value">v1</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Database Status</span>
+            <span class="badge badge-success">Connected</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Cache Status</span>
+            <span class="badge badge-success">Active</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Last Backup</span>
+            <span class="info-value">2026-06-01 08:00:00</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Uptime</span>
+            <span class="info-value">15 days, 6 hours</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save Actions -->
+    <div class="settings-actions">
+      <button type="button" class="btn-primary" (click)="saveSystemConfig()" [disabled]="isSaving">
+        <span *ngIf="!isSaving">Save Configuration</span>
+        <span *ngIf="isSaving" class="saving-text">
+          <span class="spinner-small"></span>
+          Saving...
+        </span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+.status-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  &__header {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  &__title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  &__name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+  }
+
+  &__target {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+    word-break: break-all;
+  }
+
+  &__metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+  }
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+
+  &--green {
+    background: #d1fae5;
+    color: #10b981;
+  }
+
+  &--red {
+    background: #fee2e2;
+    color: #ef4444;
+  }
+
+  &--yellow {
+    background: #fef3c7;
+    color: #f59e0b;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+
+    .status-badge--green & {
+      background: #10b981;
+    }
+
+    .status-badge--red & {
+      background: #ef4444;
+    }
+
+    .status-badge--yellow & {
+      background: #f59e0b;
+    }
+  }
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &__label {
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  &__value {
+    font-size: 16px;
+    color: #111827;
+    font-weight: 600;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

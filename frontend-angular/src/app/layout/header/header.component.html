@@ -1,0 +1,15 @@
+<header class="header">
+  <div class="header-left">
+    <button class="menu-toggle" (click)="onToggleSidebar()">
+      <span class="icon">☰</span>
+    </button>
+    <h1 class="app-title">Monitoring Platform</h1>
+  </div>
+
+  <div class="header-right">
+    <div class="user-menu" *ngIf="currentUser$ | async as user">
+      <span class="user-name">{{ user.firstName }} {{ user.lastName }}</span>
+      <button class="logout-btn" (click)="onLogout()">Logout</button>
+    </div>
+  </div>
+</header>

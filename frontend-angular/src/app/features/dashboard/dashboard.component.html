@@ -1,0 +1,116 @@
+<div class="dashboard">
+  <!-- Loading State -->
+  <div class="dashboard__loading" *ngIf="isLoading">
+    <div class="spinner"></div>
+    <p>Loading dashboard...</p>
+  </div>
+
+  <!-- Error State -->
+  <div class="dashboard__error" *ngIf="errorMessage && !isLoading">
+    <div class="error-alert">
+      <i class="fas fa-exclamation-circle"></i>
+      <span>{{ errorMessage }}</span>
+    </div>
+  </div>
+
+  <!-- Dashboard Content -->
+  <div class="dashboard__content" *ngIf="!isLoading && !errorMessage">
+    <!-- Header -->
+    <div class="dashboard__header">
+      <div>
+        <h1 class="dashboard__title">Dashboard</h1>
+        <p class="dashboard__subtitle">Monitor your services and infrastructure</p>
+      </div>
+      <div class="time-range-selector">
+        <button
+          class="time-range-btn"
+          [class.active]="selectedTimeRange === '24h'"
+          (click)="onTimeRangeChange('24h')">
+          24h
+        </button>
+        <button
+          class="time-range-btn"
+          [class.active]="selectedTimeRange === '7d'"
+          (click)="onTimeRangeChange('7d')">
+          7d
+        </button>
+        <button
+          class="time-range-btn"
+          [class.active]="selectedTimeRange === '30d'"
+          (click)="onTimeRangeChange('30d')">
+          30d
+        </button>
+      </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="dashboard__stats" *ngIf="summary">
+      <app-stats-card
+        title="Total Monitors"
+        [value]="summary.totalMonitors"
+        icon="fas fa-server"
+        color="blue">
+      </app-stats-card>
+
+      <app-stats-card
+        title="Monitors Up"
+        [value]="monitorsUp"
+        icon="fas fa-check-circle"
+        color="green">
+      </app-stats-card>
+
+      <app-stats-card
+        title="Monitors Down"
+        [value]="monitorsDown"
+        icon="fas fa-times-circle"
+        color="red">
+      </app-stats-card>
+
+      <app-stats-card
+        title="Average Uptime"
+        [value]="summary.averageUptimePercentage.toFixed(2) + '%'"
+        icon="fas fa-chart-line"
+        color="green">
+      </app-stats-card>
+
+      <app-stats-card
+        title="Avg Response Time"
+        [value]="summary.averageResponseTime + 'ms'"
+        icon="fas fa-clock"
+        color="blue">
+      </app-stats-card>
+
+      <app-stats-card
+        title="Total Checks"
+        [value]="summary.totalChecks"
+        icon="fas fa-tasks"
+        color="blue">
+      </app-stats-card>
+    </div>
+
+    <!-- Recent Monitors -->
+    <div class="dashboard__section">
+      <app-chart-container
+        title="Recent Monitors"
+        subtitle="Latest monitor status and performance">
+        <div class="monitors-grid" *ngIf="recentMonitors.length > 0">
+          <app-status-card
+            *ngFor="let monitor of recentMonitors"
+            [monitorName]="monitor.name"
+            [target]="monitor.target"
+            [status]="monitor.status"
+            [isUp]="monitor.isUp"
+            [responseTime]="monitor.responseTimeMs"
+            [uptimePercentage]="monitor.uptimePercentage"
+            [lastChecked]="monitor.lastCheckedAt">
+          </app-status-card>
+        </div>
+        <div class="empty-state" *ngIf="recentMonitors.length === 0">
+          <i class="fas fa-inbox"></i>
+          <p>No monitors found</p>
+          <small>Create your first monitor to start tracking</small>
+        </div>
+      </app-chart-container>
+    </div>
+  </div>
+</div>

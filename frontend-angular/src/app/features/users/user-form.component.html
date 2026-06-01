@@ -1,0 +1,167 @@
+<div class="form-container">
+  <div class="form-header">
+    <h1>{{ isEditMode ? 'Edit User' : 'Create New User' }}</h1>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading user...</p>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-banner">
+    <span class="error-icon">⚠️</span>
+    <span>{{ errorMessage }}</span>
+  </div>
+
+  <!-- Form -->
+  <form *ngIf="!isLoading" class="user-form" (ngSubmit)="saveUser()">
+    <div class="form-section">
+      <h2>Basic Information</h2>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name <span class="required">*</span></label>
+          <input
+            type="text"
+            id="firstName"
+            [(ngModel)]="firstName"
+            name="firstName"
+            placeholder="Enter first name"
+            class="form-input"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name <span class="required">*</span></label>
+          <input
+            type="text"
+            id="lastName"
+            [(ngModel)]="lastName"
+            name="lastName"
+            placeholder="Enter last name"
+            class="form-input"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email <span class="required">*</span></label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="user@example.com"
+          class="form-input"
+          [class.error]="emailError"
+          [disabled]="isEditMode"
+          (blur)="validateEmail()"
+          required
+        />
+        <span *ngIf="emailError" class="field-error">{{ emailError }}</span>
+      </div>
+
+      <div *ngIf="!isEditMode" class="form-row">
+        <div class="form-group">
+          <label for="password">Password <span class="required">*</span></label>
+          <input
+            type="password"
+            id="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Enter password (min 8 characters)"
+            class="form-input"
+            [class.error]="passwordError"
+            (blur)="validatePassword()"
+            required
+          />
+          <span *ngIf="passwordError" class="field-error">{{ passwordError }}</span>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password <span class="required">*</span></label>
+          <input
+            type="password"
+            id="confirmPassword"
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
+            placeholder="Re-enter password"
+            class="form-input"
+            [class.error]="confirmPasswordError"
+            (blur)="validatePassword()"
+            required
+          />
+          <span *ngIf="confirmPasswordError" class="field-error">{{ confirmPasswordError }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Role & Permissions</h2>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="role">Role <span class="required">*</span></label>
+          <select
+            id="role"
+            [(ngModel)]="selectedRole"
+            name="role"
+            class="form-select"
+            required
+          >
+            <option [ngValue]="UserRole.Owner">{{ getRoleLabel(UserRole.Owner) }}</option>
+            <option [ngValue]="UserRole.Admin">{{ getRoleLabel(UserRole.Admin) }}</option>
+            <option [ngValue]="UserRole.Member">{{ getRoleLabel(UserRole.Member) }}</option>
+            <option [ngValue]="UserRole.Viewer">{{ getRoleLabel(UserRole.Viewer) }}</option>
+          </select>
+          <span class="field-hint">Determines user permissions and access level</span>
+        </div>
+
+        <div class="form-group" *ngIf="isEditMode">
+          <label for="status">Status <span class="required">*</span></label>
+          <select
+            id="status"
+            [(ngModel)]="selectedStatus"
+            name="status"
+            class="form-select"
+            required
+          >
+            <option [ngValue]="UserStatus.Active">{{ getStatusLabel(UserStatus.Active) }}</option>
+            <option [ngValue]="UserStatus.Inactive">{{ getStatusLabel(UserStatus.Inactive) }}</option>
+            <option [ngValue]="UserStatus.Suspended">{{ getStatusLabel(UserStatus.Suspended) }}</option>
+          </select>
+          <span class="field-hint">Current account status</span>
+        </div>
+      </div>
+
+      <div class="role-info">
+        <div class="info-card">
+          <h4>Role Descriptions:</h4>
+          <ul>
+            <li><strong>Owner:</strong> Full access to all features and settings</li>
+            <li><strong>Admin:</strong> Manage users, monitors, and organization settings</li>
+            <li><strong>Member:</strong> Create and manage monitors, view reports</li>
+            <li><strong>Viewer:</strong> Read-only access to monitors and reports</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-secondary" (click)="cancel()" [disabled]="isSaving">
+        Cancel
+      </button>
+      <button type="submit" class="btn-primary" [disabled]="isSaving">
+        <span *ngIf="!isSaving">{{ isEditMode ? 'Update User' : 'Create User' }}</span>
+        <span *ngIf="isSaving" class="saving-text">
+          <span class="spinner-small"></span>
+          Saving...
+        </span>
+      </button>
+    </div>
+  </form>
+</div>

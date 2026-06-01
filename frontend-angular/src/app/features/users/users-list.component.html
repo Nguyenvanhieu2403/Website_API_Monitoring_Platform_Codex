@@ -1,0 +1,166 @@
+<div class="users-container">
+  <div class="users-header">
+    <h1>Users Management</h1>
+    <button class="btn-primary" (click)="createUser()">
+      <span class="icon">+</span>
+      Add User
+    </button>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filters-section">
+    <div class="filter-group">
+      <label>Search</label>
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search by name or email..."
+        class="filter-input"
+      />
+    </div>
+
+    <div class="filter-group">
+      <label>Role</label>
+      <select [(ngModel)]="selectedRole" class="filter-select">
+        <option [ngValue]="undefined">All Roles</option>
+        <option [ngValue]="UserRole.Owner">Owner</option>
+        <option [ngValue]="UserRole.Admin">Admin</option>
+        <option [ngValue]="UserRole.Member">Member</option>
+        <option [ngValue]="UserRole.Viewer">Viewer</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Status</label>
+      <select [(ngModel)]="selectedStatus" class="filter-select">
+        <option [ngValue]="undefined">All Statuses</option>
+        <option [ngValue]="UserStatus.Active">Active</option>
+        <option [ngValue]="UserStatus.Inactive">Inactive</option>
+        <option [ngValue]="UserStatus.Suspended">Suspended</option>
+      </select>
+    </div>
+
+    <div class="filter-actions">
+      <button class="btn-secondary" (click)="applyFilters()">Apply Filters</button>
+      <button class="btn-text" (click)="clearFilters()">Clear</button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <app-loading
+    *ngIf="isLoading"
+    type="skeleton-table"
+    [count]="5"
+  ></app-loading>
+
+  <!-- Error State -->
+  <app-error-state
+    *ngIf="!isLoading && errorMessage"
+    icon="⚠️"
+    title="Failed to load users"
+    [message]="errorMessage"
+    [showRetry]="true"
+    (retry)="loadUsers()"
+  ></app-error-state>
+
+  <!-- Users Table -->
+  <div *ngIf="!isLoading && !errorMessage" class="table-container">
+    <table class="users-table" *ngIf="users.length > 0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Last Login</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>
+            <div class="user-name">
+              <div class="user-avatar">{{ (user.firstName || user.email)[0].toUpperCase() }}</div>
+              <span>{{ getFullName(user) }}</span>
+            </div>
+          </td>
+          <td>
+            <span class="user-email">{{ user.email }}</span>
+            <span *ngIf="user.emailVerified" class="verified-badge" title="Email Verified">✓</span>
+          </td>
+          <td>
+            <span class="badge badge-role" [attr.data-color]="getRoleColor(user.role)">
+              {{ getRoleLabel(user.role) }}
+            </span>
+          </td>
+          <td>
+            <span class="badge badge-status" [attr.data-color]="getStatusColor(user.status)">
+              <span class="status-dot" [attr.data-color]="getStatusColor(user.status)"></span>
+              {{ getStatusLabel(user.status) }}
+            </span>
+          </td>
+          <td>
+            <span class="date-text">{{ user.lastLoginAt ? (user.lastLoginAt | date:'short') : 'Never' }}</span>
+          </td>
+          <td>
+            <span class="date-text">{{ user.createdAt | date:'short' }}</span>
+          </td>
+          <td>
+            <div class="action-buttons">
+              <button class="btn-icon" (click)="editUser(user.userId)" title="Edit User">
+                <span>✏️</span>
+              </button>
+              <button class="btn-icon btn-danger" (click)="deleteUser(user.userId, user.email)" title="Delete User">
+                <span>🗑️</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Empty State -->
+    <app-empty-state
+      *ngIf="users.length === 0"
+      icon="👥"
+      title="No users found"
+      description="There are no users matching your filters. Try adjusting your search criteria or add a new user."
+      actionLabel="Add First User"
+      (action)="createUser()"
+    ></app-empty-state>
+
+    <!-- Pagination -->
+    <div *ngIf="users.length > 0" class="pagination">
+      <div class="pagination-info">
+        Showing {{ getStartRecord() }} to {{ getEndRecord() }} of {{ totalCount }} users
+      </div>
+      <div class="pagination-controls">
+        <button
+          class="btn-pagination"
+          (click)="previousPage()"
+          [disabled]="currentPage === 1"
+        >
+          Previous
+        </button>
+        <span class="page-numbers">
+          <button
+            *ngFor="let page of [].constructor(totalPages); let i = index"
+            class="btn-page-number"
+            [class.active]="currentPage === i + 1"
+            (click)="goToPage(i + 1)"
+          >
+            {{ i + 1 }}
+          </button>
+        </span>
+        <button
+          class="btn-pagination"
+          (click)="nextPage()"
+          [disabled]="currentPage === totalPages"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

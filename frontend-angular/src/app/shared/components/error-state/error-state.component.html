@@ -1,0 +1,18 @@
+<div class="error-state" [class.compact]="compact" [class.inline]="inline">
+  <div class="error-state-icon" [class.compact]="compact" [class.inline]="inline">{{ icon }}</div>
+  <div class="error-state-content">
+    <h3 class="error-state-title" [class.compact]="compact" [class.inline]="inline">{{ title }}</h3>
+    <p class="error-state-message" [class.inline]="inline">{{ message }}</p>
+    <div *ngIf="showDetails && details && detailsExpanded" class="error-state-details">
+      {{ details }}
+    </div>
+  </div>
+  <div class="error-state-actions">
+    <button *ngIf="showRetry" class="btn btn-primary" (click)="onRetryClick()">
+      Try Again
+    </button>
+    <button *ngIf="showDetails && details" class="btn btn-secondary" (click)="toggleDetails()">
+      {{ detailsExpanded ? 'Hide Details' : 'Show Details' }}
+    </button>
+  </div>
+</div>

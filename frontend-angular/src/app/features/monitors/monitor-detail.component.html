@@ -1,0 +1,252 @@
+<div class="monitor-detail">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="monitor-detail__loading">
+    <div class="spinner"></div>
+    <p>Loading monitor details...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage && !isLoading" class="monitor-detail__error">
+    <i class="fas fa-exclamation-circle"></i>
+    <p>{{ errorMessage }}</p>
+    <button class="btn btn--secondary" (click)="loadMonitor()">Retry</button>
+    <button class="btn btn--text" (click)="goBack()">Go Back</button>
+  </div>
+
+  <!-- Monitor Details -->
+  <div *ngIf="monitor && !isLoading" class="monitor-detail__content">
+    <!-- Header -->
+    <div class="monitor-detail__header">
+      <button class="btn-back" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i>
+        Back to Monitors
+      </button>
+
+      <div class="header__actions">
+        <button class="btn btn--secondary" (click)="editMonitor()">
+          <i class="fas fa-edit"></i>
+          Edit
+        </button>
+        <button class="btn btn--danger" (click)="deleteMonitor()">
+          <i class="fas fa-trash"></i>
+          Delete
+        </button>
+      </div>
+    </div>
+
+    <!-- Title & Status -->
+    <div class="monitor-detail__title-section">
+      <div class="title-section__main">
+        <h1 class="title-section__name">{{ monitor.name }}</h1>
+        <span class="status-badge" [class]="'status-badge--' + getStatusColor()">
+          <span class="status-badge__dot"></span>
+          {{ getStatusText() }}
+        </span>
+      </div>
+      <p class="title-section__description" *ngIf="monitor.description">
+        {{ monitor.description }}
+      </p>
+    </div>
+
+    <!-- Overview Cards -->
+    <div class="monitor-detail__overview">
+      <div class="overview-card">
+        <div class="overview-card__icon" [style.background]="getHealthStatus().color + '20'">
+          <i class="fas fa-heartbeat" [style.color]="getHealthStatus().color"></i>
+        </div>
+        <div class="overview-card__content">
+          <span class="overview-card__label">Health Status</span>
+          <span class="overview-card__value" [style.color]="getHealthStatus().color">
+            {{ getHealthStatus().label }}
+          </span>
+        </div>
+      </div>
+
+      <div class="overview-card">
+        <div class="overview-card__icon overview-card__icon--blue">
+          <i class="fas fa-percentage"></i>
+        </div>
+        <div class="overview-card__content">
+          <span class="overview-card__label">Uptime</span>
+          <span class="overview-card__value">{{ monitor.uptimePercentage }}%</span>
+        </div>
+      </div>
+
+      <div class="overview-card">
+        <div class="overview-card__icon overview-card__icon--purple">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="overview-card__content">
+          <span class="overview-card__label">Response Time</span>
+          <span class="overview-card__value">
+            {{ monitor.responseTimeMs !== null ? monitor.responseTimeMs + 'ms' : 'N/A' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="overview-card">
+        <div class="overview-card__icon overview-card__icon--red">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <div class="overview-card__content">
+          <span class="overview-card__label">Consecutive Failures</span>
+          <span class="overview-card__value">{{ monitor.consecutiveFailures }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Details Grid -->
+    <div class="monitor-detail__grid">
+      <!-- Configuration Section -->
+      <div class="detail-card">
+        <h2 class="detail-card__title">
+          <i class="fas fa-cog"></i>
+          Configuration
+        </h2>
+        <div class="detail-card__content">
+          <div class="detail-row">
+            <span class="detail-row__label">Type</span>
+            <span class="detail-row__value type-badge">
+              {{ getMonitorTypeLabel(monitor.type) }}
+            </span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-row__label">Target</span>
+            <span class="detail-row__value detail-row__value--code">{{ monitor.target }}</span>
+          </div>
+          <div class="detail-row" *ngIf="monitor.port">
+            <span class="detail-row__label">Port</span>
+            <span class="detail-row__value">{{ monitor.port }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-row__label">Check Interval</span>
+            <span class="detail-row__value">{{ monitor.intervalSeconds }}s</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-row__label">Timeout</span>
+            <span class="detail-row__value">{{ monitor.timeoutSeconds }}s</span>
+          </div>
+          <div class="detail-row" *ngIf="monitor.retries !== null">
+            <span class="detail-row__label">Retries</span>
+            <span class="detail-row__value">{{ monitor.retries }}</span>
+          </div>
+          <div class="detail-row" *ngIf="monitor.httpMethod">
+            <span class="detail-row__label">HTTP Method</span>
+            <span class="detail-row__value">{{ monitor.httpMethod }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-row__label">Follow Redirects</span>
+            <span class="detail-row__value">
+              <i class="fas" [class.fa-check]="monitor.followRedirects" [class.fa-times]="!monitor.followRedirects"
+                 [style.color]="monitor.followRedirects ? '#10b981' : '#ef4444'"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Validation Section -->
+      <div class="detail-card" *ngIf="monitor.expectedStatusCode || monitor.expectedKeyword">
+        <h2 class="detail-card__title">
+          <i class="fas fa-check-circle"></i>
+          Validation Rules
+        </h2>
+        <div class="detail-card__content">
+          <div class="detail-row" *ngIf="monitor.expectedStatusCode">
+            <span class="detail-row__label">Expected Status Code</span>
+            <span class="detail-row__value detail-row__value--code">{{ monitor.expectedStatusCode }}</span>
+          </div>
+          <div class="detail-row" *ngIf="monitor.expectedKeyword">
+            <span class="detail-row__label">Expected Keyword</span>
+            <span class="detail-row__value detail-row__value--code">{{ monitor.expectedKeyword }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status Information -->
+      <div class="detail-card">
+        <h2 class="detail-card__title">
+          <i class="fas fa-info-circle"></i>
+          Status Information
+        </h2>
+        <div class="detail-card__content">
+          <div class="detail-row">
+            <span class="detail-row__label">Current Status</span>
+            <span class="status-badge status-badge--small" [class]="'status-badge--' + getStatusColor()">
+              <span class="status-badge__dot"></span>
+              {{ getStatusText() }}
+            </span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-row__label">Last Checked</span>
+            <span class="detail-row__value">
+              {{ monitor.lastCheckedAt ? (monitor.lastCheckedAt | date: 'medium') : 'Never' }}
+            </span>
+          </div>
+          <div class="detail-row" *ngIf="monitor.lastDownAt">
+            <span class="detail-row__label">Last Down</span>
+            <span class="detail-row__value">{{ monitor.lastDownAt | date: 'medium' }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-row__label">Created</span>
+            <span class="detail-row__value">{{ monitor.createdAt | date: 'medium' }}</span>
+          </div>
+          <div class="detail-row" *ngIf="monitor.updatedAt">
+            <span class="detail-row__label">Last Updated</span>
+            <span class="detail-row__value">{{ monitor.updatedAt | date: 'medium' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categories & Tags -->
+      <div class="detail-card" *ngIf="monitor.categories.length > 0 || monitor.tags.length > 0">
+        <h2 class="detail-card__title">
+          <i class="fas fa-tags"></i>
+          Categories & Tags
+        </h2>
+        <div class="detail-card__content">
+          <div class="detail-row" *ngIf="monitor.categories.length > 0">
+            <span class="detail-row__label">Categories</span>
+            <div class="detail-row__badges">
+              <span
+                *ngFor="let category of monitor.categories"
+                class="badge"
+                [style.background]="category.color + '20'"
+                [style.color]="category.color"
+              >
+                {{ category.name }}
+              </span>
+            </div>
+          </div>
+          <div class="detail-row" *ngIf="monitor.tags.length > 0">
+            <span class="detail-row__label">Tags</span>
+            <div class="detail-row__badges">
+              <span
+                *ngFor="let tag of monitor.tags"
+                class="badge"
+                [style.background]="tag.color + '20'"
+                [style.color]="tag.color"
+              >
+                {{ tag.name }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- History Section Placeholder -->
+    <div class="detail-card detail-card--full">
+      <h2 class="detail-card__title">
+        <i class="fas fa-history"></i>
+        Check History
+      </h2>
+      <div class="detail-card__content">
+        <div class="history-placeholder">
+          <i class="fas fa-chart-line"></i>
+          <p>Check history will be displayed here</p>
+          <span class="text-muted">This feature requires integration with the monitoring checks API</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

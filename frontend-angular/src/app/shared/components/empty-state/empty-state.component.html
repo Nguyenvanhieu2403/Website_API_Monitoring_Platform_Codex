@@ -1,0 +1,12 @@
+<div class="empty-state" [class.compact]="compact">
+  <div class="empty-state-icon" [class.compact]="compact">{{ icon }}</div>
+  <div class="empty-state-content">
+    <h3 class="empty-state-title" [class.compact]="compact">{{ title }}</h3>
+    <p *ngIf="description" class="empty-state-description">{{ description }}</p>
+  </div>
+  <div *ngIf="actionLabel" class="empty-state-action">
+    <button class="btn btn-primary" (click)="onActionClick()">
+      {{ actionLabel }}
+    </button>
+  </div>
+</div>
