@@ -1,11 +1,12 @@
 using MediatR;
 using MonitoringPlatform.Application.Features.NotificationChannels.Models;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Entities;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.NotificationChannels.Commands;
 
-public class UpdateNotificationChannelCommandHandler : IRequestHandler<UpdateNotificationChannelCommand, NotificationChannelDto>
+public class UpdateNotificationChannelCommandHandler : IRequestHandler<UpdateNotificationChannelCommand, Result<NotificationChannelDto>>
 {
     private readonly INotificationChannelRepository _channelRepository;
 
@@ -14,13 +15,12 @@ public class UpdateNotificationChannelCommandHandler : IRequestHandler<UpdateNot
         _channelRepository = channelRepository;
     }
 
-    public async Task<NotificationChannelDto> Handle(UpdateNotificationChannelCommand request, CancellationToken cancellationToken)
+    public async Task<Result<NotificationChannelDto>> Handle(UpdateNotificationChannelCommand request, CancellationToken cancellationToken)
     {
         var channel = await _channelRepository.GetByIdAsync(request.ChannelId, request.OrganizationId);
-
         if (channel == null)
         {
-            throw new KeyNotFoundException($"Notification Channel with ID {request.ChannelId} not found.");
+            return Result<NotificationChannelDto>.Failure("Không tìm thấy kênh thông báo.");
         }
 
         channel.Name = request.Name;
@@ -31,7 +31,7 @@ public class UpdateNotificationChannelCommandHandler : IRequestHandler<UpdateNot
 
         await _channelRepository.UpdateAsync(channel);
 
-        return MapToDto(channel);
+        return Result<NotificationChannelDto>.Success(MapToDto(channel));
     }
 
     private static NotificationChannelDto MapToDto(NotificationChannel channel)

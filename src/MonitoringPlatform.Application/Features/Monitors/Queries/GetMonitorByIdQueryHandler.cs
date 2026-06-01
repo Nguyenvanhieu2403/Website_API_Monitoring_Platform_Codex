@@ -1,11 +1,12 @@
 using MediatR;
 using MonitoringPlatform.Application.Features.Monitors.Models;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Entities;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.Monitors.Queries;
 
-public class GetMonitorByIdQueryHandler : IRequestHandler<GetMonitorByIdQuery, MonitorDto>
+public class GetMonitorByIdQueryHandler : IRequestHandler<GetMonitorByIdQuery, Result<MonitorDto>>
 {
     private readonly IMonitorRepository _monitorRepository;
 
@@ -14,15 +15,15 @@ public class GetMonitorByIdQueryHandler : IRequestHandler<GetMonitorByIdQuery, M
         _monitorRepository = monitorRepository;
     }
 
-    public async Task<MonitorDto> Handle(GetMonitorByIdQuery request, CancellationToken cancellationToken)
+    public async Task<Result<MonitorDto>> Handle(GetMonitorByIdQuery request, CancellationToken cancellationToken)
     {
         var monitor = await _monitorRepository.GetByIdAsync(request.MonitorId, request.OrganizationId);
         if (monitor == null)
         {
-            throw new KeyNotFoundException($"Monitor with ID {request.MonitorId} was not found.");
+            return Result<MonitorDto>.Failure("Không tìm thấy monitor.");
         }
 
-        return MapToDto(monitor);
+        return Result<MonitorDto>.Success(MapToDto(monitor));
     }
 
     private static MonitorDto MapToDto(Domain.Entities.Monitor monitor)

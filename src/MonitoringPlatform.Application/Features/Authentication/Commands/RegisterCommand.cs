@@ -1,9 +1,10 @@
 using MediatR;
 using MonitoringPlatform.Application.Interfaces;
+using MonitoringPlatform.Application.Models;
 
 namespace MonitoringPlatform.Application.Features.Authentication.Commands;
 
-public record RegisterCommand : IRequest<RegisterResponse>
+public record RegisterCommand : IRequest<Result<RegisterResponse>>
 {
     public string Email { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;

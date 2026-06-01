@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MonitoringPlatform.Application.Features.AlertRules.Commands;
 using MonitoringPlatform.Application.Features.AlertRules.Models;
 using MonitoringPlatform.Application.Features.AlertRules.Queries;
+using MonitoringPlatform.Application.Models;
 using System.Security.Claims;
 
 namespace MonitoringPlatform.API.Controllers;
@@ -11,7 +12,7 @@ namespace MonitoringPlatform.API.Controllers;
 [Authorize]
 [Route("api/organizations/{organizationId}/monitors/{monitorId}/alert-rules")]
 [ApiController]
-public class AlertRulesController : ControllerBase
+public class AlertRulesController : BaseApiController
 {
     private readonly IMediator _mediator;
 
@@ -20,81 +21,118 @@ public class AlertRulesController : ControllerBase
         _mediator = mediator;
     }
 
-    private Guid GetCurrentOrganizationId()
-    {
-        var organizationIdClaim = User.FindFirst("organization_id")?.Value;
-        if (Guid.TryParse(organizationIdClaim, out var organizationId))
-        {
-            return organizationId;
-        }
-        throw new UnauthorizedAccessException("Organization ID not found or invalid.");
-    }
-
-    private void ValidateOrganizationId(Guid organizationId)
-    {
-        if (GetCurrentOrganizationId() != organizationId)
-        {
-            throw new UnauthorizedAccessException("Access denied for this organization.");
-        }
-    }
-
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<AlertRuleDto>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAlertRules([FromRoute] Guid organizationId, [FromRoute] Guid monitorId)
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<AlertRuleDto>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<ApiResponse<IEnumerable<AlertRuleDto>>>> GetAlertRules([FromRoute] Guid organizationId, [FromRoute] Guid monitorId)
     {
         ValidateOrganizationId(organizationId);
         var query = new GetAlertRulesListQuery(monitorId, organizationId);
         var result = await _mediator.Send(query);
-        return Ok(result);
+        return HandleResult(result, StatusCodes.Status200OK, "Lấy danh sách quy tắc cảnh báo thành công.");
     }
 
     [HttpGet("{ruleId}")]
-    [ProducesResponseType(typeof(AlertRuleDto), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetAlertRuleById([FromRoute] Guid organizationId, [FromRoute] Guid ruleId)
+    [ProducesResponseType(typeof(ApiResponse<AlertRuleDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<ApiResponse<AlertRuleDto>>> GetAlertRuleById([FromRoute] Guid organizationId, [FromRoute] Guid ruleId)
     {
         ValidateOrganizationId(organizationId);
         var query = new GetAlertRuleByIdQuery(ruleId, organizationId);
         var result = await _mediator.Send(query);
-        return Ok(result);
+        return HandleResult(result, StatusCodes.Status200OK, "Lấy quy tắc cảnh báo thành công.");
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(AlertRuleDto), StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CreateAlertRule([FromRoute] Guid organizationId, [FromRoute] Guid monitorId, [FromBody] CreateAlertRuleCommand command)
+    [ProducesResponseType(typeof(ApiResponse<AlertRuleDto>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<ApiResponse<AlertRuleDto>>> CreateAlertRule([FromRoute] Guid organizationId, [FromRoute] Guid monitorId, [FromBody] CreateAlertRuleCommand command)
     {
         ValidateOrganizationId(organizationId);
-        if (monitorId != command.MonitorId) return BadRequest("Monitor ID in route and body must match.");
-        if (organizationId != command.OrganizationId) return BadRequest("Organization ID in route and body must match.");
+        if (monitorId != command.MonitorId)
+        {
+            return BadRequest(new ApiResponse<object>
+            {
+                Success = false,
+                StatusCode = 400,
+                Message = "ID Monitor trong route và body phải khớp.",
+                TraceId = HttpContext.TraceIdentifier,
+                Timestamp = DateTime.UtcNow
+            });
+        }
+        if (organizationId != command.OrganizationId)
+        {
+            return BadRequest(new ApiResponse<object>
+            {
+                Success = false,
+                StatusCode = 400,
+                Message = "ID Tổ chức trong route và body phải khớp.",
+                TraceId = HttpContext.TraceIdentifier,
+                Timestamp = DateTime.UtcNow
+            });
+        }
 
         var result = await _mediator.Send(command);
-        return CreatedAtAction(nameof(GetAlertRuleById), new { organizationId, monitorId, ruleId = result.RuleId }, result);
+        return HandleResult(result, StatusCodes.Status201Created, "Tạo quy tắc cảnh báo thành công.");
     }
 
     [HttpPut("{ruleId}")]
-    [ProducesResponseType(typeof(AlertRuleDto), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> UpdateAlertRule([FromRoute] Guid organizationId, [FromRoute] Guid monitorId, [FromRoute] Guid ruleId, [FromBody] UpdateAlertRuleCommand command)
+    [ProducesResponseType(typeof(ApiResponse<AlertRuleDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<ApiResponse<AlertRuleDto>>> UpdateAlertRule([FromRoute] Guid organizationId, [FromRoute] Guid monitorId, [FromRoute] Guid ruleId, [FromBody] UpdateAlertRuleCommand command)
     {
         ValidateOrganizationId(organizationId);
-        if (ruleId != command.RuleId) return BadRequest("Alert Rule ID in route and body must match.");
-        if (monitorId != command.MonitorId) return BadRequest("Monitor ID in route and body must match.");
-        if (organizationId != command.OrganizationId) return BadRequest("Organization ID in route and body must match.");
+        if (ruleId != command.RuleId)
+        {
+            return BadRequest(new ApiResponse<object>
+            {
+                Success = false,
+                StatusCode = 400,
+                Message = "ID Quy tắc cảnh báo trong route và body phải khớp.",
+                TraceId = HttpContext.TraceIdentifier,
+                Timestamp = DateTime.UtcNow
+            });
+        }
+        if (monitorId != command.MonitorId)
+        {
+            return BadRequest(new ApiResponse<object>
+            {
+                Success = false,
+                StatusCode = 400,
+                Message = "ID Monitor trong route và body phải khớp.",
+                TraceId = HttpContext.TraceIdentifier,
+                Timestamp = DateTime.UtcNow
+            });
+        }
+        if (organizationId != command.OrganizationId)
+        {
+            return BadRequest(new ApiResponse<object>
+            {
+                Success = false,
+                StatusCode = 400,
+                Message = "ID Tổ chức trong route và body phải khớp.",
+                TraceId = HttpContext.TraceIdentifier,
+                Timestamp = DateTime.UtcNow
+            });
+        }
 
         var result = await _mediator.Send(command);
-        return Ok(result);
+        return HandleResult(result, StatusCodes.Status200OK, "Cập nhật quy tắc cảnh báo thành công.");
     }
 
     [HttpDelete("{ruleId}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> DeleteAlertRule([FromRoute] Guid organizationId, [FromRoute] Guid ruleId)
     {
         ValidateOrganizationId(organizationId);
         var command = new DeleteAlertRuleCommand(ruleId, organizationId);
-        await _mediator.Send(command);
-        return NoContent();
+        var result = await _mediator.Send(command);
+        return HandleResult(result, StatusCodes.Status200OK, "Xóa quy tắc cảnh báo thành công.");
     }
 }

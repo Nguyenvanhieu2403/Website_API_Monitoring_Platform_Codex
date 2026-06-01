@@ -1,11 +1,12 @@
 using MediatR;
 using MonitoringPlatform.Application.Features.Monitors.Models;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Entities;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.Monitors.Queries;
 
-public class GetMonitorsListQueryHandler : IRequestHandler<GetMonitorsListQuery, PagedResponse<MonitorDto>>
+public class GetMonitorsListQueryHandler : IRequestHandler<GetMonitorsListQuery, Result<PagedResponse<MonitorDto>>>
 {
     private readonly IMonitorRepository _monitorRepository;
 
@@ -14,20 +15,22 @@ public class GetMonitorsListQueryHandler : IRequestHandler<GetMonitorsListQuery,
         _monitorRepository = monitorRepository;
     }
 
-    public async Task<PagedResponse<MonitorDto>> Handle(GetMonitorsListQuery request, CancellationToken cancellationToken)
+    public async Task<Result<PagedResponse<MonitorDto>>> Handle(GetMonitorsListQuery request, CancellationToken cancellationToken)
     {
         var filter = request.ToFilter();
         var pagedResult = await _monitorRepository.GetPagedAsync(request.OrganizationId, filter);
 
         var dtos = pagedResult.Items.Select(MapToDto).ToList();
 
-        return new PagedResponse<MonitorDto>
+        var pagedResponse = new PagedResponse<MonitorDto>
         {
             Items = dtos,
             TotalCount = pagedResult.TotalCount,
             PageNumber = pagedResult.PageNumber,
             PageSize = pagedResult.PageSize
         };
+
+        return Result<PagedResponse<MonitorDto>>.Success(pagedResponse);
     }
 
     private static MonitorDto MapToDto(Domain.Entities.Monitor monitor)

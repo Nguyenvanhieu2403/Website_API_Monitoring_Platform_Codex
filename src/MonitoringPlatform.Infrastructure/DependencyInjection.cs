@@ -11,6 +11,7 @@ using MonitoringPlatform.Infrastructure.Repositories;
 using MonitoringPlatform.Infrastructure.Security;
 using MonitoringPlatform.Infrastructure.Services;
 using MonitoringPlatform.Infrastructure.BackgroundServices;
+using MonitoringPlatform.Infrastructure.Settings;
 
 namespace MonitoringPlatform.Infrastructure;
 
@@ -41,9 +42,30 @@ public static class DependencyInjection
         services.AddScoped<MonitoringPlatform.Application.Interfaces.IMonitorRepository, MonitoringPlatform.Infrastructure.Repositories.MonitorRepository>();
         services.AddScoped<MonitoringPlatform.Application.Interfaces.IMetricRepository, MonitoringPlatform.Infrastructure.Repositories.MetricRepository>();
 
+        // Configure Settings with Validation
+        services.AddOptions<JwtSettings>()
+            .Bind(configuration.GetSection("JwtSettings"))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
+        services.AddOptions<JwtAuthenticationSettings>()
+            .Bind(configuration.GetSection(JwtAuthenticationSettings.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
+        services.AddOptions<EmailSettings>()
+            .Bind(configuration.GetSection(EmailSettings.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
+        services.AddOptions<NotificationWorkerSettings>()
+            .Bind(configuration.GetSection(NotificationWorkerSettings.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
         // JWT Settings
         var jwtSettings = configuration.GetSection("JwtSettings");
-        services.Configure<JwtSettings>(jwtSettings);
+        var jwtAuthSettings = configuration.GetSection(JwtAuthenticationSettings.SectionName).Get<JwtAuthenticationSettings>() ?? new JwtAuthenticationSettings();
 
         var secretKey = jwtSettings["SecretKey"] ?? throw new InvalidOperationException("JwtSettings:SecretKey is required");
         var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
@@ -58,14 +80,14 @@ public static class DependencyInjection
         {
             options.TokenValidationParameters = new TokenValidationParameters
             {
-                ValidateIssuer = true,
+                ValidateIssuer = jwtAuthSettings.ValidateIssuer,
                 ValidIssuer = jwtSettings["ValidIssuer"],
-                ValidateAudience = true,
+                ValidateAudience = jwtAuthSettings.ValidateAudience,
                 ValidAudience = jwtSettings["ValidAudience"],
-                ValidateIssuerSigningKey = true,
+                ValidateIssuerSigningKey = jwtAuthSettings.ValidateIssuerSigningKey,
                 IssuerSigningKey = signingKey,
-                ValidateLifetime = true,
-                ClockSkew = TimeSpan.Zero
+                ValidateLifetime = jwtAuthSettings.ValidateLifetime,
+                ClockSkew = TimeSpan.FromSeconds(jwtAuthSettings.ClockSkewSeconds)
             };
         });
 

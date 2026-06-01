@@ -1,3 +1,4 @@
+using MonitoringPlatform.API.Settings;
 using MonitoringPlatform.Domain.Entities;
 using MonitoringPlatform.Domain.Enums;
 using MonitoringPlatform.Infrastructure.Data;
@@ -7,7 +8,7 @@ namespace MonitoringPlatform.API.Data;
 
 public static class DbSeed
 {
-    public static async Task SeedAsync(ApplicationDbContext context)
+    public static async Task SeedAsync(ApplicationDbContext context, SeedDataSettings settings)
     {
         // Check if data already exists
         if (context.Organizations.Any())
@@ -19,7 +20,7 @@ public static class DbSeed
         var defaultOrg = new Organization
         {
             OrganizationId = Guid.Parse("11111111-1111-1111-1111-111111111111"),
-            Name = "Default Organization",
+            Name = settings.DefaultOrganizationName,
             Slug = "default-org",
             Status = OrganizationStatus.Active,
             PlanType = PlanType.Starter,
@@ -36,8 +37,8 @@ public static class DbSeed
         {
             UserId = Guid.Parse("22222222-2222-2222-2222-222222222222"),
             OrganizationId = defaultOrg.OrganizationId,
-            Email = "admin@example.com",
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin@123"),
+            Email = settings.DefaultAdminEmail,
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(settings.DefaultAdminPassword),
             FirstName = "Admin",
             LastName = "User",
             Role = UserRole.Owner,
@@ -98,43 +99,46 @@ public static class DbSeed
             context.MonitorTags.AddRange(criticalTag, apiTag);
             await context.SaveChangesAsync();
 
-            // Seed Monitors
-            var monitor1 = new Domain.Entities.Monitor
+            // Seed Monitors using configured URLs
+            if (settings.SampleMonitorUrls.Any())
             {
-                MonitorId = Guid.NewGuid(),
-                OrganizationId = defaultOrg.OrganizationId,
-                Name = "Google Ping",
-                Description = "Pinging Google DNS",
-                Type = MonitorType.Ping,
-                Target = "8.8.8.8",
-                IntervalSeconds = 60,
-                TimeoutSeconds = 10,
-                Status = MonitorStatus.Active,
-                CreatedAt = DateTime.UtcNow
-            };
+                var monitor1 = new Domain.Entities.Monitor
+                {
+                    MonitorId = Guid.NewGuid(),
+                    OrganizationId = defaultOrg.OrganizationId,
+                    Name = "Google Ping",
+                    Description = "Pinging Google DNS",
+                    Type = MonitorType.Ping,
+                    Target = "8.8.8.8",
+                    IntervalSeconds = 60,
+                    TimeoutSeconds = 10,
+                    Status = MonitorStatus.Active,
+                    CreatedAt = DateTime.UtcNow
+                };
 
-            var monitor2 = new Domain.Entities.Monitor
-            {
-                MonitorId = Guid.NewGuid(),
-                OrganizationId = defaultOrg.OrganizationId,
-                Name = "Example Website",
-                Description = "Checking Example.com availability",
-                Type = MonitorType.Https,
-                Target = "https://example.com",
-                IntervalSeconds = 120,
-                TimeoutSeconds = 30,
-                Status = MonitorStatus.Active,
-                CreatedAt = DateTime.UtcNow
-            };
+                var monitor2 = new Domain.Entities.Monitor
+                {
+                    MonitorId = Guid.NewGuid(),
+                    OrganizationId = defaultOrg.OrganizationId,
+                    Name = "Sample Website",
+                    Description = "Checking sample website availability",
+                    Type = MonitorType.Https,
+                    Target = settings.SampleMonitorUrls.First(),
+                    IntervalSeconds = 120,
+                    TimeoutSeconds = 30,
+                    Status = MonitorStatus.Active,
+                    CreatedAt = DateTime.UtcNow
+                };
 
-            monitor1.MonitorCategories.Add(prodCategory);
-            monitor1.MonitorTags.Add(criticalTag);
+                monitor1.MonitorCategories.Add(prodCategory);
+                monitor1.MonitorTags.Add(criticalTag);
 
-            monitor2.MonitorCategories.Add(devCategory);
-            monitor2.MonitorTags.Add(apiTag);
+                monitor2.MonitorCategories.Add(devCategory);
+                monitor2.MonitorTags.Add(apiTag);
 
-            context.Monitors.AddRange(monitor1, monitor2);
-            await context.SaveChangesAsync();
+                context.Monitors.AddRange(monitor1, monitor2);
+                await context.SaveChangesAsync();
+            }
         }
         catch (Exception ex)
         {

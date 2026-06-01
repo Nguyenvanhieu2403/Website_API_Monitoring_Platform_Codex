@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\MonitoringPlatform.IntegrationTests.csproj": {}
+    "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\MonitoringPlatform.IntegrationTests.csproj": {}
   },
   "projects": {
-    "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj": {
+    "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj",
+        "projectUniqueName": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj",
         "projectName": "MonitoringPlatform.API",
-        "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj",
-        "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
-        "outputPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\obj\\",
+        "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,17 +26,19 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
+            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {
-              "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj": {
-                "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj"
+              "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj": {
+                "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj"
               },
-              "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj": {
-                "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj"
+              "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj": {
+                "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj"
               }
             }
           }
@@ -51,10 +53,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "AutoMapper": {
@@ -103,24 +106,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj": {
+    "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj",
+        "projectUniqueName": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj",
         "projectName": "MonitoringPlatform.Application",
-        "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj",
-        "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
-        "outputPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\obj\\",
+        "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -129,14 +132,16 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
+            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {
-              "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\MonitoringPlatform.Domain.csproj": {
-                "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\MonitoringPlatform.Domain.csproj"
+              "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\MonitoringPlatform.Domain.csproj": {
+                "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\MonitoringPlatform.Domain.csproj"
               }
             }
           }
@@ -151,10 +156,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "AutoMapper": {
@@ -194,24 +200,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\MonitoringPlatform.Domain.csproj": {
+    "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\MonitoringPlatform.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\MonitoringPlatform.Domain.csproj",
+        "projectUniqueName": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\MonitoringPlatform.Domain.csproj",
         "projectName": "MonitoringPlatform.Domain",
-        "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\MonitoringPlatform.Domain.csproj",
-        "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
-        "outputPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\obj\\",
+        "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\MonitoringPlatform.Domain.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -220,10 +226,12 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
+            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {}
           }
@@ -238,10 +246,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "imports": [
             "net461",
@@ -259,24 +268,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj": {
+    "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj",
+        "projectUniqueName": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj",
         "projectName": "MonitoringPlatform.Infrastructure",
-        "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
-        "outputPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\obj\\",
+        "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -285,14 +294,16 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
+            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {
-              "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj": {
-                "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj"
+              "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj": {
+                "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Application\\MonitoringPlatform.Application.csproj"
               }
             }
           }
@@ -307,10 +318,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "BCrypt.Net-Next": {
@@ -362,24 +374,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\MonitoringPlatform.IntegrationTests.csproj": {
+    "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\MonitoringPlatform.IntegrationTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\MonitoringPlatform.IntegrationTests.csproj",
+        "projectUniqueName": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\MonitoringPlatform.IntegrationTests.csproj",
         "projectName": "MonitoringPlatform.IntegrationTests",
-        "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\MonitoringPlatform.IntegrationTests.csproj",
-        "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
-        "outputPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\obj\\",
+        "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\MonitoringPlatform.IntegrationTests.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\tests\\MonitoringPlatform.IntegrationTests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -388,17 +400,19 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
+            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {
-              "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj": {
-                "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj"
+              "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj": {
+                "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.API\\MonitoringPlatform.API.csproj"
               },
-              "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj": {
-                "projectPath": "E:\\Personal_Project\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj"
+              "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj": {
+                "projectPath": "D:\\PersonalProject\\Website_API_Monitoring_Platform_Codex\\src\\MonitoringPlatform.Infrastructure\\MonitoringPlatform.Infrastructure.csproj"
               }
             }
           }
@@ -413,10 +427,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "FluentAssertions": {
@@ -476,7 +491,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

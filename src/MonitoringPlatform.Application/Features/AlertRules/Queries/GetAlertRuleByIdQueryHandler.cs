@@ -1,10 +1,11 @@
 using MediatR;
 using MonitoringPlatform.Application.Features.AlertRules.Models;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.AlertRules.Queries;
 
-public class GetAlertRuleByIdQueryHandler : IRequestHandler<GetAlertRuleByIdQuery, AlertRuleDto>
+public class GetAlertRuleByIdQueryHandler : IRequestHandler<GetAlertRuleByIdQuery, Result<AlertRuleDto>>
 {
     private readonly IAlertRuleRepository _alertRuleRepository;
 
@@ -13,15 +14,15 @@ public class GetAlertRuleByIdQueryHandler : IRequestHandler<GetAlertRuleByIdQuer
         _alertRuleRepository = alertRuleRepository;
     }
 
-    public async Task<AlertRuleDto> Handle(GetAlertRuleByIdQuery request, CancellationToken cancellationToken)
+    public async Task<Result<AlertRuleDto>> Handle(GetAlertRuleByIdQuery request, CancellationToken cancellationToken)
     {
         var rule = await _alertRuleRepository.GetByIdAsync(request.RuleId, request.OrganizationId);
         if (rule == null)
         {
-            throw new KeyNotFoundException($"Alert Rule with ID {request.RuleId} not found.");
+            return Result<AlertRuleDto>.Failure("Không tìm thấy quy tắc cảnh báo.");
         }
 
-        return MapToDto(rule);
+        return Result<AlertRuleDto>.Success(MapToDto(rule));
     }
 
     private static AlertRuleDto MapToDto(Domain.Entities.AlertRule rule)

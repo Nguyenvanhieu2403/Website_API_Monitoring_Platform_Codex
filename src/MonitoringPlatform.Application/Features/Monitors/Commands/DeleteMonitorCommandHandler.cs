@@ -1,9 +1,10 @@
 using MediatR;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.Monitors.Commands;
 
-public class DeleteMonitorCommandHandler : IRequestHandler<DeleteMonitorCommand, Unit>
+public class DeleteMonitorCommandHandler : IRequestHandler<DeleteMonitorCommand, Result>
 {
     private readonly IMonitorRepository _monitorRepository;
 
@@ -12,15 +13,15 @@ public class DeleteMonitorCommandHandler : IRequestHandler<DeleteMonitorCommand,
         _monitorRepository = monitorRepository;
     }
 
-    public async Task<Unit> Handle(DeleteMonitorCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(DeleteMonitorCommand request, CancellationToken cancellationToken)
     {
         var monitor = await _monitorRepository.GetByIdAsync(request.MonitorId, request.OrganizationId);
         if (monitor == null)
         {
-            throw new KeyNotFoundException($"Monitor with ID {request.MonitorId} was not found.");
+            return Result.Failure("Không tìm thấy monitor.");
         }
 
         await _monitorRepository.DeleteAsync(request.MonitorId, request.OrganizationId);
-        return Unit.Value;
+        return Result.Success();
     }
 }

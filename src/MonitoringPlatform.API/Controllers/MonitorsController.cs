@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MonitoringPlatform.Application.Features.Monitors.Commands;
 using MonitoringPlatform.Application.Features.Monitors.Models;
 using MonitoringPlatform.Application.Features.Monitors.Queries;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Enums;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -13,7 +14,7 @@ namespace MonitoringPlatform.API.Controllers;
 [ApiController]
 [Route("api/v1/monitors")]
 [Produces("application/json")]
-public class MonitorsController : ControllerBase
+public class MonitorsController : BaseApiController
 {
     private readonly IMediator _mediator;
 
@@ -22,25 +23,15 @@ public class MonitorsController : ControllerBase
         _mediator = mediator;
     }
 
-    private Guid GetOrganizationId()
-    {
-        var orgIdClaim = User.FindFirst("organization_id")?.Value;
-        if (string.IsNullOrEmpty(orgIdClaim) || !Guid.TryParse(orgIdClaim, out var organizationId))
-        {
-            throw new UnauthorizedAccessException("Organization ID claim is missing or invalid.");
-        }
-        return organizationId;
-    }
-
     /// <summary>
     /// Create a new monitor
     /// </summary>
     [HttpPost]
     [SwaggerOperation(Summary = "Create a new monitor")]
-    [SwaggerResponse(201, "Monitor created successfully", typeof(MonitorDto))]
-    [SwaggerResponse(400, "Invalid input data")]
-    [SwaggerResponse(401, "Unauthorized")]
-    public async Task<ActionResult<MonitorDto>> Create([FromBody] CreateMonitorRequest request)
+    [SwaggerResponse(201, "Monitor created successfully", typeof(ApiResponse<MonitorDto>))]
+    [SwaggerResponse(400, "Invalid input data", typeof(ApiResponse<object>))]
+    [SwaggerResponse(401, "Unauthorized", typeof(ApiResponse<object>))]
+    public async Task<ActionResult<ApiResponse<MonitorDto>>> Create([FromBody] CreateMonitorRequest request)
     {
         var organizationId = GetOrganizationId();
         var command = new CreateMonitorCommand
@@ -63,7 +54,7 @@ public class MonitorsController : ControllerBase
         };
 
         var result = await _mediator.Send(command);
-        return CreatedAtAction(nameof(GetById), new { id = result.MonitorId }, result);
+        return HandleResult(result, StatusCodes.Status201Created, "Tạo monitor thành công.");
     }
 
     /// <summary>
@@ -71,11 +62,11 @@ public class MonitorsController : ControllerBase
     /// </summary>
     [HttpPut("{id:guid}")]
     [SwaggerOperation(Summary = "Update an existing monitor")]
-    [SwaggerResponse(200, "Monitor updated successfully", typeof(MonitorDto))]
-    [SwaggerResponse(400, "Invalid input data")]
-    [SwaggerResponse(401, "Unauthorized")]
-    [SwaggerResponse(440, "Monitor not found")]
-    public async Task<ActionResult<MonitorDto>> Update(Guid id, [FromBody] UpdateMonitorRequest request)
+    [SwaggerResponse(200, "Monitor updated successfully", typeof(ApiResponse<MonitorDto>))]
+    [SwaggerResponse(400, "Invalid input data", typeof(ApiResponse<object>))]
+    [SwaggerResponse(401, "Unauthorized", typeof(ApiResponse<object>))]
+    [SwaggerResponse(404, "Monitor not found", typeof(ApiResponse<object>))]
+    public async Task<ActionResult<ApiResponse<MonitorDto>>> Update(Guid id, [FromBody] UpdateMonitorRequest request)
     {
         var organizationId = GetOrganizationId();
         var command = new UpdateMonitorCommand
@@ -99,7 +90,7 @@ public class MonitorsController : ControllerBase
         };
 
         var result = await _mediator.Send(command);
-        return Ok(result);
+        return HandleResult(result, StatusCodes.Status200OK, "Cập nhật monitor thành công.");
     }
 
     /// <summary>
@@ -107,9 +98,9 @@ public class MonitorsController : ControllerBase
     /// </summary>
     [HttpDelete("{id:guid}")]
     [SwaggerOperation(Summary = "Delete (soft delete) a monitor")]
-    [SwaggerResponse(204, "Monitor deleted successfully")]
-    [SwaggerResponse(401, "Unauthorized")]
-    [SwaggerResponse(404, "Monitor not found")]
+    [SwaggerResponse(200, "Monitor deleted successfully", typeof(ApiResponse<object>))]
+    [SwaggerResponse(401, "Unauthorized", typeof(ApiResponse<object>))]
+    [SwaggerResponse(404, "Monitor not found", typeof(ApiResponse<object>))]
     public async Task<IActionResult> Delete(Guid id)
     {
         var organizationId = GetOrganizationId();
@@ -119,8 +110,8 @@ public class MonitorsController : ControllerBase
             OrganizationId = organizationId
         };
 
-        await _mediator.Send(command);
-        return NoContent();
+        var result = await _mediator.Send(command);
+        return HandleResult(result, StatusCodes.Status200OK, "Xóa monitor thành công.");
     }
 
     /// <summary>
@@ -128,10 +119,10 @@ public class MonitorsController : ControllerBase
     /// </summary>
     [HttpGet("{id:guid}")]
     [SwaggerOperation(Summary = "Get monitor by ID")]
-    [SwaggerResponse(200, "Monitor details retrieved successfully", typeof(MonitorDto))]
-    [SwaggerResponse(401, "Unauthorized")]
-    [SwaggerResponse(404, "Monitor not found")]
-    public async Task<ActionResult<MonitorDto>> GetById(Guid id)
+    [SwaggerResponse(200, "Monitor details retrieved successfully", typeof(ApiResponse<MonitorDto>))]
+    [SwaggerResponse(401, "Unauthorized", typeof(ApiResponse<object>))]
+    [SwaggerResponse(404, "Monitor not found", typeof(ApiResponse<object>))]
+    public async Task<ActionResult<ApiResponse<MonitorDto>>> GetById(Guid id)
     {
         var organizationId = GetOrganizationId();
         var query = new GetMonitorByIdQuery
@@ -141,7 +132,7 @@ public class MonitorsController : ControllerBase
         };
 
         var result = await _mediator.Send(query);
-        return Ok(result);
+        return HandleResult(result, StatusCodes.Status200OK, "Lấy dữ liệu thành công.");
     }
 
     /// <summary>
@@ -149,9 +140,9 @@ public class MonitorsController : ControllerBase
     /// </summary>
     [HttpGet]
     [SwaggerOperation(Summary = "Get paged list of monitors")]
-    [SwaggerResponse(200, "Monitors retrieved successfully", typeof(PagedResponse<MonitorDto>))]
-    [SwaggerResponse(401, "Unauthorized")]
-    public async Task<ActionResult<PagedResponse<MonitorDto>>> GetList([FromQuery] GetMonitorsListRequest request)
+    [SwaggerResponse(200, "Monitors retrieved successfully", typeof(ApiResponse<PagedResponse<MonitorDto>>))]
+    [SwaggerResponse(401, "Unauthorized", typeof(ApiResponse<object>))]
+    public async Task<ActionResult<ApiResponse<PagedResponse<MonitorDto>>>> GetList([FromQuery] GetMonitorsListRequest request)
     {
         var organizationId = GetOrganizationId();
         var query = new GetMonitorsListQuery
@@ -170,7 +161,7 @@ public class MonitorsController : ControllerBase
         };
 
         var result = await _mediator.Send(query);
-        return Ok(result);
+        return HandleResult(result, StatusCodes.Status200OK, "Lấy dữ liệu thành công.");
     }
 }
 

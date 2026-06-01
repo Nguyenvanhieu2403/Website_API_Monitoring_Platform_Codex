@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MonitoringPlatform.Application.Features.Authentication.Commands;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Application.Interfaces;
 using MonitoringPlatform.Infrastructure.Security;
 using Swashbuckle.AspNetCore.Annotations;
@@ -11,7 +12,7 @@ namespace MonitoringPlatform.API.Controllers;
 [ApiController]
 [Route("api/v1/auth")]
 [Produces("application/json")]
-public class AuthController : ControllerBase
+public class AuthController : BaseApiController
 {
     private readonly IMediator _mediator;
     private readonly IJwtService _jwtService;
@@ -29,16 +30,15 @@ public class AuthController : ControllerBase
     /// <returns>User registration response with tokens</returns>
     [HttpPost("register")]
     [SwaggerOperation(Summary = "Register a new user")]
-    [SwaggerResponse(201, "User registered successfully", typeof(RegisterResponse))]
-    [SwaggerResponse(400, "Invalid request")]
-    [SwaggerResponse(409, "Email already exists")]
-    public async Task<ActionResult<RegisterResponse>> Register([FromBody] RegisterCommand command)
+    [SwaggerResponse(201, "User registered successfully", typeof(ApiResponse<RegisterResponse>))]
+    [SwaggerResponse(400, "Invalid request", typeof(ApiResponse<object>))]
+    public async Task<ActionResult<ApiResponse<RegisterResponse>>> Register([FromBody] RegisterCommand command)
     {
         command.RemoteIp = GetClientIp();
         command.UserAgent = GetUserAgent();
 
         var result = await _mediator.Send(command);
-        return CreatedAtAction(nameof(Register), result);
+        return HandleResult(result, StatusCodes.Status201Created, "Người dùng đã được đăng ký thành công.");
     }
 
     /// <summary>
@@ -48,15 +48,36 @@ public class AuthController : ControllerBase
     /// <returns>Login response with tokens</returns>
     [HttpPost("login")]
     [SwaggerOperation(Summary = "Login user")]
-    [SwaggerResponse(200, "Login successful", typeof(LoginResponse))]
-    [SwaggerResponse(401, "Invalid credentials")]
-    public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginCommand command)
+    [SwaggerResponse(200, "Login successful", typeof(ApiResponse<LoginResponse>))]
+    [SwaggerResponse(401, "Invalid credentials", typeof(ApiResponse<object>))]
+    public async Task<ActionResult<ApiResponse<LoginResponse>>> Login([FromBody] LoginCommand command)
     {
         command.RemoteIp = GetClientIp();
         command.UserAgent = GetUserAgent();
 
         var result = await _mediator.Send(command);
-        return Ok(result);
+
+        if (!result.IsSuccess)
+        {
+            return StatusCode(StatusCodes.Status401Unauthorized, new ApiResponse<LoginResponse>
+            {
+                Success = false,
+                StatusCode = 401,
+                Message = result.Error,
+                TraceId = HttpContext.TraceIdentifier,
+                Timestamp = DateTime.UtcNow
+            });
+        }
+
+        return Ok(new ApiResponse<LoginResponse>
+        {
+            Success = true,
+            StatusCode = 200,
+            Message = "Đăng nhập thành công.",
+            Data = result.Value,
+            TraceId = HttpContext.TraceIdentifier,
+            Timestamp = DateTime.UtcNow
+        });
     }
 
     /// <summary>
@@ -66,25 +87,40 @@ public class AuthController : ControllerBase
     /// <returns>New access and refresh tokens</returns>
     [HttpPost("refresh")]
     [SwaggerOperation(Summary = "Refresh access token")]
-    [SwaggerResponse(200, "Token refreshed successfully", typeof(AuthTokens))]
-    [SwaggerResponse(401, "Invalid or expired refresh token")]
-    public async Task<ActionResult<AuthTokens>> Refresh([FromBody] RefreshTokenRequest request)
+    [SwaggerResponse(200, "Token refreshed successfully", typeof(ApiResponse<AuthTokens>))]
+    [SwaggerResponse(401, "Invalid or expired refresh token", typeof(ApiResponse<object>))]
+    public async Task<ActionResult<ApiResponse<AuthTokens>>> Refresh([FromBody] RefreshTokenRequest request)
     {
         var tokenHash = new PasswordHashingService().HashToken(request.RefreshToken);
         var refreshToken = _jwtService.GetPrincipalFromExpiredToken(request.RefreshToken);
 
         if (refreshToken == null)
         {
-            return Unauthorized(new { message = "Invalid refresh token" });
+            return StatusCode(StatusCodes.Status401Unauthorized, new ApiResponse<AuthTokens>
+            {
+                Success = false,
+                StatusCode = 401,
+                Message = "Token làm mới không hợp lệ.",
+                TraceId = HttpContext.TraceIdentifier,
+                Timestamp = DateTime.UtcNow
+            });
         }
 
         var userId = Guid.Parse(refreshToken.FindFirst(c => c.Type == "sub")?.Value ?? string.Empty);
-        var user = await _jwtService.GenerateTokensAsync(new Domain.Entities.User
+        var tokens = await _jwtService.GenerateTokensAsync(new Domain.Entities.User
         {
             UserId = userId
         });
 
-        return Ok(user);
+        return Ok(new ApiResponse<AuthTokens>
+        {
+            Success = true,
+            StatusCode = 200,
+            Message = "Làm mới token thành công.",
+            Data = tokens,
+            TraceId = HttpContext.TraceIdentifier,
+            Timestamp = DateTime.UtcNow
+        });
     }
 
     /// <summary>
@@ -94,12 +130,19 @@ public class AuthController : ControllerBase
     [Authorize]
     [HttpPost("logout")]
     [SwaggerOperation(Summary = "Logout user")]
-    [SwaggerResponse(200, "Logout successful")]
+    [SwaggerResponse(200, "Logout successful", typeof(ApiResponse<object>))]
     public async Task<IActionResult> Logout()
     {
         var userId = GetCurrentUserId();
         await _jwtService.RevokeAllTokensAsync(userId);
-        return Ok(new { message = "Logout successful" });
+        return Ok(new ApiResponse<object>
+        {
+            Success = true,
+            StatusCode = 200,
+            Message = "Đăng xuất thành công.",
+            TraceId = HttpContext.TraceIdentifier,
+            Timestamp = DateTime.UtcNow
+        });
     }
 
     /// <summary>
@@ -109,28 +152,19 @@ public class AuthController : ControllerBase
     [Authorize]
     [HttpGet("me")]
     [SwaggerOperation(Summary = "Get current user profile")]
-    [SwaggerResponse(200, "User profile retrieved successfully")]
+    [SwaggerResponse(200, "User profile retrieved successfully", typeof(ApiResponse<object>))]
     public async Task<IActionResult> GetCurrentUser()
     {
         var userId = GetCurrentUserId();
-        // Implementation would fetch user from repository
-        return Ok(new { userId = userId });
-    }
-
-    private string GetClientIp()
-    {
-        return HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
-    }
-
-    private string GetUserAgent()
-    {
-        return HttpContext.Request.Headers["User-Agent"].ToString();
-    }
-
-    private Guid GetCurrentUserId()
-    {
-        var userIdClaim = User.FindFirst(c => c.Type == "sub");
-        return Guid.Parse(userIdClaim?.Value ?? throw new UnauthorizedAccessException());
+        return Ok(new ApiResponse<object>
+        {
+            Success = true,
+            StatusCode = 200,
+            Message = "Lấy thông tin người dùng thành công.",
+            Data = new { userId },
+            TraceId = HttpContext.TraceIdentifier,
+            Timestamp = DateTime.UtcNow
+        });
     }
 }
 

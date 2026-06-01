@@ -1,12 +1,13 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MonitoringPlatform.Application.Interfaces;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Entities;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.Authentication.Commands;
 
-public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponse>
+public class LoginCommandHandler : IRequestHandler<LoginCommand, Result<LoginResponse>>
 {
     private readonly IUserRepository _userRepository;
     private readonly IJwtService _jwtService;
@@ -25,26 +26,26 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponse>
         _logger = logger;
     }
 
-    public async Task<LoginResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<Result<LoginResponse>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         // Find user by email
         var user = await _userRepository.GetByEmailAsync(request.Email);
         if (user == null)
         {
-            throw new UnauthorizedException("Invalid email or password");
+            return Result<LoginResponse>.Failure("Email hoặc mật khẩu không hợp lệ.");
         }
 
         // Verify password
         if (!_passwordHashingService.VerifyPassword(request.Password, user.PasswordHash))
         {
             _logger.LogWarning("Failed login attempt for email: {Email}", request.Email);
-            throw new UnauthorizedException("Invalid email or password");
+            return Result<LoginResponse>.Failure("Email hoặc mật khẩu không hợp lệ.");
         }
 
         // Check user status
         if (user.Status != Domain.Enums.UserStatus.Active)
         {
-            throw new ForbiddenException("Account is not active");
+            return Result<LoginResponse>.Failure("Tài khoản chưa được kích hoạt.");
         }
 
         // Update last login
@@ -67,7 +68,7 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponse>
 
         _logger.LogInformation("User {UserId} logged in successfully", user.UserId);
 
-        return new LoginResponse
+        return Result<LoginResponse>.Success(new LoginResponse
         {
             UserId = user.UserId,
             Email = user.Email,
@@ -77,16 +78,6 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponse>
             OrganizationName = user.Organization.Name,
             Role = user.Role,
             Tokens = tokens
-        };
+        });
     }
-}
-
-public class UnauthorizedException : Exception
-{
-    public UnauthorizedException(string message) : base(message) { }
-}
-
-public class ForbiddenException : Exception
-{
-    public ForbiddenException(string message) : base(message) { }
 }

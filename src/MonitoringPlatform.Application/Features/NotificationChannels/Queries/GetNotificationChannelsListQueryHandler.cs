@@ -1,11 +1,12 @@
 using MediatR;
 using MonitoringPlatform.Application.Features.NotificationChannels.Models;
-using MonitoringPlatform.Application.Features.NotificationChannels.Queries;
+using MonitoringPlatform.Application.Models;
+using MonitoringPlatform.Domain.Entities;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.NotificationChannels.Queries;
 
-public class GetNotificationChannelsListQueryHandler : IRequestHandler<GetNotificationChannelsListQuery, IEnumerable<NotificationChannelDto>>
+public class GetNotificationChannelsListQueryHandler : IRequestHandler<GetNotificationChannelsListQuery, Result<IEnumerable<NotificationChannelDto>>>
 {
     private readonly INotificationChannelRepository _channelRepository;
 
@@ -14,11 +15,11 @@ public class GetNotificationChannelsListQueryHandler : IRequestHandler<GetNotifi
         _channelRepository = channelRepository;
     }
 
-    public async Task<IEnumerable<NotificationChannelDto>> Handle(GetNotificationChannelsListQuery request, CancellationToken cancellationToken)
+    public async Task<Result<IEnumerable<NotificationChannelDto>>> Handle(GetNotificationChannelsListQuery request, CancellationToken cancellationToken)
     {
         var channels = await _channelRepository.GetByOrganizationIdAsync(request.OrganizationId);
 
-        return channels.Select(channel => new NotificationChannelDto
+        return Result<IEnumerable<NotificationChannelDto>>.Success(channels.Select(channel => new NotificationChannelDto
         {
             ChannelId = channel.ChannelId,
             OrganizationId = channel.OrganizationId,
@@ -28,6 +29,6 @@ public class GetNotificationChannelsListQueryHandler : IRequestHandler<GetNotifi
             IsEnabled = channel.IsEnabled,
             CreatedAt = channel.CreatedAt,
             UpdatedAt = channel.UpdatedAt
-        }).ToList();
+        }));
     }
 }

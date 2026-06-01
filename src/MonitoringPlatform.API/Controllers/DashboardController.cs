@@ -11,7 +11,7 @@ namespace MonitoringPlatform.API.Controllers;
 [ApiController]
 [Route("api/v1/dashboard")]
 [Produces("application/json")]
-public class DashboardController : ControllerBase
+public class DashboardController : BaseApiController
 {
     private readonly IMediator _mediator;
 
@@ -20,24 +20,14 @@ public class DashboardController : ControllerBase
         _mediator = mediator;
     }
 
-    private Guid GetOrganizationId()
-    {
-        var orgIdClaim = User.FindFirst("organization_id")?.Value;
-        if (string.IsNullOrEmpty(orgIdClaim) || !Guid.TryParse(orgIdClaim, out var organizationId))
-        {
-            throw new UnauthorizedAccessException("Organization ID claim is missing or invalid.");
-        }
-        return organizationId;
-    }
-
     /// <summary>
     /// Get aggregated analytics for the dashboard
     /// </summary>
     [HttpGet("summary")]
     [SwaggerOperation(Summary = "Get aggregated analytics for the dashboard")]
-    [SwaggerResponse(200, "Analytics retrieved successfully", typeof(AggregatedAnalyticsDto))]
-    [SwaggerResponse(401, "Unauthorized")]
-    public async Task<ActionResult<AggregatedAnalyticsDto>> GetSummary([FromQuery] string timeRange = "24h")
+    [SwaggerResponse(200, "Analytics retrieved successfully", typeof(ApiResponse<AggregatedAnalyticsDto>))]
+    [SwaggerResponse(401, "Unauthorized", typeof(ApiResponse<object>))]
+    public async Task<ActionResult<ApiResponse<AggregatedAnalyticsDto>>> GetSummary([FromQuery] string timeRange = "24h")
     {
         var organizationId = GetOrganizationId();
         var query = new GetAggregatedAnalyticsQuery
@@ -47,12 +37,6 @@ public class DashboardController : ControllerBase
         };
 
         var result = await _mediator.Send(query);
-
-        if (!result.IsSuccess)
-        {
-            return BadRequest(result.Error);
-        }
-
-        return Ok(result.Value);
+        return HandleResult(result, StatusCodes.Status200OK, "Lấy dữ liệu thành công.");
     }
 }

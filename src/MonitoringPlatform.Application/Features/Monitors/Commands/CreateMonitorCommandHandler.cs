@@ -1,11 +1,12 @@
 using MediatR;
 using MonitoringPlatform.Application.Features.Monitors.Models;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Entities;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.Monitors.Commands;
 
-public class CreateMonitorCommandHandler : IRequestHandler<CreateMonitorCommand, MonitorDto>
+public class CreateMonitorCommandHandler : IRequestHandler<CreateMonitorCommand, Result<MonitorDto>>
 {
     private readonly IMonitorRepository _monitorRepository;
 
@@ -14,7 +15,7 @@ public class CreateMonitorCommandHandler : IRequestHandler<CreateMonitorCommand,
         _monitorRepository = monitorRepository;
     }
 
-    public async Task<MonitorDto> Handle(CreateMonitorCommand request, CancellationToken cancellationToken)
+    public async Task<Result<MonitorDto>> Handle(CreateMonitorCommand request, CancellationToken cancellationToken)
     {
         var monitor = new Domain.Entities.Monitor
         {
@@ -35,13 +36,9 @@ public class CreateMonitorCommandHandler : IRequestHandler<CreateMonitorCommand,
             CreatedAt = DateTime.UtcNow
         };
 
-        // Note: For actual category/tag assignments, they are usually fetched and linked.
-        // We'll write this into the repository method or handle it inside the repo implementation.
-        // Let's create the monitor.
         var createdMonitor = await _monitorRepository.CreateAsync(monitor);
 
-        // Fetch again to ensure category/tag info is included if linked (though on create it might be empty or mapped from request)
-        return MapToDto(createdMonitor);
+        return Result<MonitorDto>.Success(MapToDto(createdMonitor));
     }
 
     private static MonitorDto MapToDto(Domain.Entities.Monitor monitor)

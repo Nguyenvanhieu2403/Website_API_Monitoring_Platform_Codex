@@ -1,11 +1,12 @@
 using MediatR;
 using MonitoringPlatform.Application.Features.Monitors.Models;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Enums;
 using MonitoringPlatform.Domain.Interfaces;
 
 namespace MonitoringPlatform.Application.Features.Monitors.Queries;
 
-public record GetMonitorsListQuery : IRequest<PagedResponse<MonitorDto>>
+public record GetMonitorsListQuery : IRequest<Result<PagedResponse<MonitorDto>>>
 {
     public Guid OrganizationId { get; init; }
     public string? Search { get; init; }

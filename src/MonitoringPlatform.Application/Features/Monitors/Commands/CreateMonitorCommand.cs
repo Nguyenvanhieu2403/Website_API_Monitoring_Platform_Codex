@@ -1,10 +1,11 @@
 using MediatR;
 using MonitoringPlatform.Application.Features.Monitors.Models;
+using MonitoringPlatform.Application.Models;
 using MonitoringPlatform.Domain.Enums;
 
 namespace MonitoringPlatform.Application.Features.Monitors.Commands;
 
-public record CreateMonitorCommand : IRequest<MonitorDto>
+public record CreateMonitorCommand : IRequest<Result<MonitorDto>>
 {
     public Guid OrganizationId { get; init; }
     public string Name { get; init; } = string.Empty;

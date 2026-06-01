@@ -7,22 +7,17 @@ public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
     public RegisterCommandValidator()
     {
         RuleFor(x => x.Email)
-            .NotEmpty().WithMessage("Email is required")
-            .EmailAddress().WithMessage("Invalid email format");
+            .NotEmpty().WithMessage("Email là bắt buộc.")
+            .EmailAddress().WithMessage("Định dạng email không hợp lệ.");
 
         RuleFor(x => x.Password)
-            .NotEmpty().WithMessage("Password is required")
-            .MinimumLength(8).WithMessage("Password must be at least 8 characters")
-            .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)").WithMessage("Password must contain uppercase, lowercase and number");
+            .NotEmpty().WithMessage("Mật khẩu là bắt buộc.")
+            .MinimumLength(6).WithMessage("Mật khẩu phải có ít nhất 6 ký tự.");
 
         RuleFor(x => x.FirstName)
-            .NotEmpty().WithMessage("First name is required")
-            .MaximumLength(100).WithMessage("First name cannot exceed 100 characters");
+            .NotEmpty().WithMessage("Họ là bắt buộc.");
 
         RuleFor(x => x.LastName)
-            .MaximumLength(100).WithMessage("Last name cannot exceed 100 characters");
-
-        RuleFor(x => x.OrganizationName)
-            .MaximumLength(200).WithMessage("Organization name cannot exceed 200 characters");
+            .NotEmpty().WithMessage("Tên là bắt buộc.");
     }
 }
